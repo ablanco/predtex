@@ -37,52 +37,137 @@
 
 ;; ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;
+;;Direccion del fichero corpus
+(defparameter corpus-location '"subcorpus.txt")
 
-;; En corpus-lib se encuentra la informacion de todo el diccionario
-;; la key es la palabra el value contiene una estructura corpus
-(defparameter corpus-lib (make-hash-table))
-
-;; En corpus lib almacenamos la lista de palabras asociadas a un numero
 ;; la key es el numero, value la lista de palabras
-;; TODO. mejorar, almacena la lista con valor (hola . 095)
-(defparameter corpus-numero (make-hash-table))
+;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
+(defparameter corpus (make-hash-table))
 
+(defparameter teclado nil)
 ;; Estructura corpus donde almacenamos la informacion de la palabra
-(defstruct corpus
-palabra 
-numero-asociado 
-probabilidad)
+;(defstruct corpus numero-asociado probabilidad)
 
 ;; FUNCIONES DE ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Crea un teclado, y crea la tabla hash con el vocabulario
+(defun inicio ()
+	(crea-teclado)
+	(leer-archivo-corpus))
 
-;; Crea una palabra con la estructura corpus
-(defun crea-palabra-corpus (lista-letras lista-numeros)
-(make-corpus :palabra lista-letras
-:numero-asociado lista-numeros
-:probabilidad 0))
+;;Inicializa la variable teclado con los valores correspondientes
+(defun crea-teclado ()
+	(setf teclado
+	(list
+	(cons (codifica-palabra-a-lista-numeros-ascii 'aábc) 2)
+	(cons (codifica-palabra-a-lista-numeros-ascii 'deéf) 3)
+	(cons (codifica-palabra-a-lista-numeros-ascii 'ghií) 4)
+	(cons (codifica-palabra-a-lista-numeros-ascii 'jkl) 5)
+	(cons (codifica-palabra-a-lista-numeros-ascii 'mnoóñ) 6)
+	(cons (codifica-palabra-a-lista-numeros-ascii 'pqrs) 7)
+	(cons (codifica-palabra-a-lista-numeros-ascii 'tuúv) 8)
+	(cons (codifica-palabra-a-lista-numeros-ascii 'wxyz) 9))))
 
-;; Inserta una palabra en las dos tablas hash
+
+;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
-  (insterta-palabra-corpus-numero palabra)
-  (inserta-palabra-corpus-lib palabra))
+	(let 
+		((numero (codifica-palabra palabra)))
+	(setf (gethash numero corpus)
+;		palabra)))
+		(cons 
+			(cons palabra 0) ;;probabilidad inicial 0
+			(get-corpus numero)))))
 
-(defun insterta-palabra-corpus-numero (palabra)
-(let ((numero (palabra-a-numero palabra)))
-(setf (gethash numero corpus-numero)
-(cons palabra (gethash numero corpus-numero)))))
+;; FUNCIONES DE EXTRACCIÓN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun inserta-palabra-corpus-lib (palabra)
-  (setf (gethash palabra corpus-lib) 
-  (crea-palabra-corpus (palabra-a-lista palabra) (palabra-a-lista-numeros palabra))))
+;;Lee el vocabulario y lo insterta en la tabla corpus
+(defun leer-archivo-corpus ()
+ (with-open-file (s corpus-location)
+    (do ((l (read-line s) (read-line s nil 'eof)))
+        ((eq l 'eof) "Fin de Fichero.")
+    ;(format t "~&Leida ~A~%" l)
+	(inserta-palabra l))))
 
 ;; Devuelve la lista de palabras asociada a un numero
-(defun get-palabras-numero (numero)
-(gethash numero corpus-numero))
+(defun get-corpus (numero)
+(gethash numero corpus))
 
-;; Devuelve la estructura corpus de palabra
-(defun get-palabras-lib (palabra)
-(gethash palabra corpus-lib))
+;; Devuelve la probabilidad de una palabra
+(defun get-probabilidad (palabra)
+	(car
+	(loop for x in
+		(get-corpus (codifica-palabra-ascii palabra))
+		when (equal (string-downcase palabra) (first x))
+		collect (rest x))))
+
+;;TODO
+;;Asigna una nueva probabilidad a una palabra y la inserta ordenadamente
+;;NOTA:
+;;Inicialmente todas estaban a 0, luego asumimos que esta previamente ordenado
+;(defun set-probabilidad (palabra probabilidad)
+;(append
+;(loop for x in (get-probabilidad palabra)
+;when (not (equal (string-downcase palabra) (first x)))
+;until (< probabilidad (rest x))
+;collect x)
+;(cons palabra probabilidad)
+;(loop for x in (get-probabilidad palabra)
+;when (not (equal (string-downcase palabra) (first x)))
+;until (> probabilidad (rest x))
+;collec x)))
+
+
+;; FUNCIONES DE PROBABILISTICAS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;TODO
+;;Hay que hacer las funciones probabilisticas
+
+
+;; FUNCIONES DE CODIFICACIÓN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Codifica la palabra a una lista de codigos ascii
+;;NOTA. diferencia con la que no es ascii
+;;palabra esta en upercase y no es una secuencia
+(defun codifica-palabra-a-lista-numeros-ascii (palabra)
+(loop for x across (string palabra) collect (char-code (char-downcase (character x)))))
+
+;;Codifica una palabra a un numero de teclado
+(defun codifica-palabra-ascii (palabra)
+	(palabra-a-numero 
+	(reverse
+	(loop for x in 
+	(codifica-palabra-a-lista-numeros-ascii palabra)
+	append
+   	(loop for tecla in teclado
+		when (member x (first tecla))
+		collect
+		;;(list x tecla))))
+		(rest tecla))))))
+
+;;Codifica una palabra a un numero de teclado
+;;NOTA. diferencia con la que es ascii
+;;palabra esta tal y como la lee del archivo y es una secuencia
+(defun codifica-palabra (palabra)
+	(palabra-a-numero 
+	(reverse
+  	(loop for x in 
+	(loop for x across palabra collect (char-code x))	
+		append
+   		(loop for tecla in teclado
+			when (member x (first tecla))
+			collect
+			(rest tecla))))))
+
+;;Pasa de una secuencia de codigos ascci a un numero
+(defun palabra-a-numero (lista)
+	(let* ((tam (1-  (length lista))))
+;		(format t "~&lista ~a"lista)
+		(loop for i from 0 to tam
+		summing
+		(* (expt 10 i) (nth i lista)))))	
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -100,35 +185,3 @@ probabilidad)
 
 (defun escribe-linea (canal)
   (format canal "~&+---------+---------+---------+"))
-
-;; FUNCIONES DE AYUDA
-;;;;;;;;;;;;;;;;;;;;;
-
-(defun palabra-a-lista-numeros (palabra)
-  (loop for x across (string palabra) collect
-    (cond
-      ((or (eq x (character 'a)) (eq x (character 'b)) (eq x (character 'c)))
-	2)
-      ((or (eq x (character 'd)) (eq x (character 'e)) (eq x (character 'f)))
-	3)
-      ((or (eq x (character 'g)) (eq x (character 'h)) (eq x (character 'i)))
-	4)
-      ((or (eq x (character 'j)) (eq x (character 'k)) (eq x (character 'l)))
-	5)
-      ((or (eq x (character 'm)) (eq x (character 'n)) (eq x (character 'o)))
-	6)
-      ((or (eq x (character 'p)) (eq x (character 'q)) (eq x (character 'r)) (eq x (character 's)))
-	7)
-      ((or (eq x (character 't)) (eq x (character 'u)) (eq x (character 'v)))
-	8)
-      ((or (eq x (character 'w)) (eq x (character 'x)) (eq x (character 'y)) (eq x (character 'z)))
-	9))))
-
-;; FUNCIONES DE CODIFICACIÓN
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; TODO
-(defun palabra-a-numero (palabra)
- 123)
-(defun palabra-a-lista (palabra)
-  '(a b c d))
