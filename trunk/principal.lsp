@@ -51,6 +51,12 @@ probabilidad)
 
 ;; FUNCIONES DE ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Crea una palabra con la estructura corpus
+(defun crea-palabra-corpus (lista-letras lista-numeros)
+(make-corpus :palabra lista-letras
+:numero-asociado lista-numeros
+:probabilidad 0))
+
 ;;inserta una palabra en las dos tablas hash
 (defun inserta-palabra (palabra)
   (insterta-palabra-corpus-numero palabra)
@@ -64,12 +70,6 @@ probabilidad)
 (defun inserta-palabra-corpus-lib (palabra)
   (setf (gethash palabra corpus-lib) 
   (crea-palabra-corpus (palabra-a-lista palabra) (palabra-a-lista-numeros palabra))))
-
-;;Crea una palabra con la estructura corpus
-(defun crea-palabra-corpus (lista-letras lista-numeros)
-(make-corpus :palabra lista-letras
-:numero-asociado lista-numeros
-:probabilidad 0))
 
 ;;Devuelve la lista de palabras asociada a un numero
 (defun get-palabras-numero (numero)
@@ -96,24 +96,24 @@ probabilidad)
 ;; FUNCIONES DE AYUDA
 ;;;;;;;;;;;;;;;;;;;;;
 
-(defun palabra-a-teclas (palabra)
-  (loop for x in palabra collect
+(defun palabra-a-lista-numeros (palabra)
+  (loop for x across (string palabra) collect
     (cond
-      ((or (eq x 'a) (eq x 'b) (eq x 'c))
+      ((or (eq x (character 'a)) (eq x (character 'b)) (eq x (character 'c)))
 	2)
-      ((or (eq x 'd) (eq x 'e) (eq x 'f))
+      ((or (eq x (character 'd)) (eq x (character 'e)) (eq x (character 'f)))
 	3)
-      ((or (eq x 'g) (eq x 'h) (eq x 'i))
+      ((or (eq x (character 'g)) (eq x (character 'h)) (eq x (character 'i)))
 	4)
-      ((or (eq x 'j) (eq x 'k) (eq x 'l))
+      ((or (eq x (character 'j)) (eq x (character 'k)) (eq x (character 'l)))
 	5)
-      ((or (eq x 'm) (eq x 'n) (eq x 'o))
+      ((or (eq x (character 'm)) (eq x (character 'n)) (eq x (character 'o)))
 	6)
-      ((or (eq x 'p) (eq x 'q) (eq x 'r) (eq x 's))
+      ((or (eq x (character 'p)) (eq x (character 'q)) (eq x (character 'r)) (eq x (character 's)))
 	7)
-      ((or (eq x 't) (eq x 'u) (eq x 'v))
+      ((or (eq x (character 't)) (eq x (character 'u)) (eq x (character 'v)))
 	8)
-      ((or (eq x 'w) (eq x 'x) (eq x 'y) (eq x 'z))
+      ((or (eq x (character 'w)) (eq x (character 'x)) (eq x (character 'y)) (eq x (character 'z)))
 	9))))
 
 ;; FUNCIONES DE CODIFICACIÓN
