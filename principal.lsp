@@ -31,22 +31,50 @@
 ;; Webs Útiles
 ;; http://en.wikipedia.org/wiki/Predictive_text
 
-
-
-
-
-;; FUNCIONES DE ESTRUCTURAS DE DATOS
+;; ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;En corpus-lib se encuentra la informacion de todo el diccionario
+;;la key es la palabra el value contiene una estructura corpus
+(defparameter corpus-lib (make-hash-table))
 
+;;En corpus lib almacenamos la lista de palabras asociadas a un numero
+;;la key es el numero, value la lista de palabras
+;;TODO. mejorar, almacena la lista con valor (hola . 095)
+(defparameter corpus-numero (make-hash-table))
+
+;;Estructura corpus donde almacenamos la informacion de la palabra
 (defstruct corpus
 palabra 
 numero-asociado 
 probabilidad)
 
-(defun insertarPalabraCorpus (lista-letras lista-numeros)
+
+;; FUNCIONES DE ESTRUCTURAS DE DATOS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;inserta una palabra en las dos tablas hash
+(defun inserta-palabra (palabra)
+  (insterta-palabra-corpus-numero palabra)
+  (inserta-palabra-corpus-lib palabra))
+
+(defun insterta-palabra-corpus-numero (palabra)
+(let ((numero (palabra-a-numero palabra)))
+(setf (gethash numero corpus-numero)
+(cons palabra (gethash numero corpus-numero)))))
+
+(defun inserta-palabra-corpus-lib (palabra)
+  (setf (gethash palabra corpus-lib) 
+  (crea-palabra-corpus (palabra-a-lista palabra) (palabra-a-lista-numeros palabra))))
+
+;;Crea una palabra con la estructura corpus
+(defun crea-palabra-corpus (lista-letras lista-numeros)
 (make-corpus :palabra lista-letras
 :numero-asociado lista-numeros
 :probabilidad 0))
+
+;;Devuelve la lista de palabras asociada a un numero
+(defun get-palabras-numero (numero)
+(gethash numero corpus-numero))
+
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -87,3 +115,13 @@ probabilidad)
 	8)
       ((or (eq x 'w) (eq x 'x) (eq x 'y) (eq x 'z))
 	9))))
+
+;; FUNCIONES DE CODIFICACIÓN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;TODO
+(defun palabra-a-numero (palabra)
+ 123)
+(defun palabra-a-lista (palabra)
+  '(a b c d))
+(defun palabra-a-lista-numeros (palabra)
+  '(1 2 3 4))
