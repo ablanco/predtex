@@ -31,33 +31,38 @@
 ;; Webs Útiles
 ;; http://en.wikipedia.org/wiki/Predictive_text
 
+
+
+
+
 ;; ESTRUCTURAS DE DATOS
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;En corpus-lib se encuentra la informacion de todo el diccionario
-;;la key es la palabra el value contiene una estructura corpus
+;;;;;;;;;;;;;;;;;;;;;;;
+
+;; En corpus-lib se encuentra la informacion de todo el diccionario
+;; la key es la palabra el value contiene una estructura corpus
 (defparameter corpus-lib (make-hash-table))
 
-;;En corpus lib almacenamos la lista de palabras asociadas a un numero
-;;la key es el numero, value la lista de palabras
-;;TODO. mejorar, almacena la lista con valor (hola . 095)
+;; En corpus lib almacenamos la lista de palabras asociadas a un numero
+;; la key es el numero, value la lista de palabras
+;; TODO. mejorar, almacena la lista con valor (hola . 095)
 (defparameter corpus-numero (make-hash-table))
 
-;;Estructura corpus donde almacenamos la informacion de la palabra
+;; Estructura corpus donde almacenamos la informacion de la palabra
 (defstruct corpus
 palabra 
 numero-asociado 
 probabilidad)
 
-
 ;; FUNCIONES DE ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;Crea una palabra con la estructura corpus
+
+;; Crea una palabra con la estructura corpus
 (defun crea-palabra-corpus (lista-letras lista-numeros)
 (make-corpus :palabra lista-letras
 :numero-asociado lista-numeros
 :probabilidad 0))
 
-;;inserta una palabra en las dos tablas hash
+;; Inserta una palabra en las dos tablas hash
 (defun inserta-palabra (palabra)
   (insterta-palabra-corpus-numero palabra)
   (inserta-palabra-corpus-lib palabra))
@@ -71,11 +76,11 @@ probabilidad)
   (setf (gethash palabra corpus-lib) 
   (crea-palabra-corpus (palabra-a-lista palabra) (palabra-a-lista-numeros palabra))))
 
-;;Devuelve la lista de palabras asociada a un numero
+;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras-numero (numero)
 (gethash numero corpus-numero))
 
-;;Devuelve la estructura corpus de palabra
+;; Devuelve la estructura corpus de palabra
 (defun get-palabras-lib (palabra)
 (gethash palabra corpus-lib))
 
@@ -121,7 +126,8 @@ probabilidad)
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;TODO
+
+;; TODO
 (defun palabra-a-numero (palabra)
  123)
 (defun palabra-a-lista (palabra)
