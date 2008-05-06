@@ -2,6 +2,8 @@
 ;; http://www.cs.us.es/cursos/ia2/trabajos/propuesta-2/propuesta-fjmm.html
 ;; Francisco Jesús Martín Mateos (fjesus@us.es)
 
+(load "aux.lsp")
+
 ;; Comentarios sobre la implementación
 ;; 
 ;; * 08-04-2008: El trabajo ha de ser desarrollado en el lenguaje de programación Lisp. Las únicas variables globales han de ser las necesarias para almacenar la información probabilística extraida del corpus.
@@ -29,8 +31,10 @@
 ;; Webs Útiles
 ;; http://en.wikipedia.org/wiki/Predictive_text
 
-(defun l ()
-  (load "principal.lsp"))
+
+
+;; FUNCIONES DE PRESENTACIÓN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun escribe-teclado (canal)
   (escribe-linea canal)
@@ -45,6 +49,9 @@
 
 (defun escribe-linea (canal)
   (format canal "~&+---------+---------+---------+"))
+
+;; FUNCIONES DE AYUDA
+;;;;;;;;;;;;;;;;;;;;;
 
 (defun palabra-a-teclas (palabra)
   (loop for x in palabra collect
