@@ -2,6 +2,8 @@
 ;; http://www.cs.us.es/cursos/ia2/trabajos/propuesta-2/propuesta-fjmm.html
 ;; Francisco Jesús Martín Mateos (fjesus@us.es)
 
+(load "aux.lsp")
+
 ;; Comentarios sobre la implementación
 ;; 
 ;; * 08-04-2008: El trabajo ha de ser desarrollado en el lenguaje de programación Lisp. Las únicas variables globales han de ser las necesarias para almacenar la información probabilística extraida del corpus.
@@ -29,7 +31,13 @@
 ;; Webs Útiles
 ;; http://en.wikipedia.org/wiki/Predictive_text
 
-;;estructura de datos
+
+
+
+
+;; FUNCIONES DE ESTRUCTURAS DE DATOS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defstruct corpus
 palabra 
 numero-asociado 
@@ -40,8 +48,8 @@ probabilidad)
 :numero-asociado lista-numeros
 :probabilidad 0))
 
-(defun l ()
-  (load "principal.lsp"))
+;; FUNCIONES DE PRESENTACIÓN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun escribe-teclado (canal)
   (escribe-linea canal)
@@ -56,3 +64,26 @@ probabilidad)
 
 (defun escribe-linea (canal)
   (format canal "~&+---------+---------+---------+"))
+
+;; FUNCIONES DE AYUDA
+;;;;;;;;;;;;;;;;;;;;;
+
+(defun palabra-a-teclas (palabra)
+  (loop for x in palabra collect
+    (cond
+      ((or (eq x 'a) (eq x 'b) (eq x 'c))
+	2)
+      ((or (eq x 'd) (eq x 'e) (eq x 'f))
+	3)
+      ((or (eq x 'g) (eq x 'h) (eq x 'i))
+	4)
+      ((or (eq x 'j) (eq x 'k) (eq x 'l))
+	5)
+      ((or (eq x 'm) (eq x 'n) (eq x 'o))
+	6)
+      ((or (eq x 'p) (eq x 'q) (eq x 'r) (eq x 's))
+	7)
+      ((or (eq x 't) (eq x 'u) (eq x 'v))
+	8)
+      ((or (eq x 'w) (eq x 'x) (eq x 'y) (eq x 'z))
+	9))))
