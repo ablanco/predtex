@@ -24,4 +24,24 @@
 ;; * Interfaz gráfica de entrada simulando el teclado de un móvil
 ;; * Generación del texto de salida de forma progresiva (tal y como ocurre en un teléfono móvil)
 ;; * Desarrollo interactivo del proceso de entrada/salida
-;; * Otras funcionalidades relacionadas y no detalladas en este documento 
+;; * Otras funcionalidades relacionadas y no detalladas en este documento
+
+;; Webs Útiles
+;; http://en.wikipedia.org/wiki/Predictive_text
+
+(defun l ()
+  (load "principal.lsp"))
+
+(defun escribe-teclado (canal)
+  (escribe-linea canal)
+  (format canal "~&+ 1 -     + 2 - ABC + 3 - DEF +")
+  (escribe-linea canal)
+  (format canal "~&+ 4 - GHI + 5 - JKL + 6 - MNO +")
+  (escribe-linea canal)
+  (format canal "~&+ 7 - PQRS+ 8 - TUV + 9 - WXYZ+")
+  (escribe-linea canal)
+  (format canal "~&+ *       + 0       + #       +")
+  (escribe-linea canal))
+
+(defun escribe-linea (canal)
+  (format canal "~&+---------+---------+---------+"))
