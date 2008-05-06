@@ -75,6 +75,9 @@ probabilidad)
 (defun get-palabras-numero (numero)
 (gethash numero corpus-numero))
 
+;;Devuelve la estructura corpus de palabra
+(defun get-palabras-lib (palabra)
+(gethash palabra corpus-lib))
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
