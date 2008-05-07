@@ -43,6 +43,7 @@
 ;; la key es el numero, value la lista de palabras
 ;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
 (defparameter corpus (make-hash-table))
+(defparameter corpus-aux (make-hash-table))
 
 (defparameter teclado nil)
 ;; Estructura corpus donde almacenamos la informacion de la palabra
@@ -88,7 +89,8 @@
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
     ;(format t "~&Leida ~A~%" l)
-	(inserta-palabra l))))
+	(inserta-palabra l)
+	(inserta-key-corpus-key l))))
 
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-corpus (numero)
