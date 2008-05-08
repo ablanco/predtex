@@ -38,17 +38,18 @@
 ;; ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Direccion del fichero corpus
-(defparameter corpus-location '"subcorpus.txt")
+;; Direccion del fichero corpus
+(defparameter *corpus-location* '"subcorpus.txt")
 
-;; la key es el numero, value la lista de palabras
+;; La key es el numero, value la lista de palabras
 ;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
-(defparameter corpus (make-hash-table))
-(defparameter corpus-key (make-hash-table))
+(defparameter *corpus* (make-hash-table))
+(defparameter *corpus-key* (make-hash-table))
 
-(defparameter teclado nil)
+(defparameter *teclado* nil)
+
 ;; Estructura corpus donde almacenamos la informacion de la palabra
-;(defstruct corpus numero-asociado probabilidad)
+;; (defstruct *corpus* numero-asociado probabilidad)
 
 ;; FUNCIONES DE ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
