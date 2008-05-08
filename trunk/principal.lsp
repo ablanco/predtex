@@ -56,7 +56,7 @@
 ;;Crea un teclado, y crea la tabla hash con el vocabulario
 (defun inicio ()
 	(crea-teclado)
-	(leer-archivo-corpus))
+	(leer-archivo))
 
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
