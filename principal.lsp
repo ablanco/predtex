@@ -156,7 +156,7 @@
 ;;NOTA. diferencia con la que es ascii
 ;;palabra esta tal y como la lee del archivo y es una secuencia
 (defun codifica-palabra (palabra)
-	(palabra-a-numero 
+	(palabra-a-numero
 	(reverse
   	(loop for x in 
 	(loop for x across palabra collect (char-code x))	
