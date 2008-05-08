@@ -33,8 +33,6 @@
 
 
 
-
-
 ;; ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -75,13 +73,7 @@
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
-	(let 
-		((numero (codifica-palabra palabra)))
-	(setf (gethash numero corpus)
-;		palabra)))
-		(cons 
-			(cons palabra 0) ;;probabilidad inicial 0
-			(get-palabras numero)))))
+	(set-palabra (codifica-palabra palabra) palabra (/ 1000 (random 1000))))
 
 ;; FUNCIONES DE EXTRACCIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -122,7 +114,18 @@
 ;when (not (equal (string-downcase palabra) (first x)))
 ;until (> probabilidad (rest x))
 ;collec x)))
+(defun set-palabra (numero palabra probabilidad)
+	(setf (gethash numero corpus)
+;		palabra)))
+		(cons 
+			(cons palabra 0) ;;probabilidad inicial 0
+			(get-palabras numero)))))
 
+(defun ordena-por-probabilidad (lista)
+	(sort lista #'(lambda (x y) (< (rest x) (rest y)))))
+
+;(defun inserta-palabra-en-lista (palabra lista)
+	;(loop for x in 
 
 ;; FUNCIONES DE PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
