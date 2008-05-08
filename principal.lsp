@@ -122,6 +122,8 @@
 ;when (not (equal (string-downcase palabra) (first x)))
 ;until (> probabilidad (rest x))
 ;collec x)))
+
+;;TODO
 (defun set-palabra (numero palabra probabilidad)
 	(setf (gethash numero corpus)
 ;		palabra)))
@@ -132,8 +134,16 @@
 (defun ordena-por-probabilidad (lista)
 	(sort lista #'(lambda (x y) (< (rest x) (rest y)))))
 
-;(defun inserta-palabra-en-lista (palabra lista)
-	;(loop for x in 
+;;TODO
+(defun inserta-palabra-en-lista (palabra probabildad lista)
+	(if (null (get-probabilidad palabra))
+	(cons 
+		(cons palabra probabilidad)
+		lista)
+	(loop for x in lista
+		collect
+		(if (equal (first x) (string palabra) )
+		(cos palabra (+ (rest x) probabilidad))))))
 
 ;; FUNCIONES DE PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
