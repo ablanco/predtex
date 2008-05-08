@@ -43,7 +43,7 @@
 ;; la key es el numero, value la lista de palabras
 ;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
 (defparameter corpus (make-hash-table))
-(defparameter corpus-aux (make-hash-table))
+(defparameter corpus-key (make-hash-table))
 
 (defparameter teclado nil)
 ;; Estructura corpus donde almacenamos la informacion de la palabra
@@ -60,14 +60,14 @@
 (defun crea-teclado ()
 	(setf teclado
 	(list
-	(cons (codifica-palabra-a-lista-numeros-ascii 'aábc) 2)
-	(cons (codifica-palabra-a-lista-numeros-ascii 'deéf) 3)
-	(cons (codifica-palabra-a-lista-numeros-ascii 'ghií) 4)
-	(cons (codifica-palabra-a-lista-numeros-ascii 'jkl) 5)
-	(cons (codifica-palabra-a-lista-numeros-ascii 'mnoóñ) 6)
-	(cons (codifica-palabra-a-lista-numeros-ascii 'pqrs) 7)
-	(cons (codifica-palabra-a-lista-numeros-ascii 'tuúv) 8)
-	(cons (codifica-palabra-a-lista-numeros-ascii 'wxyz) 9))))
+	(cons (codifica-palabra-a-lista-numeros-consola 'aábc) 2)
+	(cons (codifica-palabra-a-lista-numeros-consola 'deéf) 3)
+	(cons (codifica-palabra-a-lista-numeros-consola 'ghií) 4)
+	(cons (codifica-palabra-a-lista-numeros-consola 'jkl) 5)
+	(cons (codifica-palabra-a-lista-numeros-consola 'mnoóñ) 6)
+	(cons (codifica-palabra-a-lista-numeros-consola 'pqrs) 7)
+	(cons (codifica-palabra-a-lista-numeros-consola 'tuúv) 8)
+	(cons (codifica-palabra-a-lista-numeros-consola 'wxyz) 9))))
 
 
 ;; Inserta una palabra en la tabla con probabilidad 0
@@ -78,13 +78,13 @@
 ;		palabra)))
 		(cons 
 			(cons palabra 0) ;;probabilidad inicial 0
-			(get-corpus numero)))))
+			(get-palabras numero)))))
 
 ;; FUNCIONES DE EXTRACCIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;Lee el vocabulario y lo insterta en la tabla corpus
-(defun leer-archivo-corpus ()
+(defun leer-archivo()
  (with-open-file (s corpus-location)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
@@ -93,14 +93,14 @@
 	(inserta-key-corpus-key l))))
 
 ;; Devuelve la lista de palabras asociada a un numero
-(defun get-corpus (numero)
+(defun get-palabras (numero)
 (gethash numero corpus))
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
 	(car
 	(loop for x in
-		(get-corpus (codifica-palabra-ascii palabra))
+		(get-palabras (codifica-palabra-consola palabra))
 		when (equal (string-downcase palabra) (first x))
 		collect (rest x))))
 
@@ -133,15 +133,15 @@
 ;;Codifica la palabra a una lista de codigos ascii
 ;;NOTA. diferencia con la que no es ascii
 ;;palabra esta en upercase y no es una secuencia
-(defun codifica-palabra-a-lista-numeros-ascii (palabra)
+(defun codifica-palabra-a-lista-numeros-consola (palabra)
 (loop for x across (string palabra) collect (char-code (char-downcase (character x)))))
 
 ;;Codifica una palabra a un numero de teclado
-(defun codifica-palabra-ascii (palabra)
+(defun codifica-palabra-consola (palabra)
 	(palabra-a-numero 
 	(reverse
 	(loop for x in 
-	(codifica-palabra-a-lista-numeros-ascii palabra)
+	(codifica-palabra-a-lista-numeros-consola palabra)
 	append
    	(loop for tecla in teclado
 		when (member x (first tecla))
@@ -169,7 +169,35 @@
 ;		(format t "~&lista ~a"lista)
 		(loop for i from 0 to tam
 		summing
-		(* (expt 10 i) (nth i lista)))))	
+		(* (expt 10 i) (nth i lista)))))
+
+(defun inserta-key-corpus-key (palabra)
+(let ((numero (codifica-palabra palabra))
+	(lista (descompone-a-numero palabra)))
+;(format t "~&numero ~a lista ~a"numero lista)
+(loop for x in lista
+	do
+	(if (member numero (gethash x corpus-key))
+	nil
+	(setf (gethash x corpus-key)
+		(cons numero (gethash x corpus-key)))))))
+
+(defun descompone-a-numero (palabra)
+	(let ((lista (codifica-palabra-lista palabra)))
+	(loop for i from (- (length lista) 3) downto 1 ;;tamaño minimo 3
+	collect
+	(palabra-a-numero (subseq lista i)))))
+
+(defun codifica-palabra-lista (palabra)
+	(reverse
+  	(loop for x in 
+	(loop for x across palabra collect (char-code (char-downcase x)))	
+		append
+   		(loop for tecla in teclado
+			when (member x (first tecla))
+			collect
+			(rest tecla)))))
+	
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
