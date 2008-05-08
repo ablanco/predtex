@@ -37,6 +37,7 @@
 
 ;; ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;Direccion del fichero corpus
 (defparameter corpus-location '"subcorpus.txt")
 
@@ -51,6 +52,7 @@
 
 ;; FUNCIONES DE ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;Crea un teclado, y crea la tabla hash con el vocabulario
 (defun inicio ()
 	(crea-teclado)
@@ -127,9 +129,9 @@
 ;;TODO
 ;;Hay que hacer las funciones probabilisticas
 
-
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;Codifica la palabra a una lista de codigos ascii
 ;;NOTA. diferencia con la que no es ascii
 ;;palabra esta en upercase y no es una secuencia
