@@ -39,6 +39,9 @@
 ;; Direccion del fichero corpus
 (defparameter *corpus-location* '"subcorpus.txt")
 
+;; Direccion del fichero de entrenamiento
+(defparameter *texto-entrenamiento-location* "entrenamiento.txt")
+
 ;; La key es el numero, value la lista de palabras
 ;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
 (defparameter *corpus* (make-hash-table))
@@ -54,8 +57,9 @@
 
 ;;Crea un teclado, y crea la tabla hash con el vocabulario
 (defun inicio ()
-	(crea-teclado)
-	(leer-archivo))
+  (crea-teclado)
+  (leer-archivo)
+  (entrenamiento (leer-texto *texto-entrenamiento-location*)))
 
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
@@ -86,6 +90,10 @@
     ;(format t "~&Leida ~A~%" l)
 	(inserta-palabra l)
 	(inserta-key-corpus-key l))))
+
+;; TODO Hacer XD
+(defun leer-texto (ruta)
+  )
 
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras (numero)
@@ -119,7 +127,7 @@
 ;		palabra)))
 		(cons 
 			(cons palabra 0) ;;probabilidad inicial 0
-			(get-palabras numero)))))
+			(get-palabras numero))))
 
 (defun ordena-por-probabilidad (lista)
 	(sort lista #'(lambda (x y) (< (rest x) (rest y)))))
@@ -130,8 +138,8 @@
 ;; FUNCIONES DE PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;TODO
-;;Hay que hacer las funciones probabilisticas
+(defun entrenamiento (texto)
+  )
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
