@@ -19,7 +19,7 @@
 ;; * Conocimiento y exposición del trabajo
 ;; * Claridad y buen estilo de programación Lisp
 ;; * Efectividad de la fase de evaluación
-;; * Coherencia de la fase de aprendizaje con los criterios probabilísticos utilizados para analizar el corpus 
+;; * Coherencia de la fase de aprendizaje con los criterios probabilísticos utilizados para analizar el *corpus* 
 ;; 
 ;; También se tendrán en cuenta otros factores como:
 ;; 
@@ -38,6 +38,7 @@
 
 ;; Direccion del fichero corpus
 (defparameter *corpus-location* '"subcorpus.txt")
+(defparameter *entrenamiento-location* '"entrenamiento.txt")
 
 ;; Direccion del fichero de entrenamiento
 (defparameter *texto-entrenamiento-location* "entrenamiento.txt")
@@ -49,7 +50,7 @@
 
 (defparameter *teclado* nil)
 
-;; Estructura corpus donde almacenamos la informacion de la palabra
+;; Estructura *corpus* donde almacenamos la informacion de la palabra
 ;; (defstruct *corpus* numero-asociado probabilidad)
 
 ;; FUNCIONES DE ESTRUCTURAS DE DATOS
@@ -77,14 +78,14 @@
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
-	(set-palabra (codifica-palabra palabra) palabra (/ 1000 (random 1000))))
+	(set-palabra (codifica-palabra palabra) palabra (/ 1000 (+ (random 999) 1))))
 
 ;; FUNCIONES DE EXTRACCIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;Lee el vocabulario y lo insterta en la tabla corpus
 (defun leer-archivo()
- (with-open-file (s corpus-location)
+ (with-open-file (s *corpus-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
     ;(format t "~&Leida ~A~%" l)
@@ -92,12 +93,15 @@
 	(inserta-key-corpus-key l))))
 
 ;; TODO Hacer XD
-(defun leer-texto (ruta)
-  )
+(defun leer-texto ()
+ (with-open-file (s *entrenamiento-location*)
+    (do ((l (read-line s) (read-line s nil 'eof)))
+        ((eq l 'eof) "Fin de Fichero.")
+    (format t "~&Leida ~A~%" l))))
 
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras (numero)
-(gethash numero corpus))
+(gethash numero *corpus*))
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
@@ -107,43 +111,39 @@
 		when (equal (string-downcase palabra) (first x))
 		collect (rest x))))
 
-;;TODO
-;;Asigna una nueva probabilidad a una palabra y la inserta ordenadamente
-;;NOTA:
-;;Inicialmente todas estaban a 0, luego asumimos que esta previamente ordenado
-;(defun set-probabilidad (palabra probabilidad)
-;(append
-;(loop for x in (get-probabilidad palabra)
-;when (not (equal (string-downcase palabra) (first x)))
-;until (< probabilidad (rest x))
-;collect x)
-;(cons palabra probabilidad)
-;(loop for x in (get-probabilidad palabra)
-;when (not (equal (string-downcase palabra) (first x)))
-;until (> probabilidad (rest x))
-;collec x)))
-
-;;TODO
+;;Inserta una palabra actualizando su probalidad y normalizando el resto
+;;suma la probabilidad enterior a la nueva
 (defun set-palabra (numero palabra probabilidad)
-	(setf (gethash numero corpus)
+	(setf (gethash numero *corpus*)
 ;		palabra)))
-		(cons 
-			(cons palabra 0) ;;probabilidad inicial 0
-			(get-palabras numero))))
+		(normaliza-lista
+			(inserta-palabra-en-lista palabra probabilidad 
+			(get-palabras numero)))))
 
+;; Ordena de mayor a menor una lista de palabras . probabilidades
 (defun ordena-por-probabilidad (lista)
 	(sort lista #'(lambda (x y) (< (rest x) (rest y)))))
 
+;; Normaliza una lista de palabras . probabilidades
+(defun normaliza-lista (lista)
+(let* ((suma (loop for x in lista summing (rest x)))
+	(alfa (/ 1 suma)))
+	(loop for x in lista
+	collect
+	(cons (first x) (* alfa (rest x))))))
+
 ;;TODO
-(defun inserta-palabra-en-lista (palabra probabildad lista)
-	(if (null (get-probabilidad palabra))
-	(cons 
-		(cons palabra probabilidad)
+(defun inserta-palabra-en-lista (palabra probabilidad lista)
+;	(ordena-por-probabilidad
+		(if (null (get-probabilidad palabra))
+		(cons 
+			(cons palabra probabilidad)
 		lista)
 	(loop for x in lista
 		collect
 		(if (equal (first x) (string palabra) )
-		(cos palabra (+ (rest x) probabilidad))))))
+		(cos palabra (+ (rest x) probabilidad))
+		x	))))
 
 ;; FUNCIONES DE PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -201,10 +201,10 @@
 ;(format t "~&numero ~a lista ~a"numero lista)
 (loop for x in lista
 	do
-	(if (member numero (gethash x corpus-key))
+	(if (member numero (gethash x *corpus-key*))
 	nil
-	(setf (gethash x corpus-key)
-		(cons numero (gethash x corpus-key)))))))
+	(setf (gethash x *corpus-key*)
+		(cons numero (gethash x *corpus-key*)))))))
 
 (defun descompone-a-numero (palabra)
 	(let ((lista (codifica-palabra-lista palabra)))
