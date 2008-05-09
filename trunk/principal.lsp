@@ -59,8 +59,11 @@
 ;;Crea un teclado, y crea la tabla hash con el vocabulario
 (defun inicio ()
   (crea-teclado)
+  (format t "~&Carga del diccionario")
   (leer-archivo)
-  (entrenamiento (leer-texto *texto-entrenamiento-location*)))
+  (format t "~&Proceso de entrenamiento")
+  (entrenamiento (leer-texto *texto-entrenamiento-location*))
+  (main t))
 
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
@@ -163,6 +166,10 @@
       collect
       (cons (first x) (* alfa (rest x))))))
 
+(defun prediccion (teclas)
+  ;; TODO
+  )
+
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -227,6 +234,23 @@
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun main (canal)
+  (let ((terminado nil)
+	(teclas '())
+	(tecla nil))
+    (loop while (not terminado) do
+      (escribe-teclado canal)
+      (format canal "~&~%Pulse un numero (o la letra q para salir): ")
+      ;; TODO leer tecla
+      (setf teclas (append teclas (list tecla)))
+      (cond
+	((eq tecla " ")
+	      (setf teclas '()))
+	((eq tecla 'q)
+	  (setf terminado t))
+	(t
+	  (format canal "~&Cadena predicha: ~a~%" (prediccion teclas)))))))
 
 (defun escribe-teclado (canal)
   (escribe-linea canal)
