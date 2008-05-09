@@ -93,6 +93,7 @@
 	(inserta-key-corpus-key l))))
 
 ;; TODO Hacer XD
+;; Carga un texto y lo codifica en memoria
 (defun leer-texto ()
  (with-open-file (s *entrenamiento-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
@@ -148,8 +149,8 @@
       (setf (gethash x *corpus-key*)
 	(cons numero (gethash x *corpus-key*)))))))
 
-;; FUNCIONES DE PROBABILISTICAS
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; FUNCIONES PROBABILISTICAS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun entrenamiento (texto)
   )
