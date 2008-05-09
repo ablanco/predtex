@@ -80,10 +80,10 @@
 (defun inserta-palabra (palabra)
 	(set-palabra (codifica-palabra palabra) palabra (/ 1000 (+ (random 999) 1))))
 
-;; FUNCIONES DE EXTRACCIÓN
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; FUNCIONES DE MANEJO DE DATOS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Lee el vocabulario y lo insterta en la tabla corpus
+;;Lee el vocabulario y lo inserta en la tabla corpus
 (defun leer-archivo()
  (with-open-file (s *corpus-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
@@ -124,14 +124,6 @@
 (defun ordena-por-probabilidad (lista)
 	(sort lista #'(lambda (x y) (< (rest x) (rest y)))))
 
-;; Normaliza una lista de palabras . probabilidades
-(defun normaliza-lista (lista)
-(let* ((suma (loop for x in lista summing (rest x)))
-	(alfa (/ 1 suma)))
-	(loop for x in lista
-	collect
-	(cons (first x) (* alfa (rest x))))))
-
 ;;TODO
 (defun inserta-palabra-en-lista (palabra probabilidad lista)
 ;	(ordena-por-probabilidad
@@ -145,11 +137,30 @@
 		(cos palabra (+ (rest x) probabilidad))
 		x	))))
 
+(defun inserta-key-corpus-key (palabra)
+  (let ((numero (codifica-palabra palabra))
+	 (lista (descompone-a-numero palabra)))
+    ;(format t "~&numero ~a lista ~a"numero lista)
+  (loop for x in lista
+    do
+    (if (member numero (gethash x *corpus-key*))
+      nil
+      (setf (gethash x *corpus-key*)
+	(cons numero (gethash x *corpus-key*)))))))
+
 ;; FUNCIONES DE PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun entrenamiento (texto)
   )
+
+;; Normaliza una lista de palabras . probabilidades
+(defun normaliza-lista (lista)
+  (let* ((suma (loop for x in lista summing (rest x)))
+	  (alfa (/ 1 suma)))
+    (loop for x in lista
+      collect
+      (cons (first x) (* alfa (rest x))))))
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -158,7 +169,8 @@
 ;;NOTA. diferencia con la que no es ascii
 ;;palabra esta en upercase y no es una secuencia
 (defun codifica-palabra-a-lista-numeros-consola (palabra)
-(loop for x across (string palabra) collect (char-code (char-downcase (character x)))))
+  (loop for x across (string palabra) collect
+    (char-code (char-downcase (character x)))))
 
 ;;Codifica una palabra a un numero de teclado
 (defun codifica-palabra-consola (palabra)
@@ -195,17 +207,6 @@
 		summing
 		(* (expt 10 i) (nth i lista)))))
 
-(defun inserta-key-corpus-key (palabra)
-(let ((numero (codifica-palabra palabra))
-	(lista (descompone-a-numero palabra)))
-;(format t "~&numero ~a lista ~a"numero lista)
-(loop for x in lista
-	do
-	(if (member numero (gethash x *corpus-key*))
-	nil
-	(setf (gethash x *corpus-key*)
-		(cons numero (gethash x *corpus-key*)))))))
-
 (defun descompone-a-numero (palabra)
 	(let ((lista (codifica-palabra-lista palabra)))
 	(loop for i from (- (length lista) 3) downto 1 ;;tamaño minimo 3
@@ -228,14 +229,18 @@
 
 (defun escribe-teclado (canal)
   (escribe-linea canal)
-  (format canal "~&+ 1 -     + 2 - ABC + 3 - DEF +")
+  (format canal "~&+  1  +  2  +  3  +")
+  (format canal "~&+     + ABC + DEF +")
   (escribe-linea canal)
-  (format canal "~&+ 4 - GHI + 5 - JKL + 6 - MNO +")
+  (format canal "~&+  4  +  5  +  6  +")
+  (format canal "~&+ GHI + JKL + MNO +")
   (escribe-linea canal)
-  (format canal "~&+ 7 - PQRS+ 8 - TUV + 9 - WXYZ+")
+  (format canal "~&+  7  +  8  +  9  +")
+  (format canal "~&+ PQRS+ TUV + WXYZ+")
   (escribe-linea canal)
-  (format canal "~&+ *       + 0       + #       +")
+  (format canal "~&+  *  +  0  +  #  +")
+  (format canal "~&+     +     +     +")
   (escribe-linea canal))
 
 (defun escribe-linea (canal)
-  (format canal "~&+---------+---------+---------+"))
+  (format canal "~&+-----+-----+-----+"))
