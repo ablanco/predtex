@@ -77,8 +77,8 @@
 
 ;; TODO Hacer XD
 ;; Carga un texto y lo codifica en memoria
-(defun leer-texto ()
- (with-open-file (s *corpus-location*)
+(defun leer-texto (fichero)
+ (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
       ;(format t "~&Leida ~A~%" l)
