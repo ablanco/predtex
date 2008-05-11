@@ -147,6 +147,7 @@
     (loop for x in (first lista) do
       ;(first x)	palabra
       ;(/ (rest x) total)	probabilidad
+      nil
       )))
 
 ;; Normaliza una lista de palabras . probabilidades
