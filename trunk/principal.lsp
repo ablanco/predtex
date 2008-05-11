@@ -43,7 +43,7 @@
 ;; La key es el numero, value la lista de palabras
 ;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
 (defparameter *corpus* (make-hash-table))
-(defparameter *corpus-key* (make-hash-table))
+;(defparameter *corpus-key* (make-hash-table))
 
 (defparameter *teclado* nil)
 
@@ -73,16 +73,36 @@
         ((eq l 'eof) "Fin de Fichero.")
     ;(format t "~&Leida ~A~%" l)
 	(inserta-palabra l)
-	(inserta-key-corpus-key l))))
+;	(inserta-key-corpus-key l)
+	)))
 
 ;; TODO Hacer XD
 ;; Carga un texto y lo codifica en memoria
+;devuelve una lista de la forma
+;(((palabra .1)(palabra . 2)) . 3)
 (defun leer-texto (fichero)
+(let ((lista '(nil . 0)))
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-      ;(format t "~&Leida ~A~%" l)
-      )))
+      (setf lista (leer-texto-aux l lista))))
+	;(setf lista (linea-a-lista-palabras l))))
+	lista))
+
+;(leer-texto "corpus.txt")
+(defun leer-texto-aux (linea lista)
+(cons 
+	(if (assoc linea (first lista)) ;si ya pertenece a la lista
+	(loop for x in (first lista)
+		collect
+		(if (equal linea (first x))
+		(cons linea (+ (rest x) 1));actualizo su valor
+		x))
+	(cons
+		(cons linea 1) ; la creo
+	(first lista)))
+(+ 1 (rest lista)))) ;le sumo uno al tamaño
+
 
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras (numero)
