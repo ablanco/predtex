@@ -140,8 +140,14 @@
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun entrenamiento (texto)
-  )
+(defun entrenamiento (fichero)
+  (let ((lista (leer-texto fichero))
+	(total nil))
+    (setf total (rest lista))
+    (loop for x in (first lista) do
+      ;(first x)	palabra
+      ;(/ (rest x) total)	probabilidad
+      )))
 
 ;; Normaliza una lista de palabras . probabilidades
 (defun normaliza-lista (lista)
@@ -233,7 +239,7 @@
   (format canal "~&Carga del diccionario")
   (leer-diccionario)
   (format canal "~&Proceso de entrenamiento")
-  (entrenamiento (leer-texto *corpus-location*))
+  (entrenamiento *corpus-location*)
   (main canal))
 
 ;; Bucle principal del algoritmo
