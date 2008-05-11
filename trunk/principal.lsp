@@ -215,22 +215,30 @@
 		append
    		(loop for tecla in teclado
 			when (member x (first tecla))
-			collect
-			(rest tecla)))))
-	
+			collect (rest tecla)))))
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Crea un teclado, y crea la tabla hash con el vocabulario
+;; Lanza el programa mostrando los resultados por pantalla
 (defun inicio ()
-  (crea-teclado)
-  (format t "~&Carga del diccionario")
-  (leer-archivo)
-  (format t "~&Proceso de entrenamiento")
-  (entrenamiento (leer-texto *texto-entrenamiento-location*))
-  (main t))
+  (lanzador t))
 
+;; Lanza el programa escribiendo los resultados en un fichero
+(defun inicio-fichero (fichero)
+;;   TODO Probablemente esta opcion no tenga sentido XD
+  )
+
+;; Prepara las variables y lanza el algoritmo
+(defun lanzador (canal)
+  (crea-teclado)
+  (format canal "~&Carga del diccionario")
+  (leer-archivo)
+  (format canal "~&Proceso de entrenamiento")
+  (entrenamiento (leer-texto *texto-entrenamiento-location*))
+  (main canal))
+
+;; Bucle principal del algoritmo
 (defun main (canal)
   (let ((terminado nil)
 	(teclas '())
@@ -238,16 +246,17 @@
     (loop while (not terminado) do
       (escribe-teclado canal)
       (format canal "~&~%Pulse un numero (o la letra q para salir): ")
-      ;; TODO leer tecla
+      (setf tecla (read))
       (setf teclas (append teclas (list tecla)))
       (cond
-	((eq tecla " ")
+	((eq tecla " ")	;; Nueva palabra
 	      (setf teclas '()))
-	((eq tecla 'q)
+	((eq tecla 'q)	;; Salir
 	  (setf terminado t))
 	(t
 	  (format canal "~&Cadena predicha: ~a~%" (prediccion teclas)))))))
 
+;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
   (escribe-linea canal)
   (format canal "~&+  1  +  2  +  3  +")
