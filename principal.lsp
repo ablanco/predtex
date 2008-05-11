@@ -158,7 +158,7 @@
       (cons (first x) (* alfa (rest x))))))
 
 (defun prediccion (teclas)
-  ;; TODO
+  ;(get-palabras (teclas))
   )
 
 ;; FUNCIONES DE CODIFICACIÓN
