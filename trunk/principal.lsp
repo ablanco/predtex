@@ -53,35 +53,18 @@
 ;; Estructura *corpus* donde almacenamos la informacion de la palabra
 ;; (defstruct *corpus* numero-asociado probabilidad)
 
-;; FUNCIONES DE ESTRUCTURAS DE DATOS
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;Crea un teclado, y crea la tabla hash con el vocabulario
-(defun inicio ()
-  (crea-teclado)
-  (format t "~&Carga del diccionario")
-  (leer-archivo)
-  (format t "~&Proceso de entrenamiento")
-  (entrenamiento (leer-texto *texto-entrenamiento-location*))
-  (main t))
-
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
-	(setf teclado
-	(list
-	(cons (codifica-palabra-a-lista-numeros-consola 'aábc) 2)
-	(cons (codifica-palabra-a-lista-numeros-consola 'deéf) 3)
-	(cons (codifica-palabra-a-lista-numeros-consola 'ghií) 4)
-	(cons (codifica-palabra-a-lista-numeros-consola 'jkl) 5)
-	(cons (codifica-palabra-a-lista-numeros-consola 'mnoóñ) 6)
-	(cons (codifica-palabra-a-lista-numeros-consola 'pqrs) 7)
-	(cons (codifica-palabra-a-lista-numeros-consola 'tuúv) 8)
-	(cons (codifica-palabra-a-lista-numeros-consola 'wxyz) 9))))
-
-
-;; Inserta una palabra en la tabla con probabilidad 0
-(defun inserta-palabra (palabra)
-	(set-palabra (codifica-palabra palabra) palabra (/ 1000 (+ (random 999) 1))))
+  (setf teclado
+    (list
+      (cons (codifica-palabra-a-lista-numeros-consola 'aábc) 2)
+      (cons (codifica-palabra-a-lista-numeros-consola 'deéf) 3)
+      (cons (codifica-palabra-a-lista-numeros-consola 'ghií) 4)
+      (cons (codifica-palabra-a-lista-numeros-consola 'jkl) 5)
+      (cons (codifica-palabra-a-lista-numeros-consola 'mnoóñ) 6)
+      (cons (codifica-palabra-a-lista-numeros-consola 'pqrs) 7)
+      (cons (codifica-palabra-a-lista-numeros-consola 'tuúv) 8)
+      (cons (codifica-palabra-a-lista-numeros-consola 'wxyz) 9))))
 
 ;; FUNCIONES DE MANEJO DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -140,6 +123,10 @@
 		(if (equal (first x) (string palabra) )
 		(cos palabra (+ (rest x) probabilidad))
 		x	))))
+
+;; Inserta una palabra en la tabla con probabilidad 0
+(defun inserta-palabra (palabra)
+  (set-palabra (codifica-palabra palabra) palabra (/ 1000 (+ (random 999) 1))))
 
 (defun inserta-key-corpus-key (palabra)
   (let ((numero (codifica-palabra palabra))
@@ -234,6 +221,15 @@
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;Crea un teclado, y crea la tabla hash con el vocabulario
+(defun inicio ()
+  (crea-teclado)
+  (format t "~&Carga del diccionario")
+  (leer-archivo)
+  (format t "~&Proceso de entrenamiento")
+  (entrenamiento (leer-texto *texto-entrenamiento-location*))
+  (main t))
 
 (defun main (canal)
   (let ((terminado nil)
