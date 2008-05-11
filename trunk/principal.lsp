@@ -36,12 +36,9 @@
 ;; ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Direccion del fichero corpus
+;; Rutas de los ficheros
 (defparameter *corpus-location* '"subcorpus.txt")
-(defparameter *entrenamiento-location* '"entrenamiento.txt")
-
-;; Direccion del fichero de entrenamiento
-(defparameter *texto-entrenamiento-location* "entrenamiento.txt")
+(defparameter *diccionario-location* '"diccionario.txt")
 
 ;; La key es el numero, value la lista de palabras
 ;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
@@ -69,9 +66,9 @@
 ;; FUNCIONES DE MANEJO DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Lee el vocabulario y lo inserta en la tabla corpus
+;;Lee el diccionario y lo inserta en la tabla corpus
 (defun leer-archivo()
- (with-open-file (s *corpus-location*)
+ (with-open-file (s *diccionario-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
     ;(format t "~&Leida ~A~%" l)
@@ -81,10 +78,11 @@
 ;; TODO Hacer XD
 ;; Carga un texto y lo codifica en memoria
 (defun leer-texto ()
- (with-open-file (s *entrenamiento-location*)
+ (with-open-file (s *corpus-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-    (format t "~&Leida ~A~%" l))))
+      ;(format t "~&Leida ~A~%" l)
+      )))
 
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras (numero)
@@ -235,7 +233,7 @@
   (format canal "~&Carga del diccionario")
   (leer-archivo)
   (format canal "~&Proceso de entrenamiento")
-  (entrenamiento (leer-texto *texto-entrenamiento-location*))
+  (entrenamiento (leer-texto *corpus-location*))
   (main canal))
 
 ;; Bucle principal del algoritmo
