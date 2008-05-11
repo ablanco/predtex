@@ -67,7 +67,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;Lee el diccionario y lo inserta en la tabla corpus
-(defun leer-archivo()
+(defun leer-diccionario()
  (with-open-file (s *diccionario-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
@@ -231,7 +231,7 @@
 (defun lanzador (canal)
   (crea-teclado)
   (format canal "~&Carga del diccionario")
-  (leer-archivo)
+  (leer-diccionario)
   (format canal "~&Proceso de entrenamiento")
   (entrenamiento (leer-texto *corpus-location*))
   (main canal))
