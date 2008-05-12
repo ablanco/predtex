@@ -1,6 +1,5 @@
 (defun l ()
-  (load "principal.lsp")
-	(load "aux.lsp"))
+  (load "principal.lsp"))
 
 
 ;(defun linea-a-lista-palabras (l)

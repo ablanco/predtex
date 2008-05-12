@@ -37,8 +37,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Rutas de los ficheros
-(defparameter *corpus-location* '"subcorpus.txt")
-(defparameter *diccionario-location* '"diccionario.txt")
+(defparameter *corpus-location* '"corpus.txt")	;; TODO Quitar el sub
+(defparameter *diccionario-location* '"subdiccionario.txt")	;; TODO Quitar el sub
 
 ;; La key es el numero, value la lista de palabras
 ;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
@@ -71,7 +71,7 @@
  (with-open-file (s *diccionario-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-    ;(format t "~&Leida ~A~%" l)
+      ;(format t "~&Leida ~A~%" l)
 	(inserta-palabra l)
 ;	(inserta-key-corpus-key l)
 	)))
@@ -118,7 +118,7 @@
 
 ;;Inserta una palabra actualizando su probalidad y normalizando el resto
 ;;suma la probabilidad enterior a la nueva
-(defun set-palabra (numero palabra probabilidad)
+(defun set-palabra (palabra probabilidad)
 (let ((numero (codifica-palabra palabra)))
 	(setf (gethash numero *corpus*)
 ;		palabra)))
@@ -145,7 +145,7 @@
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
-  (set-palabra (codifica-palabra palabra) palabra (/ 1000 (+ (random 999) 1))))
+  (set-palabra palabra (/ 1000 (+ (random 999) 1))))
 
 (defun inserta-key-corpus-key (palabra)
   (let ((numero (codifica-palabra palabra))
@@ -162,16 +162,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun entrenamiento (fichero)
-  (let ((lista (leer-texto fichero))
-	(total nil))
-    (setf total (rest lista))
+  (let* ((lista (leer-texto fichero))
+	(total (rest lista)))
     (loop for x in (first lista) do
-      (set-palabra (first x) (/ (rest x) total)))))
+      (if (= total 0)
+	(set-palabra (first x) 0)
+	(set-palabra (first x) (/ (rest x) total))))))
 
 ;; Normaliza una lista de palabras . probabilidades
 (defun normaliza-lista (lista)
   (let* ((suma (loop for x in lista summing (rest x)))
-	  (alfa (/ 1 suma)))
+	  (alfa (if (= 0 suma)
+		  1
+		  (/ 1 suma))))
     (loop for x in lista
       collect
       (cons (first x) (* alfa (rest x))))))
