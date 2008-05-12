@@ -128,7 +128,7 @@
 
 ;; Ordena de mayor a menor una lista de palabras . probabilidades
 (defun ordena-por-probabilidad (lista)
-	(sort lista #'(lambda (x y) (< (rest x) (rest y)))))
+	(sort lista #'(lambda (x y) (> (rest x) (rest y)))))
 
 ;;TODO
 (defun inserta-palabra-en-lista (palabra probabilidad lista)
