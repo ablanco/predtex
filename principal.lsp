@@ -92,14 +92,14 @@
 ;(leer-texto "corpus.txt")
 (defun leer-texto-aux (linea lista)
 (cons 
-	(if (assoc linea (first lista)) ;si ya pertenece a la lista
+	(if (assoc (string linea) (first lista)) ;si ya pertenece a la lista
 	(loop for x in (first lista)
 		collect
-		(if (equal (string linea) (first x))
-		(cons linea (+ (rest x) 1));actualizo su valor
+		(if (string-equal linea (first x))
+		(cons (string linea) (+ 1 (rest x)));actualizo su valor
 		x))
 	(cons
-		(cons linea 1) ; la creo
+		(cons (string linea) 1) ; la creo
 	(first lista)))
 (+ 1 (rest lista)))) ;le sumo uno al tamaño
 
