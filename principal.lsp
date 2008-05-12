@@ -117,7 +117,9 @@
 	(get-palabras numero)
 	(loop for x in (loop for i from 0 to 15
 			collect
-			(nth i palabras-relacionadas)))))
+			(nth i palabras-relacionadas))
+	when (not (null x))
+	collect	x))))
 
 (defun get-palabras-relacionadas-aux (numero)
 	(ordena-por-probabilidad
