@@ -145,11 +145,7 @@
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
-<<<<<<< .mine
   (set-palabra (codifica-palabra palabra) palabra 0))
-=======
-  (set-palabra palabra (/ 1000 (+ (random 999) 1))))
->>>>>>> .r48
 
 (defun inserta-key-corpus-key (palabra)
   (let ((numero (codifica-palabra palabra))
