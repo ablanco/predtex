@@ -145,7 +145,7 @@
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
-  (set-palabra (codifica-palabra palabra) palabra 0))
+  (set-palabra palabra 0))
 
 (defun inserta-key-corpus-key (palabra)
   (let ((numero (codifica-palabra palabra))
