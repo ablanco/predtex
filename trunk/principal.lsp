@@ -96,17 +96,17 @@
 	(loop for x in (first lista)
 		collect
 		(if (string-equal linea (first x))
-		(cons (string linea) (+ 1 (rest x)));actualizo su valor
+		(cons (string-downcase linea) (+ 1 (rest x)));actualizo su valor
 		x))
 	(cons
-		(cons (string linea) 1) ; la creo
+		(cons (string-downcase linea) 1) ; la creo
 	(first lista)))
 (+ 1 (rest lista)))) ;le sumo uno al tamaño
 
 
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras (numero)
-  (gethash numero *corpus*))
+(gethash numero *corpus*))
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
@@ -132,7 +132,7 @@
 
 ;;TODO
 (defun inserta-palabra-en-lista (palabra probabilidad lista)
-	(ordena-por-probabilidad
+;	(ordena-por-probabilidad
 		(if (null (get-probabilidad palabra))
 		(cons 
 			(cons palabra probabilidad)
@@ -141,11 +141,11 @@
 		collect
 		(if (equal (first x) (string palabra))
 		(cons palabra probabilidad)
-		x	)))))
+		x	))))
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
-  (set-palabra palabra 0.1))
+  (set-palabra palabra 0))
 
 (defun inserta-key-corpus-key (palabra)
   (let ((numero (codifica-palabra palabra))
@@ -180,7 +180,15 @@
       (cons (first x) (* alfa (rest x))))))
 
 (defun prediccion (teclas)
-  (get-palabras (palabra-a-numero-aux teclas)))
+  (format t "~&DEBUG - teclas vale: ~a" teclas)
+  (let ((max 0)
+	(palabra nil))
+    (loop for x in (get-palabras teclas) do
+      (cond
+	((> (rest x) max)
+	  (setf max (rest x))
+	  (setf palabra (first x)))))
+    palabra))
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -278,9 +286,7 @@
 	((eq tecla 'q)	;; Salir
 	  (setf terminado t))
 	(t
-	  (let ((pred (prediccion teclas)))
-	    (format canal "~&Cadena predicha: ~a~%" (first (first pred)))
-	    (format canal "~&Palabras posibles: ~a~%" pred)))))))
+	  (format canal "~&Cadena predicha: ~a~%" (prediccion (palabra-a-numero-aux teclas))))))))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
