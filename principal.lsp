@@ -180,8 +180,15 @@
       (cons (first x) (* alfa (rest x))))))
 
 (defun prediccion (teclas)
-  ;(get-palabras (teclas))
-  )
+  (format t "~&DEBUG - teclas vale: ~a" teclas)
+  (let ((max 0)
+	(palabra nil))
+    (loop for x in (get-palabras (teclas)) do
+      (cond
+	((> (rest x) max)
+	  (setf max (rest x))
+	  (setf palabra (first x)))))
+    palabra))
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
