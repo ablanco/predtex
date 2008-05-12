@@ -92,7 +92,7 @@
 ;(leer-texto "corpus.txt")
 (defun leer-texto-aux (linea lista)
 (cons 
-	(if (assoc (string linea) (first lista)) ;si ya pertenece a la lista
+	(if (assoc linea (first lista) :test #' string-equal) ;si ya pertenece a la lista
 	(loop for x in (first lista)
 		collect
 		(if (string-equal linea (first x))
