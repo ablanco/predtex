@@ -43,7 +43,7 @@
 ;; La key es el numero, value la lista de palabras
 ;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
 (defparameter *corpus* (make-hash-table))
-;(defparameter *corpus-key* (make-hash-table))
+(defparameter *corpus-key* (make-hash-table))
 
 (defparameter *teclado* nil)
 
@@ -73,7 +73,7 @@
         ((eq l 'eof) "Fin de Fichero.")
       ;(format t "~&Leida ~A~%" l)
 	(inserta-palabra l)
-;	(inserta-key-corpus-key l)
+	(inserta-key-corpus-key l)
 	)))
 
 ;; TODO Hacer XD
@@ -107,6 +107,23 @@
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras (numero)
   (gethash numero *corpus*))
+
+(defun get-indices-palabra (numero)
+	(gethash numero *corpus-key*))
+
+(defun get-palabras-relacionadas (numero)
+(let ((palabras-relacionadas (get-palabras-relacionadas-aux numero)))
+(append
+	(get-palabras numero)
+	(loop for x in (loop for i from 0 to 15
+			collect
+			(nth i palabras-relacionadas)))))
+
+(defun get-palabras-relacionadas-aux (numero)
+	(ordena-por-probabilidad
+	(loop for x in (get-indices-palabra numero)
+	append
+	(get-palabras x))))
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
