@@ -149,7 +149,7 @@
 
 (defun inserta-key-corpus-key (palabra)
   (let ((numero (codifica-palabra palabra))
-	 (lista (descompone-a-numero palabra)))
+	 (lista (descompone-a-numero-aux palabra)))
     ;(format t "~&numero ~a lista ~a"numero lista)
   (loop for x in lista
     do
@@ -183,7 +183,7 @@
   (format t "~&DEBUG - teclas vale: ~a" teclas)
   (let ((max 0)
 	(palabra nil))
-    (loop for x in (get-palabras (teclas)) do
+    (loop for x in (get-palabras teclas) do
       (cond
 	((> (rest x) max)
 	  (setf max (rest x))
@@ -203,7 +203,6 @@
 ;;Codifica una palabra a un numero de teclado
 (defun codifica-palabra-consola (palabra)
 	(palabra-a-numero-aux
-	(reverse
 	(loop for x in 
 	(codifica-palabra-a-lista-numeros-consola palabra)
 	append
@@ -211,31 +210,31 @@
 		when (member x (first tecla))
 		collect
 		;;(list x tecla))))
-		(rest tecla))))))
+		(rest tecla)))))
 
 ;;Codifica una palabra a un numero de teclado
 ;;NOTA. diferencia con la que es ascii
 ;;palabra esta tal y como la lee del archivo y es una secuencia
 (defun codifica-palabra (palabra)
 	(palabra-a-numero-aux
-	(reverse
   	(loop for x in 
 	(loop for x across palabra collect (char-code x))	
 		append
    		(loop for tecla in teclado
 			when (member x (first tecla))
 			collect
-			(rest tecla))))))
+			(rest tecla)))))
 
-;;Pasa de una secuencia de codigos ascci a un numero
+;; Pasa una lista de numeros '(1 2 3 4 5) a un literal '54321
 (defun palabra-a-numero-aux (lista)
-	(let* ((tam (1-  (length lista))))
-;		(format t "~&lista ~a"lista)
-		(loop for i from 0 to tam
-		summing
-		(* (expt 10 i) (nth i lista)))))
+  (let ((tam (1- (length lista)))
+	(l (reverse lista)))
+    ;(format t "~&lista ~a"lista)
+    (loop for i from 0 to tam
+      summing
+      (* (expt 10 i) (nth i l)))))
 
-(defun descompone-a-numero (palabra)
+(defun descompone-a-numero-aux (palabra)
 	(let ((lista (codifica-palabra-lista palabra)))
 	(loop for i from (- (length lista) 3) downto 1 ;;tamaño minimo 3
 	collect
@@ -287,7 +286,7 @@
 	((eq tecla 'q)	;; Salir
 	  (setf terminado t))
 	(t
-	  (format canal "~&Cadena predicha: ~a~%" (prediccion teclas)))))))
+	  (format canal "~&Cadena predicha: ~a~%" (prediccion (palabra-a-numero-aux teclas))))))))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
