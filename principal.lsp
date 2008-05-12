@@ -281,11 +281,13 @@
       (format canal "~%~%Su eleccion: ")
       (setf tecla (read))
       (cond
+	((eq tecla 'q)	;; Salir
+	  (setf terminado t))
 	((eq tecla 'e)	;; Nueva palabra
 	  (setf teclas '())
 	  (setf frase (append frase (list palabra)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((eq tecla 'b)	;; TODO - No funciona
+	((eq tecla 'b)	;; Borrar ultima pulsacion
 	  (if (null teclas)
 	    (format canal "~&~%No hay nada que borrar")
 	    (setf teclas (reverse (rest (reverse teclas)))))
@@ -293,13 +295,11 @@
 	  (setf pred (prediccion teclas))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((eq tecla 'q)	;; Salir
-	  (setf terminado t))
 	((and (eq tecla 'n) (not (null pred)) (not (null palabra)))	;; Siguiente palabra
 	  (setf indice (+ 1 indice))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((not (eq tecla 'n))
+	((not (eq tecla 'n))	;; Pulsar tecla
 	  (setf teclas (append teclas (list tecla)))
 	  (setf indice 0)
 	  (setf pred (prediccion teclas))
@@ -308,9 +308,13 @@
 
 (defun print-prediccion (canal teclas palabra pred frase)
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
-  (format canal "~&Palabras posibles: ~a~%" pred)
+  (format canal "~&Palabras posibles: ~a~%" (prediccion-a-lista-amigable pred))
   (format canal "~&Frase hasta ahora: ~a~%" frase)
   (format canal "~&Teclas pulsadas: ~a~%~%" teclas))
+
+(defun prediccion-a-lista-amigable (pred)
+  (loop for x in pred collect
+    (first x)))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
