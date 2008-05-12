@@ -274,30 +274,43 @@
     (loop while (not terminado) do
       (escribe-teclado canal)
       (format canal "~&~%Opciones:~%-Pulse un numero del teclado")
+      (format canal "~%-Pulse la letra e para un espacio en blanco")
+      (format canal "~%-Pulse la letra b para borrar la ultima pulsacion")
       (format canal "~%-Pulse la letra q para salir")
       (format canal "~%-Pulse la letra n para la proxima palabra predicha")
       (format canal "~%~%Su eleccion: ")
       (setf tecla (read))
-      (setf teclas (append teclas (list tecla)))
       (cond
-	((eq tecla " ")	;; Nueva palabra
+	((eq tecla 'e)	;; Nueva palabra
 	  (setf teclas '())
-	  (append frase (list palabra)))
-	((eq tecla 'q)	;; Salir
-	  (setf terminado t))
-	((and (eq tecla 'n) (not (null pred)) (not (null palabra)))	;; Siguiente palabra
-	  (setf palabra (first (nth indice pred)))
-	  (print-prediccion canal palabra pred frase))
-	(t
+	  (setf frase (append frase (list palabra)))
+	  (print-prediccion canal teclas palabra pred frase))
+	((eq tecla 'b)	;; TODO - No funciona
+	  (if (null teclas)
+	    (format canal "~&~%No hay nada que borrar")
+	    (setf teclas (reverse (rest (reverse teclas)))))
 	  (setf indice 0)
 	  (setf pred (prediccion teclas))
 	  (setf palabra (first (nth indice pred)))
-	  (print-prediccion canal palabra pred frase))))))
+	  (print-prediccion canal teclas palabra pred frase))
+	((eq tecla 'q)	;; Salir
+	  (setf terminado t))
+	((and (eq tecla 'n) (not (null pred)) (not (null palabra)))	;; Siguiente palabra
+	  (setf indice (+ 1 indice))
+	  (setf palabra (first (nth indice pred)))
+	  (print-prediccion canal teclas palabra pred frase))
+	((not (eq tecla 'n))
+	  (setf teclas (append teclas (list tecla)))
+	  (setf indice 0)
+	  (setf pred (prediccion teclas))
+	  (setf palabra (first (nth indice pred)))
+	  (print-prediccion canal teclas palabra pred frase))))))
 
-(defun print-prediccion (canal palabra pred frase)
+(defun print-prediccion (canal teclas palabra pred frase)
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
   (format canal "~&Palabras posibles: ~a~%" pred)
-  (format canal "~&Frase hasta ahora: ~a~%" frase))
+  (format canal "~&Frase hasta ahora: ~a~%" frase)
+  (format canal "~&Teclas pulsadas: ~a~%~%" teclas))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
