@@ -119,6 +119,7 @@
 ;;Inserta una palabra actualizando su probalidad y normalizando el resto
 ;;suma la probabilidad enterior a la nueva
 (defun set-palabra (numero palabra probabilidad)
+(let ((numero (codifica-palabra palabra)))
 	(setf (gethash numero *corpus*)
 ;		palabra)))
 		(normaliza-lista
@@ -138,8 +139,8 @@
 		lista)
 	(loop for x in lista
 		collect
-		(if (equal (first x) (string palabra) )
-		(cos palabra (+ (rest x) probabilidad))
+		(if (equal (first x) (string palabra))
+		(cons palabra probabilidad)
 		x	))))
 
 ;; Inserta una palabra en la tabla con probabilidad 0
