@@ -124,7 +124,7 @@
 ;		palabra)))
 		(normaliza-lista
 			(inserta-palabra-en-lista palabra probabilidad 
-			(get-palabras numero)))))
+			(get-palabras numero))))))
 
 ;; Ordena de mayor a menor una lista de palabras . probabilidades
 (defun ordena-por-probabilidad (lista)
