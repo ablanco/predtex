@@ -185,14 +185,14 @@
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Codifica la palabra a una lista de codigos ascii
-;;NOTA. diferencia con la que no es ascii
-;;palabra esta en upercase y no es una secuencia
+;; Codifica la palabra a una lista de codigos ascii
+;; NOTA. diferencia con la que no es ascii
+;; palabra esta en upercase y no es una secuencia
 (defun codifica-palabra-a-lista-numeros-consola (palabra)
   (loop for x across (string palabra) collect
     (char-code (char-downcase (character x)))))
 
-;;Codifica una palabra a un numero de teclado
+;; Codifica una palabra a un numero de teclado
 (defun codifica-palabra-consola (palabra)
 	(palabra-a-numero-aux
 	(loop for x in 
@@ -204,9 +204,9 @@
 		;;(list x tecla))))
 		(rest tecla)))))
 
-;;Codifica una palabra a un numero de teclado
-;;NOTA. diferencia con la que es ascii
-;;palabra esta tal y como la lee del archivo y es una secuencia
+;; Codifica una palabra a un numero de teclado
+;; NOTA. diferencia con la que es ascii
+;; palabra esta tal y como la lee del archivo y es una secuencia
 (defun codifica-palabra (palabra)
 	(palabra-a-numero-aux
   	(loop for x in 
@@ -262,6 +262,8 @@
   (entrenamiento *corpus-location*)
   (main canal))
 
+;; TODO - Poder meter palabras que no estan
+;; TODO - Que aprenda sobre la marcha
 ;; Bucle principal del algoritmo
 (defun main (canal)
   (let ((terminado nil)
