@@ -164,7 +164,8 @@
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
-  (set-palabra palabra 0))
+  ;; 1/247051 = 4,0477472262812131908e-6
+  (set-palabra palabra 0.0000040477472262812131908))	;; TODO - Actualizar si cambia el diccionario
 
 (defun inserta-key-corpus-key (palabra)
   (let ((numero (codifica-palabra palabra))
