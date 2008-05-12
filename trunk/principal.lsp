@@ -141,7 +141,7 @@
 		collect
 		(if (equal (first x) (string palabra))
 		(cons palabra probabilidad)
-		x	))))
+		x	)))))
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
