@@ -106,7 +106,7 @@
 
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras (numero)
-(gethash numero *corpus*))
+  (gethash numero *corpus*))
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
@@ -180,15 +180,7 @@
       (cons (first x) (* alfa (rest x))))))
 
 (defun prediccion (teclas)
-  (format t "~&DEBUG - teclas vale: ~a" teclas)
-  (let ((max 0)
-	(palabra nil))
-    (loop for x in (get-palabras teclas) do
-      (cond
-	((> (rest x) max)
-	  (setf max (rest x))
-	  (setf palabra (first x)))))
-    palabra))
+  (get-palabras (palabra-a-numero-aux teclas)))
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -274,19 +266,38 @@
 (defun main (canal)
   (let ((terminado nil)
 	(teclas '())
-	(tecla nil))
+	(tecla nil)
+	(pred nil)
+	(palabra nil)
+	(frase '())
+	(indice 0))
     (loop while (not terminado) do
       (escribe-teclado canal)
-      (format canal "~&~%Pulse un numero (o la letra q para salir): ")
+      (format canal "~&~%Opciones:~%-Pulse un numero del teclado")
+      (format canal "~%Pulse la letra q para salir")
+      (format canal "~%Pulse la letra n para la proxima palabra predicha")
+      (format canal "~%~%Su eleccion: ")
       (setf tecla (read))
       (setf teclas (append teclas (list tecla)))
       (cond
 	((eq tecla " ")	;; Nueva palabra
-	      (setf teclas '()))
+	  (setf teclas '())
+	  (append frase (list palabra)))
 	((eq tecla 'q)	;; Salir
 	  (setf terminado t))
+	((and (eq tecla 'n) (not (null pred)) (not (null palabra)))	;; Siguiente palabra
+	  (setf palabra (first (nth indice pred)))
+	  (print-prediccion canal palabra frase))
 	(t
-	  (format canal "~&Cadena predicha: ~a~%" (prediccion (palabra-a-numero-aux teclas))))))))
+	  (setf indice 0)
+	  (setf pred (prediccion teclas))
+	  (setf palabra (first (nth indice pred)))
+	  (print-prediccion canal palabra frase))))))
+
+(defun print-prediccion (canal palabra frase)
+  (format canal "~&~%Palabra predicha: ~a~%" palabra)
+  (format canal "~&Palabras posibles: ~a~%" pred)
+  (format canal "~&Frase hasta ahora: ~a~%" frase))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
