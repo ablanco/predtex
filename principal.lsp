@@ -165,10 +165,7 @@
 	(total nil))
     (setf total (rest lista))
     (loop for x in (first lista) do
-      ;(first x)	palabra
-      ;(/ (rest x) total)	probabilidad
-      nil
-      )))
+      (set-palabra (first x) (/ (rest x) total)))))
 
 ;; Normaliza una lista de palabras . probabilidades
 (defun normaliza-lista (lista)
