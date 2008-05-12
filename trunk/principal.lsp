@@ -95,7 +95,7 @@
 	(if (assoc linea (first lista)) ;si ya pertenece a la lista
 	(loop for x in (first lista)
 		collect
-		(if (equal linea (first x))
+		(if (equal (string linea) (first x))
 		(cons linea (+ (rest x) 1));actualizo su valor
 		x))
 	(cons
