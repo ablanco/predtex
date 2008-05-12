@@ -132,7 +132,7 @@
 
 ;;TODO
 (defun inserta-palabra-en-lista (palabra probabilidad lista)
-;	(ordena-por-probabilidad
+	(ordena-por-probabilidad
 		(if (null (get-probabilidad palabra))
 		(cons 
 			(cons palabra probabilidad)
