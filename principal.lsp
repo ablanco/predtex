@@ -194,7 +194,7 @@
 
 ;;Codifica una palabra a un numero de teclado
 (defun codifica-palabra-consola (palabra)
-	(palabra-a-numero 
+	(palabra-a-numero-aux
 	(reverse
 	(loop for x in 
 	(codifica-palabra-a-lista-numeros-consola palabra)
@@ -209,7 +209,7 @@
 ;;NOTA. diferencia con la que es ascii
 ;;palabra esta tal y como la lee del archivo y es una secuencia
 (defun codifica-palabra (palabra)
-	(palabra-a-numero
+	(palabra-a-numero-aux
 	(reverse
   	(loop for x in 
 	(loop for x across palabra collect (char-code x))	
@@ -220,7 +220,7 @@
 			(rest tecla))))))
 
 ;;Pasa de una secuencia de codigos ascci a un numero
-(defun palabra-a-numero (lista)
+(defun palabra-a-numero-aux (lista)
 	(let* ((tam (1-  (length lista))))
 ;		(format t "~&lista ~a"lista)
 		(loop for i from 0 to tam
@@ -231,7 +231,7 @@
 	(let ((lista (codifica-palabra-lista palabra)))
 	(loop for i from (- (length lista) 3) downto 1 ;;tamaño minimo 3
 	collect
-	(palabra-a-numero (subseq lista i)))))
+	(palabra-a-numero-aux (subseq lista i)))))
 
 (defun codifica-palabra-lista (palabra)
 	(reverse
