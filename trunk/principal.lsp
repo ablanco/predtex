@@ -258,7 +258,7 @@
   (crea-teclado)
   (format canal "~&Carga del diccionario")
   (leer-diccionario)
-  (format canal "~&Proceso de entrenamiento")
+  (format canal "~&Proceso de entrenamiento~%")
   (entrenamiento *corpus-location*)
   (main canal))
 
@@ -274,8 +274,8 @@
     (loop while (not terminado) do
       (escribe-teclado canal)
       (format canal "~&~%Opciones:~%-Pulse un numero del teclado")
-      (format canal "~%Pulse la letra q para salir")
-      (format canal "~%Pulse la letra n para la proxima palabra predicha")
+      (format canal "~%-Pulse la letra q para salir")
+      (format canal "~%-Pulse la letra n para la proxima palabra predicha")
       (format canal "~%~%Su eleccion: ")
       (setf tecla (read))
       (setf teclas (append teclas (list tecla)))
@@ -287,14 +287,14 @@
 	  (setf terminado t))
 	((and (eq tecla 'n) (not (null pred)) (not (null palabra)))	;; Siguiente palabra
 	  (setf palabra (first (nth indice pred)))
-	  (print-prediccion canal palabra frase))
+	  (print-prediccion canal palabra pred frase))
 	(t
 	  (setf indice 0)
 	  (setf pred (prediccion teclas))
 	  (setf palabra (first (nth indice pred)))
-	  (print-prediccion canal palabra frase))))))
+	  (print-prediccion canal palabra pred frase))))))
 
-(defun print-prediccion (canal palabra frase)
+(defun print-prediccion (canal palabra pred frase)
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
   (format canal "~&Palabras posibles: ~a~%" pred)
   (format canal "~&Frase hasta ahora: ~a~%" frase))
