@@ -180,6 +180,8 @@
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Lee el fichero que le pasan por parametro y cuenta las apariciones
+;; de las palabras e inicia las probabilidades
 (defun entrenamiento (fichero)
   (let* ((lista (leer-texto fichero))
 	(total (rest lista)))
@@ -187,6 +189,10 @@
       (if (= total 0)
 	(set-palabra (first x) 0)
 	(set-palabra (first x) (/ (rest x) total))))))
+
+(defun aprendizaje (palabra)
+;;   TODO
+  )
 
 ;; Normaliza una lista de palabras . probabilidades
 (defun normaliza-lista (lista)
@@ -198,8 +204,15 @@
       collect
       (cons (first x) (* alfa (rest x))))))
 
+;; Consulta el corpus y devuelve la lista de palabras correspondientes
+;; a esas pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion (teclas)
   (get-palabras (palabra-a-numero-aux teclas)))
+
+;; Devuelve las palabras que se pueden llegar a escribir con esas
+;; pulsaciones de teclas, ordenadas por probabilidad
+(defun prediccion-futura (teclas)
+  (get-palabras-relacionadas (palabra-a-numero-aux teclas)))
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -277,12 +290,11 @@
   (crea-teclado)
   (format canal "~&Carga del diccionario")
   (leer-diccionario)
-  (format canal "~&Proceso de entrenamiento~%")
+  (format canal "~&Proceso de entrenamiento~%~%")
   (entrenamiento *corpus-location*)
   (main canal))
 
 ;; TODO - Poder meter palabras que no estan
-;; TODO - Que aprenda sobre la marcha
 ;; Bucle principal del algoritmo
 (defun main (canal)
   (let ((terminado nil)
@@ -302,13 +314,14 @@
       (format canal "~%~%Su eleccion: ")
       (setf tecla (read))
       (cond
-	((eq tecla 'q)	;; Salir
+	((eq tecla 'q) ;; ---------------------------------------------------- Salir
 	  (setf terminado t))
-	((eq tecla 'e)	;; Nueva palabra
+	((eq tecla 'e) ;; ---------------------------------------------------- Espacio en blanco
+	  (aprendizaje palabra)
 	  (setf teclas '())
 	  (setf frase (append frase (list palabra)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((eq tecla 'b)	;; Borrar ultima pulsacion
+	((eq tecla 'b) ;; ---------------------------------------------------- Borrar ultima pulsacion
 	  (if (null teclas)
 	    (format canal "~&~%No hay nada que borrar")
 	    (setf teclas (reverse (rest (reverse teclas)))))
@@ -316,23 +329,25 @@
 	  (setf pred (prediccion teclas))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((and (eq tecla 'n) (not (null pred)) (not (null palabra)))	;; Siguiente palabra
+	((and (eq tecla 'n) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
 	  (setf indice (+ 1 indice))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((not (eq tecla 'n))	;; Pulsar tecla
+	((not (eq tecla 'n)) ;; ---------------------------------------------- Pulsar tecla
 	  (setf teclas (append teclas (list tecla)))
 	  (setf indice 0)
 	  (setf pred (prediccion teclas))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))))))
 
+;; Funcion auxiliar
 (defun print-prediccion (canal teclas palabra pred frase)
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
   (format canal "~&Palabras posibles: ~a~%" (prediccion-a-lista-amigable pred))
   (format canal "~&Frase hasta ahora: ~a~%" frase)
   (format canal "~&Teclas pulsadas: ~a~%~%" teclas))
 
+;; Funcion auxiliar
 (defun prediccion-a-lista-amigable (pred)
   (loop for x in pred collect
     (first x)))
@@ -353,5 +368,6 @@
   (format canal "~&+     +     +     +")
   (escribe-linea canal))
 
+;; Funcion auxiliar
 (defun escribe-linea (canal)
   (format canal "~&+-----+-----+-----+"))
