@@ -46,6 +46,7 @@
 (defparameter *corpus-key* (make-hash-table))
 
 (defparameter *teclado* nil)
+(defparameter *profundidad* 15)	;; TODO Quitar el sub
 
 ;; Estructura *corpus* donde almacenamos la informacion de la palabra
 ;; (defstruct *corpus* numero-asociado probabilidad)
@@ -88,7 +89,6 @@
 	  	(inserta-palabra l) ;;Se acrualizan las palabras al diccionario
 		(inserta-key-corpus-key l) ;; Y al indice de keys
       (setf lista (leer-texto-aux l lista))))
-	;(setf lista (linea-a-lista-palabras l))))
 	lista))
 
 ;(leer-texto "corpus.txt")
@@ -118,13 +118,11 @@
 (append
 	(get-palabras numero)
 	(get-n-palabras-relacionadas-aux
-		15 ;;15 es el tamaño máximo de la lista de sugerencias
-		(get-palabras-relacionadas-aux numero)))) 
+		(get-palabras-relacionadas-aux numero))))
 
-;;TODO
-(defun get-n-palabras-relacionadas-aux (n lista)
+(defun get-n-palabras-relacionadas-aux (lista)
 	(loop for x in
-		(loop for i from 0 to (min 15 n)
+		(loop for i from 0 to (min *profundidad* (length lista))
 			collect
 			(nth i lista))
 	when (not (null x))
