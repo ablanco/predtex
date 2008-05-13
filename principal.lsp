@@ -107,9 +107,11 @@
 
 
 ;; Devuelve la lista de palabras asociada a un numero
+;;ordenadas por probabilidad y normalizadas :D
 (defun get-palabras (numero)
 (ordena-por-probabilidad
-  (gethash numero *corpus*)))
+(normaliza-lista
+  (gethash numero *corpus*))))
 
 (defun get-indices-palabra (numero)
 	(gethash numero *corpus-key*))
@@ -145,9 +147,9 @@
 (let ((numero (codifica-palabra palabra)))
 	(setf (gethash numero *corpus*)
 ;		palabra)))
-		(normaliza-lista
+		;(normaliza-lista
 			(inserta-palabra-en-lista palabra probabilidad 
-			(gethash numero *corpus*))))))
+			(gethash numero *corpus*)))))
 
 ;; Ordena de mayor a menor una lista de palabras . probabilidades
 (defun ordena-por-probabilidad (lista)
@@ -169,7 +171,8 @@
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
   ;; 1/247051 = 4,0477472262812131908e-6
-  (set-palabra palabra 0.0000040477472262812131908))	;; TODO - Actualizar si cambia el diccionario
+  ;(set-palabra palabra 0.0000040477472262812131908))	;; TODO - Actualizar si cambia el diccionario
+	(set-palabra palabra 0))	;; TODO Lin cree que esto es lo mejor
 
 (defun inserta-key-corpus-key (palabra)
   (let ((numero (codifica-palabra palabra))
@@ -199,7 +202,7 @@
 ;;   TODO
   )
 
-;; Normaliza una lista de palabras . probabilidades
+;; Normaliza una lista de (palabras . probabilidades)
 (defun normaliza-lista (lista)
   (let* ((suma (loop for x in lista summing (rest x)))
 	  (alfa (if (= 0 suma)
