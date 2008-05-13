@@ -85,6 +85,8 @@
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
+	  	(inserta-palabra l) ;;Se acrualizan las palabras al diccionario
+		(inserta-key-corpus-key l) ;; Y al indice de keys
       (setf lista (leer-texto-aux l lista))))
 	;(setf lista (linea-a-lista-palabras l))))
 	lista))
@@ -119,19 +121,14 @@
 		15 ;;15 es el tamaño máximo de la lista de sugerencias
 		(get-palabras-relacionadas-aux numero)))) 
 
+;;TODO
 (defun get-n-palabras-relacionadas-aux (n lista)
-(let ((tam (length lista)))
-	(if (< n tam)
-	(loop for x in (loop for i from 0 to 15
+	(loop for x in
+		(loop for i from 0 to (min 15 n)
 			collect
 			(nth i lista))
 	when (not (null x))
-	collect	x)
-	(loop for x in (loop for i from 0 to tam
-			collect
-			(nth i lista))
-	when (not (null x))
-	collect	x))))
+	collect	x))
 
 (defun get-palabras-relacionadas-aux (numero)
 	(ordena-por-probabilidad
