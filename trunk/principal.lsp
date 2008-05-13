@@ -71,7 +71,7 @@
  (with-open-file (s *diccionario-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-      ;(format t "~&Leida ~A~%" l)
+;      (format t "~&Leida ~A~%" l)
 	(inserta-palabra l)
 	(inserta-key-corpus-key l)
 	)))
@@ -106,18 +106,30 @@
 
 ;; Devuelve la lista de palabras asociada a un numero
 (defun get-palabras (numero)
-  (gethash numero *corpus*))
+(ordena-por-probabilidad
+  (gethash numero *corpus*)))
 
 (defun get-indices-palabra (numero)
 	(gethash numero *corpus-key*))
 
 (defun get-palabras-relacionadas (numero)
-(let ((palabras-relacionadas (get-palabras-relacionadas-aux numero)))
 (append
 	(get-palabras numero)
+	(get-n-palabras-relacionadas-aux
+		15 ;;15 es el tamaño máximo de la lista de sugerencias
+		(get-palabras-relacionadas-aux numero)))) 
+
+(defun get-n-palabras-relacionadas-aux (n lista)
+(let ((tam (length lista)))
+	(if (< n tam)
 	(loop for x in (loop for i from 0 to 15
 			collect
-			(nth i palabras-relacionadas))
+			(nth i lista))
+	when (not (null x))
+	collect	x)
+	(loop for x in (loop for i from 0 to tam
+			collect
+			(nth i lista))
 	when (not (null x))
 	collect	x))))
 
@@ -125,15 +137,12 @@
 	(ordena-por-probabilidad
 	(loop for x in (get-indices-palabra numero)
 	append
-	(get-palabras x))))
+	(gethash x *corpus*))))
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
-	(car
-	(loop for x in
-		(get-palabras (codifica-palabra-consola palabra))
-		when (equal (string-downcase palabra) (first x))
-		collect (rest x))))
+	(rest
+		(assoc palabra (get-palabras (codifica-palabra-consola palabra)) :test #' string-equal)))
 
 ;;Inserta una palabra actualizando su probalidad y normalizando el resto
 ;;suma la probabilidad enterior a la nueva
@@ -143,7 +152,7 @@
 ;		palabra)))
 		(normaliza-lista
 			(inserta-palabra-en-lista palabra probabilidad 
-			(get-palabras numero))))))
+			(gethash numero *corpus*))))))
 
 ;; Ordena de mayor a menor una lista de palabras . probabilidades
 (defun ordena-por-probabilidad (lista)
@@ -151,7 +160,7 @@
 
 ;;TODO
 (defun inserta-palabra-en-lista (palabra probabilidad lista)
-	(ordena-por-probabilidad
+	;(ordena-por-probabilidad ;;esto es muy pesado
 		(if (null (get-probabilidad palabra))
 		(cons 
 			(cons palabra probabilidad)
@@ -160,7 +169,7 @@
 		collect
 		(if (equal (first x) (string palabra))
 		(cons palabra probabilidad)
-		x	)))))
+		x))))
 
 ;; Inserta una palabra en la tabla con probabilidad 0
 (defun inserta-palabra (palabra)
@@ -260,19 +269,19 @@
       (* (expt 10 i) (nth i l)))))
 
 (defun descompone-a-numero-aux (palabra)
-	(let ((lista (codifica-palabra-lista palabra)))
-	(loop for i from (- (length lista) 3) downto 1 ;;tamaño minimo 3
+	(let ((lista (codifica-palabra-lista palabra))) ;obtenemos la lista de numeros
+	(loop for i from (- (length lista) 3 ) downto 1 ;;tamaño minimo 3
 	collect
-	(palabra-a-numero-aux (subseq lista i)))))
+	(palabra-a-numero-aux ;;pasamos a numero la lista
+		(reverse (subseq (reverse lista) i))))))  ;;obtenemos una lista cada vez mas grande :D
 
 (defun codifica-palabra-lista (palabra)
-	(reverse
   	(loop for x in 
 	(loop for x across palabra collect (char-code (char-downcase x)))	
 		append
    		(loop for tecla in teclado
 			when (member x (first tecla))
-			collect (rest tecla)))))
+			collect (rest tecla))))
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
