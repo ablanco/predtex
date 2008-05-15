@@ -4,34 +4,12 @@
 
 (load "aux.lsp")
 
-;; Comentarios sobre la implementación
-;; 
-;; * 08-04-2008: El trabajo ha de ser desarrollado en el lenguaje de programación Lisp. Las únicas variables globales han de ser las necesarias para almacenar la información probabilística extraida del corpus.
-
-;; Criterios de evaluación
-;; 
-;; Los criterios de evaluación serán los siguientes:
-;; 
-;; * Calidad del corpus
-;; * Calidad de los criterios probabilísticos utilizados
-;; * Calidad de la estructura de datos utilizada para almacenar la información probabilística
-;; * Corrección de la implementación
-;; * Conocimiento y exposición del trabajo
-;; * Claridad y buen estilo de programación Lisp
-;; * Efectividad de la fase de evaluación
-;; * Coherencia de la fase de aprendizaje con los criterios probabilísticos utilizados para analizar el *corpus* 
-;; 
-;; También se tendrán en cuenta otros factores como:
-;; 
-;; * Interfaz gráfica de entrada simulando el teclado de un móvil
-;; * Generación del texto de salida de forma progresiva (tal y como ocurre en un teléfono móvil)
-;; * Desarrollo interactivo del proceso de entrada/salida
-;; * Otras funcionalidades relacionadas y no detalladas en este documento
-
-;; Webs Útiles
-;; http://en.wikipedia.org/wiki/Predictive_text
-
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ALUMNOS                   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Alejandro Blanco Escudero ;;
+;; Manuel Gomar Acosta       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -47,6 +25,9 @@
 
 (defparameter *teclado* nil)
 (defparameter *profundidad* 15)	;; TODO Quitar el sub
+
+;; Numero de palabras reconocidas hasta el momento, contando tambien las apariciones repetidas
+(defvar *palabras-totales* 0)
 
 ;; Estructura *corpus* donde almacenamos la informacion de la palabra
 ;; (defstruct *corpus* numero-asociado probabilidad)
@@ -187,6 +168,11 @@
 
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Devuelve la probabilidad de una palabra, recibe el numero de
+;; apariciones de esa palabra
+(defun calcula-probabilidad (n)
+  (/ n *palabras-totales*))
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
@@ -334,7 +320,7 @@
 	    (format canal "~&~%No hay nada que borrar")
 	    (setf teclas (reverse (rest (reverse teclas)))))
 	  (setf indice 0)
-	  (setf pred (prediccion teclas))
+	  (setf pred (prediccion-futura teclas))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
 	((and (eq tecla 'n) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
@@ -344,7 +330,7 @@
 	((not (eq tecla 'n)) ;; ---------------------------------------------- Pulsar tecla
 	  (setf teclas (append teclas (list tecla)))
 	  (setf indice 0)
-	  (setf pred (prediccion teclas))
+	  (setf pred (prediccion-futura teclas))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))))))
 
