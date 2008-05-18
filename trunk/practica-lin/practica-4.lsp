@@ -2,7 +2,7 @@
 ;;; Inteligencia Artificial II
 ;;; Practica 4: Clustering (algoritmo k-medias y EM)
 ;;; ==============================================================
-
+;;(load "practica-4.lsp")
 
 ;;; Esta practica tiene tres partes:
 ;;; - En la primera parte vamos a implementar en Lisp el algoritmo de
@@ -157,36 +157,53 @@
 ;;; (ESCOGE-ALEATORIAMENTE-INDICES K N) que escoge K numeros alatorios
 ;;; distintos entre 1 y N:
 
-(defun escoge-aleatoriamente (k l)
-  (if (= k 0)
-      nil
-    (let ((pos-escogida (random (length l))))
-      (cons (nth pos-escogida l)
-	    (escoge-aleatoriamente (- k 1) 
-				   (append (subseq l 0 pos-escogida)
-					   (subseq l (1+ pos-escogida))))))))
+;;(defun escoge-aleatoriamente (k l)
+;;  (if (= k 0)
+;;      nil
+;;    (let ((pos-escogida (random (length l))))
+;;      (cons (nth pos-escogida l)
+;;	    (escoge-aleatoriamente (- k 1) 
+;;				   (append (subseq l 0 pos-escogida)
+;;					   (subseq l (1+ pos-escogida))))))))
 
 
-(defun escoge-aleatoriamente-indices (k n)
-  (escoge-aleatoriamente k (loop for i from 0 to (1- n) collect i)))
+;;(defun escoge-aleatoriamente-indices (k n)
+;;  (escoge-aleatoriamente k (loop for i from 0 to (1- n) collect i)))
+
+
+;;(defun centros-iniciales (pesos n)
+;;  (make-array
+;;   n
+;;   :initial-contents
+;;   (loop for x in
+;;         (escoge-aleatoriamente-indices n (length pesos)) ;;puede coger dos centros iguales
+;;         collect
+;;         (nth x pesos))))
 
 
 (defun centros-iniciales (pesos n)
-  (make-array
-   n
-   :initial-contents
-   (loop for x in
-         (escoge-aleatoriamente-indices n (length pesos)) ;;puede coger dos centros iguales
-         collect
-         (nth x pesos))))
+  (if (< (length pesos) n)
+      (format t "Tamanyo insuficiente de pesos")
+    (make-array
+     n
+     :initial-contents
+     (let ((centros nil))
+       (loop for i from 1 to n ;;queremos solo dos centros
+	     do
+	     (setf centros ;;insertamos un centro por iteracion
+		   (inserta-centro (random (length pesos))
+				   pesos centros)))
+       centros))))
 
+(defun inserta-centro (indice pesos lcentros)
+;;(format t "centro : ~a lista centros: ~a" (nth indice pesos) lcentros)
+  (if (member (nth indice pesos) lcentros :test #'equal)
+      (inserta-centro (random (length pesos)) pesos lcentros) ;;si es
+                                                              ;;igual volvemos a lazanr
+    (cons (nth indice pesos) lcentros))) ;;insertamos el centro diferente
 
-
-
-
-
-
-
+;;(inserta-centro 3 *pesos-poblacion* '((61.0)(64.0)))
+;;; > (setf CENT (centros-iniciales *pesos-poblacion* 2))
 
 
   
@@ -308,18 +325,36 @@
 
 ;;; Division de los elementos de un vector por un numero:
 (defun div (x n)
-  (loop for xi in x collect (/ xi n))) 
+  (loop for xi in x collect (/ xi n)))
 
+(defun suma-centros (v c)
+  (loop for i from 0 to (1- (first (array-dimensions v)))
+	when (= (cluster (aref clas i)) c)
+	summing (first (elemento (aref clas i)))))
+
+(defun cuenta-centros (v c)
+  (loop for i from 0 to (1- (first (array-dimensions v)))
+	when (= (cluster (aref clas i)) c)
+	summing 1))
+
+;;(suma-centros clas 2)
+;;(cuenta-centros clas 1)
 
 (defun recalcula-centros (clasificacion centros)
   (let* ((num-ejemplos (first (array-dimensions clasificacion)))
          (num-clusters (first (array-dimensions centros)))
-         (acum (vector-cero num-cluster))  ; Array para acumular las sumas de elementos de cada cluster
-         (card-clusters (vector-cero num-cluster))) ; Array para acumular el num de elementos de cada cluster
-    (loop for j from 0 to (1- num-ejemplos) do
-          ????????????)
-    (loop for i from 0 to (1- num-clusters) do
-          (setf (aref centros i) (aref acum i)))));;mirar los indices
+         (acum (vector-cero num-clusters))  ; Array para acumular las sumas de elementos de cada cluster
+         (card-clusters (vector-cero num-clusters))) ; Array para acumular el num de elementos de cada cluster
+;;    (loop for j from 0 to (1- num-clusters) do
+;;	          ????????????)
+    (loop for i from 1 to num-clusters do
+          (setf (aref centros (1- i))
+		(list ;;TODO chapucen!!!
+		(/ (suma-centros clasificacion i)
+		   (cuenta-centros clasificacion i)))))
+    centros))
+;; > (recalcula-centros CLAS CENT)
+;; > (asigna-cluster-a-cada-ejemplo CLAS CENT)
 
 ;;; ---------------------------------------------------------------
 ;;; Ejercicio 7
@@ -357,16 +392,21 @@
 ;;  #((46.8125) (63.63158)))
 ;;; -------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
+(defun k-medias (pesos &key num-clusters iteraciones)
+  (let* ((centros (centros-iniciales pesos num-clusters))
+	 (clasific (asigna-cluster-a-cada-ejemplo
+		(clasificacion-inicial-vacia pesos) cent))
+	 (return (make-array 2)))
+    ;;variables inicializadas
+    (loop for i from 1 to iteraciones
+	  do
+;;	  (format t "~&centros : ~a ~&clasificacion ~a" centros clasific)
+	  (setf centros (recalcula-centros clasific centros))
+	  (setf clasific (asigna-cluster-a-cada-ejemplo clasific centros)))
+    (setf (aref return 0) clasific)
+    (setf (aref return 1) centros)
+    return))
+;;; > (k-medias *pesos-poblacion* :num-clusters 2 :iteraciones 3)
 
 ;;; **************************************************
 ;;; Parte II: experimentacion de k-medias sobre "iris"
