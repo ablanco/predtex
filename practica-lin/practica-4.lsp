@@ -329,12 +329,12 @@
 
 (defun suma-centros (v c)
   (loop for i from 0 to (1- (first (array-dimensions v)))
-	when (= (cluster (aref clas i)) c)
-	summing (first (elemento (aref clas i)))))
+	when (= (cluster (aref v i)) c)
+	summing (first (elemento (aref v i)))))
 
 (defun cuenta-centros (v c)
   (loop for i from 0 to (1- (first (array-dimensions v)))
-	when (= (cluster (aref clas i)) c)
+	when (= (cluster (aref v i)) c)
 	summing 1))
 
 ;;(suma-centros clas 2)
@@ -395,18 +395,19 @@
 (defun k-medias (pesos &key num-clusters iteraciones)
   (let* ((centros (centros-iniciales pesos num-clusters))
 	 (clasific (asigna-cluster-a-cada-ejemplo
-		(clasificacion-inicial-vacia pesos) cent))
+		(clasificacion-inicial-vacia pesos) centros))
 	 (return (make-array 2)))
     ;;variables inicializadas
     (loop for i from 1 to iteraciones
 	  do
 ;;	  (format t "~&centros : ~a ~&clasificacion ~a" centros clasific)
 	  (setf centros (recalcula-centros clasific centros))
-	  (setf clasific (asigna-cluster-a-cada-ejemplo clasific centros)))
+	  (setf clasific 
+		(asigna-cluster-a-cada-ejemplo clasific centros)))
     (setf (aref return 0) clasific)
     (setf (aref return 1) centros)
     return))
-;;; > (k-medias *pesos-poblacion* :num-clusters 2 :iteraciones 3)
+;;; > (k-medias *pesos-poblacion* :num-clusters 4 :iteraciones 2)
 
 ;;; **************************************************
 ;;; Parte II: experimentacion de k-medias sobre "iris"
@@ -443,8 +444,7 @@
 	  for i in '(0 1 2) do
 	  (format t "~& Valor original: ~a  ~%     " v)
 	  (loop for j in '(0 1 2) do
-		(format t "Cluster ~a: ~a " (1+ j) (aref contadores i j)))))) 
-		  
+		(format t "Cluster ~a: ~a " (1+ j) (aref contadores i j))))))
 
 ;;; Se pide:
 ;;; - Obtener, a partir de los datos de "iris.lsp" la lista de vectores
@@ -453,7 +453,16 @@
 ;;; - Validar la clasificacion obtenida respecto de la clasificacion
 ;;;   original
 
+;;(load "iris.lsp")
+(defun quita-tipo (iris)
+  (loop for x in iris
+	collect
+	(reverse (rest (reverse x)))))
+;;(quita-tipo *iris*)
+(defun clasificacion-inicial-vacia-iris (iris)
+  (clasificacion-inicial-vacia (quita-tipo iris)))
 
+;; (validacion-iris (clasificacion-inicial-vacia-iris *iris*))
 
 
 
