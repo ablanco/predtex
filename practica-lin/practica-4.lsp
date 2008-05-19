@@ -463,7 +463,7 @@
   (clasificacion-inicial-vacia (quita-tipo iris)))
 
 ;; (validacion-iris (clasificacion-inicial-vacia-iris *iris*))
-
+;;; > (k-medias (quita-tipo *iris*) :num-clusters 6 :iteraciones 2)
 
 
 
