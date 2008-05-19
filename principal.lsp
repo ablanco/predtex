@@ -19,18 +19,15 @@
 (defparameter *diccionario-location* '"subdiccionario.txt")	;; TODO Quitar el sub
 
 ;; La key es el numero, value la lista de palabras
-;; TODO. mejorar, almacena la lista con valor (hola . 0.95)
 (defparameter *corpus* (make-hash-table))
 (defparameter *corpus-key* (make-hash-table))
 
 
 (defparameter *teclado* nil)
-(defparameter *profundidad* 15)	;; TODO Quitar el sub
-;; Numero de palabras reconocidas hasta el momento, contando tambien las apariciones repetidas
-(defvar *palabras-totales* 0)
+(defparameter *profundidad* 15)	
 
-;; Estructura *corpus* donde almacenamos la informacion de la palabra
-;; (defstruct *corpus* numero-asociado probabilidad)
+(defvar *palabras-totales* 0);; Numero total de palabras reconocidas hasta el momento.
+
 
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
@@ -58,37 +55,10 @@
 	(set-key l)
 	)))
 
-;; TODO Hacer XD
+
 ;; Carga un texto y lo codifica en memoria
 ;devuelve una lista de la forma
 ;(((palabra .1)(palabra . 2)) . 3)
-(defun leer-texto (fichero)
-(let ((lista '(nil . 0))
-	(anterior nil))
- (with-open-file (s fichero)
-    (do ((l (read-line s) (read-line s nil 'eof)))
-        ((eq l 'eof) "Fin de Fichero.")
-	  	(set-palabra l (codifica-palabra l)) ;;Se acrualizan las palabras al diccionario
-		(set-palabra-compuesta anterior l)
-		(set-key l) ;; Y al indice de keys
-		(set-key-compuesta-corpus-key anterior l)
-	(setf anterior l)
-      (setf lista (leer-texto-aux l lista))))
-	lista))
-
-;(leer-texto "corpus.txt")
-(defun leer-texto-aux (linea lista)
-(cons 
-	(if (assoc linea (first lista) :test #' string-equal) ;si ya pertenece a la lista
-	(loop for x in (first lista)
-		collect
-		(if (string-equal linea (first x))
-		(cons (string-downcase linea) (+ 1 (rest x)));actualizo su valor
-		x))
-	(cons
-		(cons (string-downcase linea) 1) ; la creo
-	(first lista)))
-(+ 1 (rest lista)))) ;le sumo uno al tamaño
 
 
 ;; Devuelve la lista de palabras asociada a un numero
@@ -188,14 +158,46 @@
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
+
+;;TODO borrar
+;; (defun entrenamiento (fichero)
+;;   (let* ((lista (entrenamientofichero))
+;; 	(total (rest lista)))
+;;     (loop for x in (first lista) do
+;; 	(set-palabra (first x) (codifica-palabra (first x))))))
+;;       ;;(if (= total 0)
+;; 	;;(set-palabra (first x)) 
+;; 	;;(set-palabra (first x) (/ (rest x) total)))))) 
+
+;;TODO entrenamiento ahora se entrena con el fichero de prueba xD
 (defun entrenamiento (fichero)
-  (let* ((lista (leer-texto fichero))
-	(total (rest lista)))
-    (loop for x in (first lista) do
-	(set-palabra (first x) (codifica-palabra (first x)))))) ;;TODO añadir aprender frases
-      ;;(if (= total 0)
-	;;(set-palabra (first x)) ;;TODO
-	;;(set-palabra (first x) (/ (rest x) total)))))) ;;TODO
+(let ((lista '(nil . 0))
+	(anterior nil))
+ (with-open-file (s fichero)
+    (do ((l (read-line s) (read-line s nil 'eof)))
+        ((eq l 'eof) "Fin de Fichero.")
+	  	(set-palabra l (codifica-palabra l)) ;;Se acrualizan las palabras al diccionario
+		(set-palabra-compuesta anterior l)
+		(set-key l) ;; Y al indice de keys
+		(set-key-compuesta-corpus-key anterior l)
+	(setf anterior l)
+      (setf lista (entrenamiento-aux l lista))))
+	lista))
+
+;(entrenamiento"corpus.txt")
+(defun entrenamiento-aux (linea lista)
+(cons 
+	(if (assoc linea (first lista) :test #' string-equal) ;si ya pertenece a la lista
+	(loop for x in (first lista)
+		collect
+		(if (string-equal linea (first x))
+		(cons (string-downcase linea) (+ 1 (rest x)));actualizo su valor
+		x))
+	(cons
+		(cons (string-downcase linea) 1) ; la creo
+	(first lista)))
+(+ 1 (rest lista)))) ;le sumo uno al tamaño
+
 
 (defun aprendizaje (palabra)
 ;;   TODO
