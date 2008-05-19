@@ -23,9 +23,9 @@
 (defparameter *corpus* (make-hash-table))
 (defparameter *corpus-key* (make-hash-table))
 
+
 (defparameter *teclado* nil)
 (defparameter *profundidad* 15)	;; TODO Quitar el sub
-
 ;; Numero de palabras reconocidas hasta el momento, contando tambien las apariciones repetidas
 (defvar *palabras-totales* 0)
 
@@ -54,8 +54,8 @@
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
 ;      (format t "~&Leida ~A~%" l)
-	(inserta-palabra l)
-	(inserta-key-corpus-key l)
+	(set-palabra l (codifica-palabra l))
+	(set-key l)
 	)))
 
 ;; TODO Hacer XD
@@ -63,12 +63,16 @@
 ;devuelve una lista de la forma
 ;(((palabra .1)(palabra . 2)) . 3)
 (defun leer-texto (fichero)
-(let ((lista '(nil . 0)))
+(let ((lista '(nil . 0))
+	(anterior nil))
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-	  	(inserta-palabra l) ;;Se acrualizan las palabras al diccionario
-		(inserta-key-corpus-key l) ;; Y al indice de keys
+	  	(set-palabra l (codifica-palabra l)) ;;Se acrualizan las palabras al diccionario
+		(set-palabra-compuesta anterior l)
+		(set-key l) ;; Y al indice de keys
+		(set-key-compuesta-corpus-key anterior l)
+	(setf anterior l)
       (setf lista (leer-texto-aux l lista))))
 	lista))
 
@@ -91,7 +95,8 @@
 ;;ordenadas por probabilidad y normalizadas :D
 (defun get-palabras (numero)
 (ordena-por-probabilidad
-(normaliza-lista
+;;(normaliza-lista
+(calcula-probabilidad
   (gethash numero *corpus*))))
 
 (defun get-indices-palabra (numero)
@@ -122,40 +127,38 @@
 	(rest
 		(assoc palabra (get-palabras (codifica-palabra-consola palabra)) :test #' string-equal)))
 
-;;Inserta una palabra actualizando su probalidad y normalizando el resto
-;;suma la probabilidad enterior a la nueva
-(defun set-palabra (palabra probabilidad)
-(let ((numero (codifica-palabra palabra)))
+;;Inserta una palabra en el corpus actualizando sus repeticiones
+(defun set-palabra (palabra numero)
+(setf *palabras-totales* (1+ *palabras-totales*))
 	(setf (gethash numero *corpus*)
-;		palabra)))
-		;(normaliza-lista
-			(inserta-palabra-en-lista palabra probabilidad 
-			(gethash numero *corpus*)))))
+		(set-palabra-aux palabra (gethash numero *corpus*))))
 
-;; Ordena de mayor a menor una lista de palabras . probabilidades
-(defun ordena-por-probabilidad (lista)
-	(sort lista #'(lambda (x y) (> (rest x) (rest y)))))
-
-;;TODO
-(defun inserta-palabra-en-lista (palabra probabilidad lista)
+;; Inserta una palabra en una lista, si esta le suma 1 si no esta le da valor 1
+(defun set-palabra-aux (palabra lista)
 	;(ordena-por-probabilidad ;;esto es muy pesado
-		(if (null (get-probabilidad palabra))
-		(cons 
-			(cons palabra probabilidad)
-		lista)
+		(if (assoc palabra lista :test #'equal) ;;si esta en la lista
 	(loop for x in lista
 		collect
 		(if (equal (first x) (string palabra))
-		(cons palabra probabilidad)
-		x))))
+		(cons palabra (1+ (rest x))) ;;suma una aparicion
+		x))	
+	(cons 
+			(cons palabra 1) ;;aparicion inicial
+		lista)))
 
-;; Inserta una palabra en la tabla con probabilidad 0
-(defun inserta-palabra (palabra)
-  ;; 1/247051 = 4,0477472262812131908e-6
-  ;(set-palabra palabra 0.0000040477472262812131908))	;; TODO - Actualizar si cambia el diccionario
-	(set-palabra palabra 0))	;; TODO Lin cree que esto es lo mejor
+(defun set-palabra-compuesta (anterior palabra)
+(if (null anterior)
+	nil
+	(set-palabra 
+		(string-concat (string anterior) (string '" ") (string palabra))
+		(codifica-palabra (string-concat (string anterior) (string palabra))))))
 
-(defun inserta-key-corpus-key (palabra)
+(defun set-key-compuesta-corpus-key (anterior palabra)
+(if (null anterior)
+	nil
+	(set-key (string-concat (string anterior) (string palabra)))))
+
+(defun set-key (palabra)
   (let ((numero (codifica-palabra palabra))
 	 (lista (descompone-a-numero-aux palabra)))
     ;(format t "~&numero ~a lista ~a"numero lista)
@@ -166,13 +169,22 @@
       (setf (gethash x *corpus-key*)
 	(cons numero (gethash x *corpus-key*)))))))
 
+;; Ordena de mayor a menor una lista de palabras . probabilidades
+(defun ordena-por-probabilidad (lista)
+	(sort lista #'(lambda (x y) (> (rest x) (rest y)))))
+
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Devuelve la probabilidad de una palabra, recibe el numero de
 ;; apariciones de esa palabra
-(defun calcula-probabilidad (n)
-  (/ n *palabras-totales*))
+
+;;Calcula la probabilidad total de cada elemento de la lista 
+(defun calcula-probabilidad (lista)
+	(loop for x in lista
+	collect
+	(cons (first x)
+		(/ (rest x) *palabras-totales*)))) 
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
@@ -180,16 +192,17 @@
   (let* ((lista (leer-texto fichero))
 	(total (rest lista)))
     (loop for x in (first lista) do
-      (if (= total 0)
-	(set-palabra (first x) 0)
-	(set-palabra (first x) (/ (rest x) total))))))
+	(set-palabra (first x) (codifica-palabra (first x)))))) ;;TODO añadir aprender frases
+      ;;(if (= total 0)
+	;;(set-palabra (first x)) ;;TODO
+	;;(set-palabra (first x) (/ (rest x) total)))))) ;;TODO
 
 (defun aprendizaje (palabra)
 ;;   TODO
   )
 
 ;; Normaliza una lista de (palabras . probabilidades)
-(defun normaliza-lista (lista)
+(defun normaliza-lista (lista) ;;TODO ya no hace falta no???
   (let* ((suma (loop for x in lista summing (rest x)))
 	  (alfa (if (= 0 suma)
 		  1
