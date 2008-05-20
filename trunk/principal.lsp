@@ -352,14 +352,15 @@
 ;; Funcion auxiliar
 (defun print-prediccion (canal teclas palabra pred frase)
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
-  (format canal "~&Palabras posibles: ~a~%" (prediccion-a-lista-amigable pred))
+  (format canal "~&Palabras posibles: ")
+  (print-prediccion-aux canal pred)
   (format canal "~&Frase hasta ahora: ~a~%" frase)
   (format canal "~&Teclas pulsadas: ~a~%~%" teclas))
 
 ;; Funcion auxiliar
-(defun prediccion-a-lista-amigable (pred)
-  (loop for x in pred collect
-    (first x)))
+(defun print-prediccion-aux (canal pred)
+  (loop for x in pred do
+    (format canal "'~a' " (first x))))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)

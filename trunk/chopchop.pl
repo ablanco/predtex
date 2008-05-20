@@ -8,7 +8,7 @@ if ($#ARGV+1 == 0) {
   open(OUT, ">$dest");
   while(<IN>) {
     chomp;
-    s/[_\-;.,$()"]//g;
+    s/[_\-;:.,$()"]//g;
     s/\n/ /g;
     s/  / /g;
     s/  / /g;
