@@ -409,8 +409,7 @@
 (defun k-medias (pesos &key num-clusters iteraciones)
   (let* ((centros (centros-iniciales pesos num-clusters))
 	 (clasific (asigna-cluster-a-cada-ejemplo
-		(clasificacion-inicial-vacia pesos) centros))
-	 (return (make-array 2)))
+		(clasificacion-inicial-vacia pesos) centros)))
     ;;variables inicializadas
     (loop for i from 1 to iteraciones
 	  do
@@ -418,10 +417,25 @@
 	  (setf centros (recalcula-centros clasific centros)) ;;actualiza centros
 	  (setf clasific 
 		(asigna-cluster-a-cada-ejemplo clasific centros))) ;;actualiza clasificacion
-    (setf (aref return 0) clasific)
-    (setf (aref return 1) centros)
-    return))
+    (make-array 2 :initial-contents (list clasific centros))))
 ;;; > (k-medias *pesos-poblacion* :num-clusters 4 :iteraciones 2)
+
+
+(defun k-medias-estable (pesos &key num-clusters)
+  (let ((centros (centros-iniciales pesos num-clusters)))
+	 (k-medias-estable-aux ;;llamada
+	 (asigna-cluster-a-cada-ejemplo ;;primera aproximacion
+		(clasificacion-inicial-vacia pesos) centros)
+	 centros))) ;;primera aproximacion
+
+(defun k-medias-estable-aux (clas cent)
+(let ((nuevo (recalcula-centros clas cent)))
+;;(format t "~&cent :~a nuevo : ~a"cent nuevo)
+	(if (loop for i from 0 to (1- (first (array-dimensions cent)))
+		always (equal (aref cent i) (aref nuevo i)));;miro cada elemento del array
+		(make-array 2 :initial-contents (list clas nuevo)) ;;si no han cambiado son estables :D
+		(k-medias-estable-aux (asigna-cluster-a-cada-ejemplo clas nuevo) nuevo)))) ;; seguimos iterando
+;;(k-medias-estable *pesos-poblacion* :num-clusters 4)
 
 ;;; **************************************************
 ;;; Parte II: experimentacion de k-medias sobre "iris"
