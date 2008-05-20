@@ -67,10 +67,11 @@
 ;;; euclidea que usaremos: 
 
 (defun distancia (x y)
-  (sqrt (loop for xi in x
+(sqrt
+  (loop for i from 0 to (1- (first(array-dimensions x)))
 	      for yi in y
-	      summing
-	      (expt (- xi yi) 2))))
+	      summing	      
+	      (expt (- (aref x i) yi) 2))))
 
 
 ;;; Ademas, en lugar de parar cuando se estabilizan los
@@ -91,7 +92,11 @@
    (66.0) (65.0) (46.0) (39.0) (62.0) (64.0) (52.0) (63.0) (64.0) (48.0) (64.0)
    (48.0) (51.0) (48.0) (64.0) (42.0) (48.0) (41.0)))
 
-
+(defun lista-to-array (lista)
+	(make-array
+		(length lista)
+		:initial-contents
+			lista))
 
 
 ;;; ---------------------------------------------------------------
@@ -134,8 +139,9 @@
               :initial-contents
               (loop for x in pesos
                     collect
-                    (make-ejemplo :elemento x :cluster nil))))
+                    (make-ejemplo :elemento (make-array (length x) :initial-contents x) :cluster nil))))
 
+;;(setf CLAS (clasificacion-inicial-vacia *pesos-poblacion*))
 
 ;;; ---------------------------------------------------------------
 ;;; Ejercicio 3
@@ -235,7 +241,7 @@
 
 
 (defun calcula-centro-mas-cercano (e centros)
-   (let ((num-clusters (first (array-dimensions centros)))
+   (let* ((num-clusters (first (array-dimensions centros)))
  	(mas-cercano 1)
  	(menor-distancia (distancia e (aref centros 0))))
      (loop for i from 0 to (- num-clusters 1) do
@@ -244,6 +250,7 @@
  	      (setf mas-cercano (+ 1 i)
  		    menor-distancia d))))
      mas-cercano))
+
 
 ;;; ---------------------------------------------------------------
 ;;; Ejercicio 5
@@ -319,40 +326,47 @@
 
 ;;; Suma de vectores:
 (defun suma (x y)
-  (loop for xi in x
-	for yi in y
-	collect (+ xi yi)))
+  ;;(loop for xi in x
+	;;for yi in y
+	;;collect (+ xi yi)))
+  (loop for i from 0 to (1- (first(array-dimensions x)))
+	      for yi in y
+	      collect	      
+	      (+ (aref x i) yi)))
 
 ;;; Division de los elementos de un vector por un numero:
-(defun div (x n)
-  (loop for xi in x collect (/ xi n)))
-
-(defun suma-centros (v c)
-  (loop for i from 0 to (1- (first (array-dimensions v)))
-	when (= (cluster (aref v i)) c)
-	summing (first (elemento (aref v i)))))
-
-(defun cuenta-centros (v c)
-  (loop for i from 0 to (1- (first (array-dimensions v)))
-	when (= (cluster (aref v i)) c)
-	summing 1))
-
-;;(suma-centros clas 2)
-;;(cuenta-centros clas 1)
+(defun div (x y)
+;;(loop for xi in x collect (/ xi n)))
+(loop for i from 0 to (1- (first(array-dimensions x)))
+	      collect
+	      (loop for z in (aref x i)
+	      collect
+		  (if (= 0 (aref y i))
+		  0 ;;no hay de ese cluster
+	      (/ z (aref y i))))))
 
 (defun recalcula-centros (clasificacion centros)
   (let* ((num-ejemplos (first (array-dimensions clasificacion)))
          (num-clusters (first (array-dimensions centros)))
-         (acum (vector-cero num-clusters))  ; Array para acumular las sumas de elementos de cada cluster
-         (card-clusters (vector-cero num-clusters))) ; Array para acumular el num de elementos de cada cluster
-;;    (loop for j from 0 to (1- num-clusters) do
-;;	          ????????????)
-    (loop for i from 1 to num-clusters do
-          (setf (aref centros (1- i))
-		(list ;;TODO chapucen!!!
-		(/ (suma-centros clasificacion i)
-		   (cuenta-centros clasificacion i)))))
-    centros))
+         (acum
+			(make-array
+				num-clusters
+				:initial-contents
+					(loop for i from 0 to (1- num-clusters)
+					collect
+					(vector-cero (1- (first (array-dimensions centros)))))))  ; Array para acumular las sumas de elementos de
+         (card-clusters (make-array num-clusters :initial-contents (vector-cero num-clusters)))) ; Array para acumular el num de elementos de cada cluster
+;;	(format t "~& acum ~a ~&~a"acum card-clusters)
+    (loop for j from 0 to (1- num-ejemplos) do
+		(setf (aref acum (1- (cluster (aref clasificacion j))))
+			(suma (elemento (aref clasificacion j)) (aref acum (1- (cluster (aref clasificacion j))))))) ;;meto en acum la suma de los centros de ese cluster
+;;	(format t "~& acum ~a"acum)
+	(loop for j from 0 to (1- num-ejemplos) do
+	(setf (aref card-clusters (1- (cluster (aref clasificacion j))))
+			(+ 1 (aref card-clusters (1- (cluster (aref clasificacion j))))))) ;;meto en acum la suma de los centros de ese cluster
+;;	(format t "~& card-clusters ~a" card-clusters)
+	(make-array num-clusters :initial-contents (div acum card-clusters))))
+
 ;; > (recalcula-centros CLAS CENT)
 ;; > (asigna-cluster-a-cada-ejemplo CLAS CENT)
 
@@ -401,9 +415,9 @@
     (loop for i from 1 to iteraciones
 	  do
 ;;	  (format t "~&centros : ~a ~&clasificacion ~a" centros clasific)
-	  (setf centros (recalcula-centros clasific centros))
+	  (setf centros (recalcula-centros clasific centros)) ;;actualiza centros
 	  (setf clasific 
-		(asigna-cluster-a-cada-ejemplo clasific centros)))
+		(asigna-cluster-a-cada-ejemplo clasific centros))) ;;actualiza clasificacion
     (setf (aref return 0) clasific)
     (setf (aref return 1) centros)
     return))
@@ -454,16 +468,16 @@
 ;;;   original
 
 ;;(load "iris.lsp")
+(defun valida-iris (num)
+(validacion-iris (aref (k-medias (quita-tipo *iris*) :num-clusters 3 :iteraciones num) 0)))
+;;; > (valida-iris 5)
+
+
 (defun quita-tipo (iris)
   (loop for x in iris
 	collect
 	(reverse (rest (reverse x)))))
 ;;(quita-tipo *iris*)
-(defun clasificacion-inicial-vacia-iris (iris)
-  (clasificacion-inicial-vacia (quita-tipo iris)))
-
-;; (validacion-iris (clasificacion-inicial-vacia-iris *iris*))
-;;; > (k-medias (quita-tipo *iris*) :num-clusters 6 :iteraciones 2)
 
 
 
