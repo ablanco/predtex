@@ -1,3 +1,10 @@
+
+
+
+
+;;Alumno Manuel Gomar Acosta
+;; DNI 14317632-v
+
 ;;; ==============================================================
 ;;; Inteligencia Artificial II
 ;;; Practica 4: Clustering (algoritmo k-medias y EM)
