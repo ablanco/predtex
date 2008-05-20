@@ -106,24 +106,25 @@
 ;; Inserta una palabra en una lista, si esta le suma 1 si no esta le da valor 1
 (defun set-palabra-aux (palabra lista)
 	;(ordena-por-probabilidad ;;esto es muy pesado
-		(if (assoc palabra lista :test #'equal) ;;si esta en la lista
+(if (assoc palabra lista :test #'equal) ;;si esta en la lista
 	(loop for x in lista
 		collect
 		(if (equal (first x) (string palabra))
 		(cons palabra (1+ (rest x))) ;;suma una aparicion
 		x))	
 	(cons 
-			(cons palabra 1) ;;aparicion inicial
+		(cons palabra 1) ;;aparicion inicial
 		lista)))
 
 (defun set-palabra-compuesta (anterior palabra)
-(if (null anterior)
-	nil
+;(format t "insertada : ~a ," (string-concat (string anterior) '" " (string palabra)))
+(if (or (null anterior) (string> 'a anterior))
+	nil ;;esto es para cortar cuando se termina la frase
 	(set-palabra 
-		(string-concat (string anterior) (string '" ") (string palabra))
+		(string-concat (string anterior) '" " (string palabra))
 		(codifica-palabra (string-concat (string anterior) (string palabra))))))
 
-(defun set-key-compuesta-corpus-key (anterior palabra)
+(defun set-key-compuesta (anterior palabra)
 (if (null anterior)
 	nil
 	(set-key (string-concat (string anterior) (string palabra)))))
@@ -171,47 +172,49 @@
 
 ;;TODO entrenamiento ahora se entrena con el fichero de prueba xD
 (defun entrenamiento (fichero)
-(let ((lista '(nil . 0))
+(let (;(lista '(nil . 0))
 	(anterior nil))
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-	  	(set-palabra l (codifica-palabra l)) ;;Se acrualizan las palabras al diccionario
-		(set-palabra-compuesta anterior l)
+	  	(set-palabra (string-downcase l) (codifica-palabra l)) ;;Se acrualizan las palabras al diccionario
+		(set-palabra-compuesta (string-downcase anterior) (string-downcase l))
+		(setf anterior (string-downcase l))
 		(set-key l) ;; Y al indice de keys
-		(set-key-compuesta-corpus-key anterior l)
-	(setf anterior l)
-      (setf lista (entrenamiento-aux l lista))))
-	lista))
+		(set-key-compuesta anterior l)))))
+      ;(setf lista (entrenamiento-aux (string-downcase l) lista))))
+;	lista))
 
+;;TODO esta funciona ya no vale pa na no?????
 ;(entrenamiento"corpus.txt")
-(defun entrenamiento-aux (linea lista)
-(cons 
-	(if (assoc linea (first lista) :test #' string-equal) ;si ya pertenece a la lista
-	(loop for x in (first lista)
-		collect
-		(if (string-equal linea (first x))
-		(cons (string-downcase linea) (+ 1 (rest x)));actualizo su valor
-		x))
-	(cons
-		(cons (string-downcase linea) 1) ; la creo
-	(first lista)))
-(+ 1 (rest lista)))) ;le sumo uno al tamaño
+;; (defun entrenamiento-aux (linea lista)
+;; (cons 
+;; 	(if (assoc linea (first lista) :test #' string-equal) ;si ya pertenece a la lista
+;; 	(loop for x in (first lista)
+;; 		collect
+;; 		(if (string-equal linea (first x))
+;; 		(cons (string-downcase linea) (+ 1 (rest x)));actualizo su valor
+;; 		x))
+;; 	(cons
+;; 		(cons (string-downcase linea) 1) ; la creo
+;; 	(first lista)))
+;; (+ 1 (rest lista)))) ;le sumo uno al tamaño
 
 
 (defun aprendizaje (palabra)
 ;;   TODO
   )
 
+;;TODO, esa funcion tampoco sirve no????
 ;; Normaliza una lista de (palabras . probabilidades)
-(defun normaliza-lista (lista) ;;TODO ya no hace falta no???
-  (let* ((suma (loop for x in lista summing (rest x)))
-	  (alfa (if (= 0 suma)
-		  1
-		  (/ 1 suma))))
-    (loop for x in lista
-      collect
-      (cons (first x) (* alfa (rest x))))))
+;; (defun normaliza-lista (lista) ;;TODO ya no hace falta no???
+;;   (let* ((suma (loop for x in lista summing (rest x)))
+;; 	  (alfa (if (= 0 suma)
+;; 		  1
+;; 		  (/ 1 suma))))
+;;     (loop for x in lista
+;;       collect
+;;       (cons (first x) (* alfa (rest x))))))
 
 ;; Consulta el corpus y devuelve la lista de palabras correspondientes
 ;; a esas pulsaciones de teclas, ordenadas por probabilidad
@@ -298,7 +301,7 @@
 (defun lanzador (canal)
   (crea-teclado)
   (format canal "~&Carga del diccionario")
-  (leer-diccionario)
+ ; (leer-diccionario) ;;TODO aligera los test
   (format canal "~&Proceso de entrenamiento~%~%")
   (entrenamiento *corpus-location*)
   (main canal))
