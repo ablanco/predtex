@@ -91,7 +91,7 @@ culpas
 o
 por
 sus
-gracias:
+gracias
 sólo
 les
 toca
@@ -109,7 +109,7 @@ y
 no
 en
 sus
-bellaquerías:
+bellaquerías
 yo
 topé
 con
@@ -257,7 +257,7 @@ viéndole
 tan
 enojado
 le
-dijo:
+dijo
 Señor
 caballero
 miémbresele
@@ -449,7 +449,7 @@ A
 lo
 que
 respondió
-Dorotea:
+Dorotea
 Pues
 así
 es
@@ -521,7 +521,7 @@ comenzó
 a
 decir
 desta
-manera:
+manera
 
 Primeramente
 quiero
@@ -564,7 +564,7 @@ lo
 que
 separaba
 y
-dijo:
+dijo
 No
 es
 maravilla
@@ -683,7 +683,7 @@ historia
 la
 cual
 es
-que:
+que
 
 El
 rey
@@ -1119,7 +1119,7 @@ Quijote
 dijo
 a
 su
-escudero:
+escudero
 Ten
 aquí
 Sancho
@@ -1235,7 +1235,7 @@ todo
 es
 una
 misma
-carne:
+carne
 y
 sin
 duda
@@ -1341,7 +1341,7 @@ cura
 la
 mano
 y
-dijo:
+dijo
 Debe
 de
 querer
@@ -1471,7 +1471,7 @@ contra
 razón
 me
 tiene
-usurpado:
+usurpado
 que
 todo
 esto
@@ -1605,7 +1605,7 @@ el
 gaznatico
 al
 señor
-Pandahilado:
+Pandahilado
 pues
 monta
 que
@@ -1944,7 +1944,7 @@ entre
 dientes
 y
 prosiguió
-diciendo:
+diciendo
 Y
 después
 de
@@ -2035,7 +2035,7 @@ enojo
 alzando
 la
 voz
-dijo:
+dijo
 Voto
 a
 mí
@@ -2468,7 +2468,7 @@ allí
 dijo
 a
 su
-amo:
+amo
 Dígame
 señor
 si
@@ -2717,7 +2717,7 @@ más
 Ahora
 bien
 respondió
-Sancho:
+Sancho
 Dios
 está
 en
@@ -2872,7 +2872,7 @@ adelante
 y
 díjole
 Don
-Quijote:
+Quijote
 Después
 que
 viniste
@@ -2942,7 +2942,7 @@ salida
 como
 tuve
 la
-entrada:
+entrada
 pero
 suplico
 a
@@ -3181,7 +3181,7 @@ a
 grandes
 voces
 le
-dijo:
+dijo
 Ah
 ladrón
 Ginesillo
@@ -3251,7 +3251,7 @@ rucio
 y
 abrazándole
 le
-dijo:
+dijo
 Cómo
 has
 estado
@@ -3561,7 +3561,7 @@ suya
 y
 dijo
 a
-Sancho:
+Sancho
 Echemos
 Panza
 amigo
@@ -3584,7 +3584,7 @@ con
 enojo
 ni
 rencor
-alguno:
+alguno
 Dónde
 cómo
 y
