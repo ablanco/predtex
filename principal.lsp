@@ -15,7 +15,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Rutas de los ficheros
-(defparameter *corpus-location* '"res.txt")
+(defparameter *corpus-location* '"corpus/quijote.txt")
 (defparameter *diccionario-location* '"subdiccionario.txt")	;; TODO Quitar el sub
 
 ;; La key es el numero, value la lista de palabras
