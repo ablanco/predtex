@@ -6,7 +6,7 @@ Octubre
 
 Esta
 película
-está
+est�
 dedicada
 a
 las
@@ -53,7 +53,7 @@ MAÑANA
 
 Ocho
 hombres
-están
+est�n
 vestidos
 con
 ropa
@@ -61,7 +61,7 @@ negra
 excepto
 dos
 Todos
-están
+est�n
 entorno
 
 una
@@ -71,7 +71,7 @@ el
 desayuno
 Ellos
 son
-
+AZUL
 
 
 CABOT
@@ -88,15 +88,15 @@ comer
 todos
 y
 ahora
-están
+est�n
 por
 el
 café
-Están
+Est�n
 
 conversando
 Joe
-está
+est�
 con
 una
 vieja
@@ -104,7 +104,7 @@ agenda
 el
 Sr
 Marrón
-está
+est�
 dando
 una
 
@@ -121,7 +121,7 @@ que
 va
 Like
 a
-Virgin?
+Virgin
 De
 una
 chica
@@ -142,7 +142,7 @@ la
 canción
 es
 una
-metáfora
+met�fora
 sobre
 las
 pollas
@@ -179,7 +179,7 @@ sensible
 
 
 Eh
-eh!
+eh
 No
 te
 pases
@@ -203,7 +203,7 @@ Toby
 Quien
 cojones
 es
-Toby?
+Toby
 
 
 
@@ -231,23 +231,23 @@ no
 sin
 duda
 eso
-está
+est�
 muy
 claro
 
 
 
-Cuál
+Cu�l
 es
 True
-Blue?
+Blue
 
 
 No
 has
 oído
 True
-Blue?
+Blue
 Fue
 un
 exitazo
@@ -260,7 +260,7 @@ escuchas
 los
 
 cuarenta
-principales?
+principales
 
 
 
@@ -297,7 +297,7 @@ de
 ella
 
 
-
+AZUL
 
 A
 mí
@@ -337,23 +337,23 @@ estaba
 diciendo
 
 que
-era?
+era
 
 
 Ah
 Toby
 esa
 chinita
-Cuál
+Cu�l
 era
 su
-apellido?
+apellido
 
 
 
 Que
 es
-eso?
+eso
 
 
 Una
@@ -375,14 +375,14 @@ me
 ponía
 Cómo
 se
-llamaba?
+llamaba
 
 
 
 Que
 cojones
 estaba
-diciendo?
+diciendo
 
 
 
@@ -410,7 +410,7 @@ a
 Virgin
 es
 una
-metáfora
+met�fora
 sobre
 pollas
 grandes
@@ -434,7 +434,7 @@ que
 es
 una
 
-máquina
+m�quina
 de
 follar
 o
@@ -458,11 +458,11 @@ polla
 polla
 
 
-
+AZUL
 
 Cuantas
 pollas
-son?
+son
 
 
 
@@ -487,7 +487,7 @@ un
 pollón
 y
 
-ZAS!
+ZAS
 El
 tío
 es
@@ -520,12 +520,12 @@ sentido
 
 nunca
 dolor
-Dolor!
+Dolor
 
 
-Chew?
+Chew
 Toby
-Chew?
+Chew
 
 
 
@@ -548,7 +548,7 @@ abierto
 pero
 cuando
 ese
-pájaro
+p�jaro
 se
 la
 folla
@@ -568,7 +568,7 @@ le
 recuerda
 a
 la
-máquina
+m�quina
 de
 follar
 lo
@@ -590,7 +590,7 @@ se
 decepciona
 
 
-Wong?
+Wong
 
 Sr
 Blanco
@@ -616,18 +616,18 @@ discutiéndose
 Dame
 esa
 puta
-mierda!
+mierda
 
 
 Eh
 que
 coño
-estás
-haciendo?
+est�s
+haciendo
 Venga
 dame
 mi
-agenda!
+agenda
 
 
 
@@ -651,17 +651,17 @@ salir
 Cómo
 que
 al
-salir?
+salir
 Venga
-dámela
-ahora!
+d�mela
+ahora
 
 
 
 Llevas
 quince
 minutos
-dándome
+d�ndome
 la
 bara
 repitiendo
@@ -694,7 +694,7 @@ a
 la
 chinita
 Toby
-noséquemás
+noséquem�s
 en
 el
 
@@ -711,7 +711,7 @@ agenda
 Dime
 vas
 a
-guardarla?
+guardarla
 
 
 Haré
@@ -731,7 +731,7 @@ Bueno
 entonces
 tendré
 que
-quedármela
+qued�rmela
 
 
 
@@ -742,7 +742,7 @@ que
 le
 pegue
 un
-tiro?
+tiro
 
 
 Vete
@@ -775,16 +775,16 @@ el
 supersonido
 de
 los
-'?
+'
 
 
 
 Sí
-está
+est�
 de
 puta
 madre
-verdad?
+verdad
 
 
 Que
@@ -792,7 +792,7 @@ me
 dices
 de
 las
-canciones?
+canciones
 
 
 
@@ -802,7 +802,7 @@ que
 oí
 el
 otro
-día?
+día
 Heartbeat
 It's
 a
@@ -889,7 +889,7 @@ no
 sabías
 que
 disparaba
-ella?
+ella
 
 
 Creía
@@ -978,7 +978,7 @@ cuando
 vuelva
 quiero
 mi
-agenda!
+agenda
 
 
 
@@ -1060,7 +1060,7 @@ propina
 
 No
 das
-propina?
+propina
 
 
 
@@ -1075,31 +1075,31 @@ No
 crees
 en
 dar
-propinas?
+propinas
 
 
-
+AZUL
 
 Sabes
 lo
 que
 ganan
 esas
-chicas?
+chicas
 Una
-mierda!
+mierda
 
 
 
 No
-jodas!
+jodas
 Si
 no
 ganan
 bastante
 que
 lo
-dejen!
+dejen
 
 
 Ni
@@ -1121,7 +1121,7 @@ aclaro
 tu
 nunca
 dejas
-propina?
+propina
 
 
 
@@ -1168,24 +1168,24 @@ y
 al
 cabo
 sólo
-están
+est�n
 haciendo
 
 su
 trabajo
 
 
-
+AZUL
 
 La
 chica
 es
-simpática
+simp�tica
 
 
 
 No
-está
+est�
 mal
 pero
 tampoco
@@ -1194,7 +1194,7 @@ nada
 especial
 
 
-
+AZUL
 
 Que
 querías
@@ -1205,7 +1205,7 @@ chupara
 debajo
 de
 la
-mesa?
+mesa
 
 Todos
 ríen
@@ -1226,7 +1226,7 @@ he
 pedido
 un
 café
-no?
+no
 Llevamos
 un
 huevo
@@ -1258,13 +1258,13 @@ veces
 
 
 Seis
-veces?
+veces
 Bueno
 y
 si
-está
+est�
 demasiado
-ocupada?
+ocupada
 
 
 
@@ -1295,7 +1295,7 @@ le
 pone
 muy
 
-nervioso?
+nervioso
 
 Todos
 ríen
@@ -1303,10 +1303,10 @@ ríen
 
 
 Venga
-estás
+est�s
 tías
 no
-están
+est�n
 muertas
 de
 hambre
@@ -1336,7 +1336,7 @@ diese
 propina
 
 
-
+AZUL
 
 No
 te
@@ -1346,7 +1346,7 @@ para
 vivir
 necesiten
 tus
-propinas?
+propinas
 
 Sr
 Rosa
@@ -1367,7 +1367,7 @@ mano
 Sabes
 que
 es
-esto?
+esto
 El
 único
 violín
@@ -1387,7 +1387,7 @@ idea
 de
 lo
 que
-estás
+est�s
 diciendo
 Esta
 gente
@@ -1417,7 +1417,7 @@ dejas
 propina
 porqué
 
-no?
+no
 Te
 sirven
 igual
@@ -1435,10 +1435,10 @@ estos
 pero
 sin
 embargo
-dásela
+d�sela
 a
 aquellos
-Jilipolleces!
+Jilipolleces
 
 
 
@@ -1518,7 +1518,7 @@ no
 es
 culpa
 mía
-Además
+Adem�s
 porqué
 tanto
 lío
@@ -1583,10 +1583,10 @@ aprendan
 a
 escribir
 a
-máquina
+m�quina
 si
 
-están
+est�n
 esperando
 a
 que
@@ -1610,7 +1610,7 @@ mi
 dólar
 
 
-Eh!
+Eh
 Dejad
 ahí
 la
@@ -1633,7 +1633,7 @@ momento
 quien
 no
 ha
-puesto?
+puesto
 
 
 
@@ -1648,29 +1648,7 @@ Naranja
 
 El
 Sr
-Rosa?
-
-al
-Sr
 Rosa
-
-Porqué
-no?
-
-
-
-Nunca
-deja
-
- 
-
-
-al
-Sr
-Naranja
-
-Nunca
-deja?
 
 al
 Sr
@@ -1678,7 +1656,29 @@ Rosa
 
 Porqué
 no
-dejas?
+
+
+
+Nunca
+deja
+
+�
+
+
+al
+Sr
+Naranja
+
+Nunca
+deja
+
+al
+Sr
+Rosa
+
+Porqué
+no
+dejas
 
 
 
@@ -1692,7 +1692,7 @@ al
 Sr
 Naranja
 
-Cállate
+C�llate
 
 al
 Sr
@@ -1704,7 +1704,7 @@ que
 no
 crees
 en
-eso?
+eso
 Vamos
 suelta
 un
@@ -1721,7 +1721,7 @@ desayuno
 
 
 Bueno
-está
+est�
 bien
 Cómo
 me
@@ -1750,7 +1750,7 @@ cómo
 todos
 los
 
-demás
+dem�s
 
 Los
 ocho
@@ -1885,28 +1885,28 @@ COCHE
 A
 TODA
 VELOCIDAD
-saltándose
+salt�ndose
 el
 
-tráfico
+tr�fico
 
 
 
 gritando
 
-Joder!
-Será
-posible!
+Joder
+Ser�
+posible
 Voy
 a
-morir!
-No!
+morir
+No
 Voy
 a
-morir!
+morir
 Voy
 a
-morir!
+morir
 
 Entre
 los
@@ -1922,7 +1922,7 @@ nervioso
 
 
 Aguanta
-chico!
+chico
 
 
 
@@ -1941,7 +1941,7 @@ el
 Sr
 Naranja
 que
-está
+est�
 en
 el
 asiento
@@ -1970,7 +1970,7 @@ Blanco
 es
 el
 alguien
-más
+m�s
 Él
 conduce
 el
@@ -1982,7 +1982,7 @@ velocidad
 Evitando
 todo
 el
-tráfico
+tr�fico
 esquivando
 los
 coches
@@ -1998,7 +1998,7 @@ el
 asiento
 trasero
 
-Están
+Est�n
 solos
 en
 el
@@ -2010,18 +2010,18 @@ gritando
 
 Voy
 a
-morir!
+morir
 
 
 
-Eh!
+Eh
 
 
 
 gritando
 
 Lo
-siento!
+siento
 
 
 
@@ -2050,7 +2050,7 @@ coño
 iría
 a
 pensar
-eso?
+eso
 
 
 
@@ -2060,9 +2060,9 @@ ese
 rollo
 ahora
 mismo
-Estás
+Est�s
 herido
-estás
+est�s
 muy
 mal
 herido
@@ -2073,11 +2073,11 @@ vas
 a
 morir
 
- 
+�
 
- 
+�
 
- 
+�
 
 
 
@@ -2085,7 +2085,7 @@ gritando
 
 Voy
 a
-morir!
+morir
 Tanta
 sangre
 me
@@ -2108,15 +2108,15 @@ hubieses
 estudiado
 medicina
 Eres
-médico?
+médico
 Eres
-médico?
+médico
 
 Contéstame
-vamos!
+vamos
 Eres
-médico?
-Eh?
+médico
+Eh
 
 
 
@@ -2133,7 +2133,7 @@ sabes
 de
 lo
 que
-estás
+est�s
 hablando
 así
 que
@@ -2163,23 +2163,23 @@ de
 encuentro
 Joe
 te
-buscará
+buscar�
 un
 médico
 él
 te
-curará
+curar�
 y
 te
 
-pondrás
+pondr�s
 bien
 Vamos
 dilo
 Voy
 a
 ponerme
-bien!
+bien
 
 Sr
 Naranja
@@ -2200,7 +2200,7 @@ Dilo
 Voy
 a
 ponerme
-bien!
+bien
 Vamos
 dilo
 de
@@ -2211,7 +2211,7 @@ Voy
 a
 ponerme
 
-bien!
+bien
 
 
 
@@ -2223,7 +2223,7 @@ mío
 gritando
 
 Di
-esas 
+esas�
 palabras
 de
 una
@@ -2249,7 +2249,7 @@ ALMACÉN
 DÍA
 
 La
-cámara
+c�mara
 da
 una
 vuelta
@@ -2282,7 +2282,7 @@ Naranja
 
 Sr
 Naranja
-está
+est�
 dando
 RUIDITOS
 de
@@ -2313,7 +2313,7 @@ llegado
 Larry
 vas
 a
-ayudarme?
+ayudarme
 
 
 
@@ -2343,7 +2343,7 @@ duro
 eres
 un
 tío
-duro!
+duro
 Eres
 un
 tío
@@ -2438,11 +2438,11 @@ ríe
 
 
 No
-querrás
+querr�s
 estropear
 el
 suelo
-verdad?
+verdad
 Yo
 no
 puedo
@@ -2454,21 +2454,21 @@ cuando
 Joe
 llegue
 que
-será
+ser�
 en
 cualquier
 momento
 no
-tardará
+tardar�
 él
-cuidará
+cuidar�
 de
 ti
 él
 
 te
-ayudará
-vale?
+ayudar�
+vale
 Nos
 sentaremos
 aquí
@@ -2476,7 +2476,7 @@ a
 esperar
 A
 quien
-esperamos?
+esperamos
 
 
 
@@ -2488,9 +2488,9 @@ Joe
 Eso
 es
 
- 
+�
 
- 
+�
 
 
 
@@ -2500,8 +2500,8 @@ cagado
 de
 miedo
 tío
-Abrázame
-quieres?
+Abr�zame
+quieres
 Por
 favor
 
@@ -2547,10 +2547,10 @@ el
 miedo
 que
 quieras
-eh?
+eh
 El
 situación
-está
+est�
 valiente
 Sólo
 quiero
@@ -2558,14 +2558,14 @@ quiero
 que
 te
 relajes
-vale?
+vale
 No
 la
 vas
 a
 palmar
 te
-pondrás
+pondr�s
 bien
 
 
@@ -2579,7 +2579,7 @@ Larry
 
 
 No
-estás
+est�s
 bien
 no
 
@@ -2637,7 +2637,7 @@ hospital
 No
 me
 jodas
-tío!
+tío
 No
 tienes
 que
@@ -2668,7 +2668,7 @@ de
 verdad
 te
 lo
-juro!
+juro
 Por
 dios
 Mírame
@@ -2691,7 +2691,7 @@ voy
 a
 decirles
 nada
-estarás
+estar�s
 a
 salvo
 
@@ -2701,12 +2701,12 @@ No
 vas
 a
 morirte
-eh?
+eh
 Té
-enteras?
+enteras
 Escúchame
 te
-pondrás
+pondr�s
 bien
 La
 herida
@@ -2720,12 +2720,12 @@ partes
 del
 cuerpo
 donde
-más
+m�s
 duele
 
 
 
-Joder!
+Joder
 
 
 
@@ -2752,7 +2752,7 @@ de
 eso
 El
 tiempo
-está
+est�
 de
 tu
 parte
@@ -2779,7 +2779,7 @@ habido
 un
 chivatazo
 o
-que?
+que
 
 Sr
 Rosa
@@ -2803,7 +2803,7 @@ que
 pasa
 le
 han
-dado?
+dado
 
 
 
@@ -2815,10 +2815,10 @@ vientre
 
 Joder
 Dónde
-está
+est�
 el
 Sr
-Marrón?
+Marrón
 
 
 
@@ -2833,13 +2833,13 @@ la
 puta
 cómo
 ha
-muerto?
+muerto
 
 
 
 Cómo
 coño
-crees?
+crees
 Le
 han
 disparado
@@ -2858,7 +2858,7 @@ de
 feo
 O
 acaso
-no?
+no
 
 
 
@@ -2866,7 +2866,7 @@ A
 ti
 que
 te
-parece?
+parece
 
 
 
@@ -2890,7 +2890,7 @@ ha
 
 jugado
 
- 
+�
 
 
 
@@ -2899,7 +2899,7 @@ que
 ha
 sido
 una
-trampa?
+trampa
 
 
 
@@ -2908,7 +2908,7 @@ histérico
 Acaso
 lo
 dudas
-tío?
+tío
 No
 no
 es
@@ -2916,7 +2916,7 @@ que
 lo
 crea
 lo
-sé!
+sé
 Estoy
 completamente
 
@@ -2928,7 +2928,7 @@ no
 salieron
 tantos
 polis
-eh?
+eh
 Que
 pasa
 se
@@ -2936,7 +2936,7 @@ presentaron
 
 allí
 porqué
-sí?
+sí
 Yo
 no
 oí
@@ -3004,7 +3004,7 @@ y
 estaban
 
 justo
-allí!
+allí
 Recuerdas
 el
 segundo
@@ -3012,7 +3012,7 @@ grupo
 que
 apareció
 en
-coche?
+coche
 Esos
 son
 os
@@ -3035,13 +3035,13 @@ aseguro
 que
 nos
 estaban
-esperando!
+esperando
 No
 se
 te
 ha
 ocurrido
-pensarlo?
+pensarlo
 
 
 
@@ -3067,7 +3067,7 @@ de
 histérico
 
 Pues
-más
+m�s
 vale
 que
 empieces
@@ -3091,7 +3091,7 @@ aquí
 pensaba
 marcharme
 sin
-más
+m�s
 Porqué
 quien
 nos
@@ -3115,9 +3115,9 @@ aquí
 ahora
 mismo
 
- 
+�
 
- 
+�
 
 
 
@@ -3130,7 +3130,7 @@ a
 la
 otra
 habitación
-eh?
+eh
 Ahí
 ahí
 dentro
@@ -3162,7 +3162,7 @@ mismo
 no
 tardo
 nada
-vale?
+vale
 Estaré
 pendiente
 
@@ -3203,9 +3203,9 @@ solo
 
 gritando
 
-Larry!
+Larry
 Ostia
-puta!
+puta
 
 
 INT
@@ -3222,7 +3222,7 @@ el
 fondo
 del
 pasillo
-está
+est�
 el
 baño
 con
@@ -3232,7 +3232,7 @@ abierta
 Sr
 Rosa
 no
-está
+est�
 
 visible
 por
@@ -3253,7 +3253,7 @@ Que
 cojones
 hago
 yo
-aquí?
+aquí
 Este
 trabajo
 me
@@ -3310,7 +3310,7 @@ daría
 una
 buena
 pues
-cojonudo!
+cojonudo
 Pero
 no
 de
@@ -3340,18 +3340,18 @@ por
 
 el
 puto
-dinero!
+dinero
 
 
 
 Lo
 hecho
 hecho
-está!
+est�
 Tranqui
 tío
-estás
-tranquilo?
+est�s
+tranquilo
 
 
 
@@ -3368,7 +3368,7 @@ cara
 Descansa
 un
 rato
-Relájate
+Rel�jate
 tómate
 un
 cigarro
@@ -3401,7 +3401,7 @@ Vaya
 
 
 Tienes
-uno?
+uno
 
 Sr
 Blanco
@@ -3438,7 +3438,7 @@ uno
 
 
 
-Fuego?
+Fuego
 
 
 
@@ -3492,12 +3492,12 @@ vuelta
 y
 allí
 fuera
-está
+est�
 la
 poli
 parpadeo
 y
-ZAS!
+ZAS
 Aparecen
 de
 
@@ -3527,11 +3527,11 @@ así
 
 Cómo
 que
-no?
+no
 
- 
+�
 
- 
+�
 
 
 
@@ -3596,7 +3596,7 @@ Rubio
 se
 volvió
 loco
-entiendes?
+entiendes
 Yo
 no
 digo
@@ -3638,8 +3638,8 @@ Blanco
 
 no
 lo
-ves?
-Está
+ves
+Est�
 muy
 claro
 
@@ -3682,7 +3682,7 @@ razón
 algo
 pasó
 Cómo
-escapaste?
+escapaste
 
 
 
@@ -3701,7 +3701,7 @@ largué
 
 
 
- 
+�
 
 
 EXT
@@ -3714,7 +3714,7 @@ DÍA
 
 Sr
 Rosa
-está
+est�
 corriendo
 a
 toda
@@ -3765,7 +3765,7 @@ siguen
 corriendo
 un
 poco
-más
+m�s
 lentos
 También
 apartan
@@ -3778,10 +3778,10 @@ gente
 
 gritando
 
-Fuera!
+Fuera
 Quítense
 del
-medio!
+medio
 
 La
 gente
@@ -3821,17 +3821,17 @@ RODAR
 
 gritando
 
-Apártense
+Ap�rtense
 de
 una
 puta
-vez!
+vez
 
 
 
 Pero
 que
-pasa?
+pasa
 
 Sr
 Rosa
@@ -3845,14 +3845,14 @@ hombre
 gritando
 
 Dejadme
-pasar!
+pasar
 
 
 
 gritando
 
-Apártense
-hombre!
+Ap�rtense
+hombre
 
 Sr
 Rosa
@@ -3873,7 +3873,7 @@ Que
 cojones
 te
 pasa
-tío?
+tío
 
 
 
@@ -3883,7 +3883,7 @@ Vete
 a
 tomar
 por
-culo!
+culo
 
 Sr
 Rosa
@@ -3902,13 +3902,13 @@ corriendo
 
 gritando
 
-Jilipollas!
+Jilipollas
 
 
 
 gritando
 
-Quítense!
+Quítense
 
 
 
@@ -3942,7 +3942,7 @@ DÍA
 
 La
 CÁMARA
-está
+est�
 en
 el
 asiento
@@ -3960,7 +3960,7 @@ coche
 
 Fuera
 del
-coche!
+coche
 
 
 
@@ -3988,7 +3988,7 @@ cruce
 
 Vamos
 vamos
-apártense!
+ap�rtense
 
 Sr
 Rosa
@@ -4033,7 +4033,7 @@ sido
 dado
 sale
 corriendo
-detrás
+detr�s
 del
 coche
 intentando
@@ -4048,7 +4048,7 @@ lejos
 Cuando
 no
 puede
-más
+m�s
 se
 para
 
@@ -4068,7 +4068,7 @@ toda
 velocidad
 La
 CÁMARA
-está
+est�
 en
 el
 asiento
@@ -4111,7 +4111,7 @@ Te
 has
 cargado
 a
-alguien?
+alguien
 
 
 
@@ -4140,7 +4140,7 @@ parece
 lo
 del
 Sr
-Rubio?
+Rubio
 
 
 
@@ -4163,7 +4163,7 @@ Joe
 a
 un
 tío
-así?
+así
 
 
 
@@ -4215,7 +4215,7 @@ un
 jilipollas
 la
 cosa
-está
+est�
 clara
 Pero
 tampoco
@@ -4226,7 +4226,7 @@ coño
 estaría
 
 pensando
-Joe?
+Joe
 No
 se
 puede
@@ -4290,7 +4290,7 @@ puedes
 vender
 El
 jodido
-pánico
+p�nico
 viene
 de
 dentro
@@ -4376,9 +4376,9 @@ tenía
 esa
 negra
 
-veinte?
-Quizá
-veintiuno?
+veinte
+Quiz�
+veintiuno
 
 
 
@@ -4390,7 +4390,7 @@ sabes
 algo
 de
 los
-demás?
+dem�s
 
 
 
@@ -4437,23 +4437,23 @@ escapar
 no
 miré
 hacia
-atrás
+atr�s
 
 
 
 Tu
 que
-crees?
+crees
 
- 
+�
 
- 
+�
 
 
 
 Yo
 que
-creo?
+creo
 Pues
 que
 la
@@ -4496,7 +4496,7 @@ escapar
 dónde
 
 cojones
-están?
+est�n
 
 
 
@@ -4510,7 +4510,7 @@ cogiera
 los
 diamantes
 y
-psssss?
+psssss
 
 
 
@@ -4523,9 +4523,9 @@ nada
 Para
 nada
 Cómo
-estás
+est�s
 tan
-seguro?
+seguro
 
 
 
@@ -4538,7 +4538,7 @@ yo
 
 Bien
 hecho
-Dónde?
+Dónde
 
 
 
@@ -4588,9 +4588,9 @@ histérico
 Y
 dónde
 coño
-están
+est�n
 los
-demás?
+dem�s
 Este
 plan
 queda
@@ -4626,7 +4626,7 @@ Azul
 a
 lo
 mejor
-están
+est�n
 muertos
 o
 tal
@@ -4640,7 +4640,7 @@ tenerlos
 en
 la
 comisaria
-apretándoles
+apret�ndoles
 las
 clavijas
 No
@@ -4666,7 +4666,7 @@ atrapado
 
 
 
-Que?
+Que
 
 
 
@@ -4693,7 +4693,7 @@ infiltrado
 
 No
 me
-jodas?
+jodas
 
 
 
@@ -4722,14 +4722,14 @@ es
 el
 soplón
 esta
-vez?
+vez
 El
 Sr
-Azul?
+Azul
 El
 Sr
-Marrón?
-Joe?
+Marrón
+Joe
 Escucha
 Joe
 
@@ -4784,7 +4784,7 @@ que
 era
 un
 crío
-vale?
+vale
 Asegurar
 que
 no
@@ -4823,14 +4823,14 @@ nada
 sobre
 nadie
 
-más
+m�s
 porqué
 no
 lo
 sé
 Quién
 sabe
-quizá
+quiz�
 tu
 seas
 el
@@ -4846,7 +4846,7 @@ el
 puto
 soplón
 
- 
+�
 
 
 
@@ -4865,7 +4865,7 @@ Eh
 ese
 tío
 se
-está
+est�
 muriendo
 de
 un
@@ -4889,18 +4889,18 @@ Oye
 yo
 tengo
 razón
-vale?
+vale
 Alguien
 es
 un
 puto
 soplón
 Dónde
-está
+est�
 el
 water
 
-aquí?
+aquí
 Me
 estoy
 meando
@@ -4931,7 +4931,7 @@ LarrySr
 Blanco
 y
 Joe
-están
+est�n
 hablando
 en
 su
@@ -4944,16 +4944,16 @@ Por
 cierto
 que
 tal
-está
-Alabama?
+est�
+Alabama
 
 
 
-Alabama?
+Alabama
 Llevo
 sin
 verla
-más
+m�s
 de
 año
 y
@@ -4980,7 +4980,7 @@ decidimos
 dejarlo
 
 
-Porqué?
+Porqué
 
 
 
@@ -4997,11 +4997,11 @@ complica
 
 Que
 hace
-ahora?
+ahora
 
 
 
-Está
+Est�
 con
 Fralmada
 han
@@ -5019,7 +5019,7 @@ ladrona
 
 La
 pantalla
-está
+est�
 negra
 y
 se
@@ -5055,7 +5055,7 @@ diamantes
 
 Puedes
 colocarles
-luego?
+luego
 No
 conozco
 a
@@ -5071,7 +5071,7 @@ hay
 gente
 que
 los
-está
+est�
 esperando
 Que
 ha
@@ -5079,15 +5079,15 @@ sido
 de
 Marsellus
 
-Spading?
+Spading
 No
 coloca
 tus
-piedras?
+piedras
 
 
 
-Está
+Est�
 cumpliendo
 veinte
 años
@@ -5099,7 +5099,7 @@ Veinte
 años
 dios
 mío
-Porqué?
+Porqué
 
 
 
@@ -5119,14 +5119,14 @@ decirlo
 
 
 
-Cuánto
+Cu�nto
 tiempo
-hay?
+hay
 
 
 Dos
 minutos
-máximo
+m�ximo
 dos
 minutos
 muy
@@ -5143,16 +5143,16 @@ y
 con
 gente
 Pero
-tendrás
+tendr�s
 tíos
 que
-sabrán
+sabr�n
 hacerlo
 
 
 
 Cuantos
-empleados?
+empleados
 
 
 Cómo
@@ -5209,7 +5209,7 @@ arreglar
 
 No
 lo
-harán
+har�n
 
 Los
 dos
@@ -5219,7 +5219,7 @@ ríen
 
 Cuanta
 pasta
-papá?
+pap�
 
 
 Mucha
@@ -5236,13 +5236,13 @@ DÍA
 
 Sr
 Blanco
-está
+est�
 con
 Sr
 Naranja
 y
 este
-está
+est�
 inconsciente
 Sr
 Rosa
@@ -5290,14 +5290,14 @@ Sr
 Naranja
 inconsciente
 
- 
+�
 
 
 
 Mierda
 la
 ha
-palmado?
+palmado
 
 Sr
 Blanco
@@ -5306,10 +5306,10 @@ contesta
 
 
 
-Está
+Est�
 muerto
 o
-que?
+que
 
 Sr
 Blanco
@@ -5323,14 +5323,14 @@ Naranja
 
 
 No
-está
+est�
 muerto
 
 
 
 Que
 le
-pasa?
+pasa
 
 
 
@@ -5374,14 +5374,14 @@ le
 atiende
 un
 médico
-morirá
+morir�
 
 
 
 Que
 vamos
 a
-hacer?
+hacer
 No
 podemos
 llevarle
@@ -5414,7 +5414,7 @@ a
 ti
 esto
 te
-importará
+importar�
 un
 huevo
 pero
@@ -5449,7 +5449,7 @@ hagamos
 ir
 a
 un
-hotel?
+hotel
 Este
 tío
 tiene
@@ -5462,14 +5462,14 @@ tripa
 no
 puede
 andar
-está
+est�
 sangrando
 cómo
 un
 cerdo
 y
 cuando
-está
+est�
 despierto
 
 grita
@@ -5486,7 +5486,7 @@ suéltala
 
 Joe
 nos
-ayudará
+ayudar�
 tenemos
 que
 llamarle
@@ -5518,7 +5518,7 @@ de
 Sr
 Rosa
 la
-cámara
+c�mara
 se
 acerca
 en
@@ -5535,7 +5535,7 @@ Blanco
 
 
 Aún
-fiándonos
+fi�ndonos
 de
 Joe
 cómo
@@ -5545,18 +5545,18 @@ en
 contacto
 con
 él
-eh?
+eh
 Debería
 estar
 
 aquí
 pero
 no
-está!
+est�
 Estar
 aquí
 me
-está
+est�
 poniendo
 muy
 nervioso
@@ -5611,7 +5611,7 @@ este
 lío
 lo
 antes
-posible!
+posible
 
 
 
@@ -5648,7 +5648,7 @@ pero
 si
 no
 
-morirá
+morir�
 Me
 lo
 suplicó
@@ -5673,7 +5673,7 @@ Si
 no
 sabe
 nada
-dirán
+dir�n
 que
 la
 decisión
@@ -5690,7 +5690,7 @@ mí
 
 
 
-Que?
+Que
 Un
 momento
 no
@@ -5698,7 +5698,7 @@ le
 dirías
 tu
 nombre
-verdad?
+verdad
 
 
 
@@ -5715,7 +5715,7 @@ soy
 
 
 
-Porqué?
+Porqué
 
 
 
@@ -5746,7 +5746,7 @@ nombre
 sabiendo
 que
 no
-debías?
+debías
 
 
 
@@ -5766,7 +5766,7 @@ retrasado
 
 
 
-Acabábamos
+Acab�bamos
 de
 escapar
 de
@@ -5838,31 +5838,31 @@ que
 coño
 
 podía
-hacer?
+hacer
 Decirle
 que
 lo
-sentía?
+sentía
 Que
 no
 podía
 darle
 esa
 puta
-información?
+información
 
 Que
 iba
 contra
 las
-reglas?
+reglas
 Que
 no
 me
 fiaba
 de
-él?
-Quizá
+él
+Quiz�
 debí
 hacerlo
 pero
@@ -5883,7 +5883,7 @@ a
 ti
 y
 a
-Joe?
+Joe
 
 
 
@@ -5910,11 +5910,11 @@ Oye
 no
 me
 jodas
-estás
+est�s
 reclamado
 en
 tu
-estado?
+estado
 
 
 
@@ -5958,7 +5958,7 @@ d
 tu
 especialidad
 No
-tendrán
+tendr�n
 que
 enseñar
 muchas
@@ -5974,13 +5974,13 @@ Blanco
 le
 dijiste
 algo
-más
+m�s
 que
 pueda
 reducir
 
 el
-campo?
+campo
 
 
 
@@ -6013,9 +6013,9 @@ hospital
 
 Pero
 entonces
-morirá
+morir�
 
- 
+�
 
 
 
@@ -6048,7 +6048,7 @@ Porqué
 coño
 me
 coges
-tío?
+tío
 
 Sr
 Blanco
@@ -6121,14 +6121,14 @@ levantado
 
 
 Quieres
-joderme?
+joderme
 No
 sabes
 con
 quien
 te
 la
-juegas!
+juegas
 
 
 
@@ -6136,7 +6136,7 @@ Vas
 a
 darme
 tío
-mierda?
+mierda
 Vamos
 dispara
 
@@ -6167,7 +6167,7 @@ novato
 yo
 soy
 un
-profesional!
+profesional
 Si
 le
 
@@ -6182,14 +6182,14 @@ cogen
 a
 ti
 se
-acercarán
+acercar�n
 a
 mí
 y
 de
 eso
 
-nada!
+nada
 Y
 me
 miras
@@ -6197,7 +6197,7 @@ cómo
 si
 fuera
 culpa
-mía?
+mía
 Yo
 no
 le
@@ -6213,7 +6213,7 @@ he
 dicho
 de
 dónde
-soy!
+soy
 Hace
 quince
 minutos
@@ -6222,7 +6222,7 @@ me
 dices
 tu
 nombre
-estás
+est�s
 
 en
 una
@@ -6243,7 +6243,7 @@ a
 alguien
 búscate
 un
-espejo!
+espejo
 
 Se
 oye
@@ -6260,7 +6260,7 @@ jugar
 a
 eso
 alguno
-acabará
+acabar�
 llorando
 
 La
@@ -6270,11 +6270,11 @@ de
 Sr
 Rubio
 
- 
+�
 
 Sr
 Rubio
-está
+est�
 apoyado
 en
 una
@@ -6328,7 +6328,7 @@ Rubio
 Que
 te
 ha
-pasado?
+pasado
 Pensaba
 que
 estabas
@@ -6352,16 +6352,16 @@ refresco
 
 
 
-Eh!
-Estás
-bien?
+Eh
+Est�s
+bien
 Sabes
 lo
 que
 ha
 sido
 de
-Azul?
+Azul
 No
 sabíamos
 que
@@ -6376,12 +6376,12 @@ a
 Azul
 nos
 lo
-preguntábamos
+pregunt�bamos
 Vamos
-tío!
+tío
 Mira
 Marrón
-está
+est�
 
 muerto
 a
@@ -6397,12 +6397,12 @@ creemos
 
 
 Basta
-basta!
+basta
 Vamos
 empieza
 a
 hablar
-jilipollas!
+jilipollas
 Porqué
 tenemos
 cosas
@@ -6422,7 +6422,7 @@ tú
 a
 
 jodernos
-más
+m�s
 
 
 
@@ -6450,15 +6450,15 @@ hay
 
 Porqué
 lo
-decís?
+decís
 
 
 
 Que
 pasa
-estás
+est�s
 de
-broma?
+broma
 
 
 
@@ -6508,7 +6508,7 @@ No
 des
 un
 paso
-más
+m�s
 Sr
 Blanco
 
@@ -6517,21 +6517,21 @@ Blanco
 A
 la
 mierda
-tarado!
+tarado
 Todo
 esto
 es
 por
 tu
-culpa!
+culpa
 
- 
+�
 
 
 
 Tienes
 algún
-problema?
+problema
 
 
 
@@ -6539,7 +6539,7 @@ Que
 si
 tengo
 un
-problema?
+problema
 Sí
 tengo
 un
@@ -6551,7 +6551,7 @@ problema
 
 así
 de
-gordo!
+gordo
 Sí
 lo
 tengo
@@ -6566,26 +6566,26 @@ gatillo
 casi
 me
 
-matas!
+matas
 
 
 
 De
 que
 cojones
-hablas?
+hablas
 
 
 
 Del
 maldito
-tiroteo!
+tiroteo
 En
 el
 almacén
 no
 te
-acuerdas?
+acuerdas
 
 
 
@@ -6603,8 +6603,8 @@ merecían
 
 Casi
 me
-matas!
-Jilipollas!
+matas
+Jilipollas
 Si
 hubiera
 sabido
@@ -6629,19 +6629,19 @@ perrito
 o
 vas
 a
-morder?
+morder
 
 
 
 Cómo
-dices?
+dices
 Perdona
 no
 lo
 he
 cogido
 quieres
-repetirlo?
+repetirlo
 
 Sr
 Rubio
@@ -6662,7 +6662,7 @@ perrito
 o
 vas
 a
-morder?
+morder
 
 Sr
 Blanco
@@ -6711,17 +6711,17 @@ un
 patio
 de
 
-colegio?
+colegio
 Soy
 el
 único
 profesional
-aquí?
+aquí
 Joder
 parece
 mentida
 os
-comportáis
+comport�is
 
 cómo
 los
@@ -6730,14 +6730,14 @@ negros
 habéis
 trabajado
 con
-negros?
+negros
 Son
 igual
 que
 vosotros
 
 siempre
-están
+est�n
 diciendo
 que
 se
@@ -6756,13 +6756,13 @@ que
 te
 lo
 hubieras
-cargado!
+cargado
 
 
 
 Has
 dicho
-eso?
+eso
 
 
 
@@ -6770,7 +6770,7 @@ Sí
 lo
 he
 dicho
-vale?
+vale
 Lo
 he
 dicho
@@ -6807,7 +6807,7 @@ Te
 pones
 de
 su
-lado?
+lado
 
 
 
@@ -6817,7 +6817,7 @@ que
 lado
 ni
 que
-leches?
+leches
 Lo
 que
 necesitamos
@@ -6826,7 +6826,7 @@ solidaridad
 alguien
 
 nos
-está
+est�
 metiendo
 un
 palo
@@ -6837,7 +6837,7 @@ y
 quiero
 saber
 quién
-es!
+es
 Joder
 mirad
 
@@ -6959,9 +6959,9 @@ caminar
 
 
 
-Seguirte?
+Seguirte
 A
-dónde?
+dónde
 
 Sr
 Rubio
@@ -6989,7 +6989,7 @@ las
 patatas
 fritas
 del
-refresco?
+refresco
 
 
 
@@ -7002,9 +7002,9 @@ comido
 
 
 
-Sí?
+Sí
 
- 
+�
 
 
 
@@ -7020,7 +7020,7 @@ ver
 
 
 Que
-es?
+es
 
 
 
@@ -7056,7 +7056,7 @@ ALMACÉN
 DÍA
 
 Todos
-están
+est�n
 a
 fuera
 caminando
@@ -7080,7 +7080,7 @@ en
 su
 bolsillo
 
- 
+�
 
 
 
@@ -7096,7 +7096,7 @@ A
 quién
 a
 la
-poli?
+poli
 
 
 
@@ -7111,7 +7111,7 @@ amable
 A
 Eddie
 el
-amable?
+amable
 
 
 
@@ -7124,7 +7124,7 @@ cómo
 sabes
 que
 no
-está
+est�
 en
 un
 avión
@@ -7132,7 +7132,7 @@ de
 camino
 a
 Costa
-Rica?
+Rica
 
 
 
@@ -7159,7 +7159,7 @@ aquí
 Has
 hablado
 con
-Eddie?
+Eddie
 
 
 
@@ -7172,7 +7172,7 @@ cojones
 no
 lo
 habías
-dicho?
+dicho
 
 
 
@@ -7191,9 +7191,9 @@ me
 jodas
 Que
 ha
-dicho?
+dicho
 
- 
+�
 
 
 
@@ -7236,11 +7236,11 @@ ríen
 La
 ostia
 
- 
+�
 
 
 
-Quizá
+Quiz�
 aquí
 el
 pitufo
@@ -7286,7 +7286,7 @@ sacar
 al
 poli
 
- 
+�
 
 La
 pantalla
@@ -7308,7 +7308,7 @@ DE
 DÍA
 
 Joe
-está
+est�
 en
 su
 despacho
@@ -7319,7 +7319,7 @@ sentado
 en
 una
 butaca
-detrás
+detr�s
 
 de
 una
@@ -7347,7 +7347,7 @@ sé
 que
 me
 
-pagarás
+pagar�s
 
 pausa
 
@@ -7378,7 +7378,7 @@ pues
 hazlo
 con
 los
-demás
+dem�s
 me
 da
 igual
@@ -7403,13 +7403,13 @@ Joe
 
 
 
-Está
+Est�
 aquí
 Vic
 Vega
 
 
-Quién?
+Quién
 
 
 
@@ -7471,7 +7471,7 @@ Cómo
 te
 sientes
 en
-libertad?
+libertad
 
 
 
@@ -7488,7 +7488,7 @@ Siéntate
 quítate
 el
 abrigo
-estás
+est�s
 en
 tu
 casa
@@ -7513,7 +7513,7 @@ ella
 
 
 Una
-copita?
+copita
 
 
 
@@ -7527,7 +7527,7 @@ un
 poco
 de
 Remy
-Martin?
+Martin
 
 
 
@@ -7551,7 +7551,7 @@ sentar
 Quién
 es
 tu
-agente?
+agente
 
 
 
@@ -7561,7 +7561,7 @@ Skerneti
 
 Que
 tal
-es?
+es
 
 
 
@@ -7582,7 +7582,7 @@ Sabes
 lo
 que
 pasa
-aquí?
+aquí
 Es
 increíble
 Un
@@ -7628,11 +7628,11 @@ bebe
 del
 baso
 
- 
+�
 
- 
+�
 
- 
+�
 
 
 
@@ -7661,7 +7661,7 @@ a
 hacer
 olvidarme
 de
-ti?
+ti
 
 
 
@@ -7680,11 +7680,11 @@ menos
 que
 podía
 hacer
-ojalá
+ojal�
 hubiera
 podido
 hacer
-más
+m�s
 
 
 
@@ -7702,7 +7702,7 @@ algo
 chico
 Que
 planes
-tienes?
+tienes
 
 Entra
 al
@@ -7739,7 +7739,7 @@ creo
 Que
 tal
 vas
-palillo?
+palillo
 
 
 
@@ -7806,7 +7806,7 @@ comentando
 
 Lo
 de
-recogerte?
+recogerte
 
 
 
@@ -7845,7 +7845,7 @@ es
 un
 inútil
 me
-está
+est�
 arruinando
 el
 negocio
@@ -7875,14 +7875,14 @@ que
 has
 dicho
 no
-Joe?
+Joe
 
 Vamos
 díselo
 tú
 
 
-Verás
+Ver�s
 Eddie
 me
 sabe
@@ -8004,13 +8004,13 @@ Vic
 
 
 
-Papá
+Pap�
 has
 visto
-eso?
+eso
 
 
-Que?
+Que
 
 
 
@@ -8027,8 +8027,8 @@ joderme
 
 
 Que
-más
-quisieras?
+m�s
+quisieras
 
 
 
@@ -8151,7 +8151,7 @@ Has
 visto
 que
 pena
-papá?
+pap�
 Es
 increíble
 Un
@@ -8159,7 +8159,7 @@ blanco
 entra
 a
 la
-cárcel
+c�rcel
 y
 sale
 
@@ -8170,7 +8170,7 @@ puto
 negro
 Sabes
 una
-cosa?
+cosa
 Todo
 ese
 semen
@@ -8281,7 +8281,7 @@ condicional
 Quién
 es
 tu
-agente?
+agente
 
 
 
@@ -8290,7 +8290,7 @@ Skerneti
 
 
 
-Skerneti?
+Skerneti
 Joder
 dicen
 que
@@ -8308,7 +8308,7 @@ lo
 es
 No
 me
-dará
+dar�
 el
 régimen
 abierto
@@ -8319,12 +8319,12 @@ trabajo
 
 
 
-Volverás
+Volver�s
 a
 trabajar
 con
 nosotros
-no?
+no
 
 
 
@@ -8379,12 +8379,12 @@ Bueno
 podemos
 arreglarlo
 no
-Eddie?
+Eddie
 
 
 
 No
-será
+ser�
 difícil
 Podemos
 conseguirte
@@ -8412,16 +8412,16 @@ Eddie
 
 Vic
 no
-cargarás
+cargar�s
 nada
 no
-trabajarás
+trabajar�s
 allí
 pero
 en
 los
 papeles
-constará
+constar�
 que
 
 lo
@@ -8430,24 +8430,24 @@ Llamaré
 a
 Matthews
 el
-capitán
+capit�n
 le
 diré
 que
-estás
+est�s
 en
 nómina
 y
 
-entrarás
+entrar�s
 en
 la
 rueda
 Te
-darán
+dar�n
 una
 tarjeta
-ficharán
+fichar�n
 por
 ti
 todos
@@ -8460,7 +8460,7 @@ finales
 de
 semana
 te
-darán
+dar�n
 el
 sueldo
 Los
@@ -8488,7 +8488,7 @@ dónde
 cojones
 saca
 el
-dinero?
+dinero
 Y
 si
 por
@@ -8632,7 +8632,7 @@ es
 difícil
 Las
 cosas
-están
+est�n
 
 
 
@@ -8642,7 +8642,7 @@ jodidas
 así
 es
 cómo
-están
+est�n
 Por
 cierto
 estamos
@@ -8682,12 +8682,12 @@ joderte
 Después
 hablamos
 
-vale?
-Eh?
+vale
+Eh
 
 
 
-Papá
+Pap�
 tengo
 una
 idea
@@ -8736,7 +8736,7 @@ Sabes
 
 que
 se
-portará
+portar�
 bien
 y
 fijo
@@ -8758,7 +8758,7 @@ trabajito
 con
 otros
 cinco
-tíos?
+tíos
 
 
 
@@ -8795,7 +8795,7 @@ la
 número
 
 doce
-ganarás
+ganar�s
 dos
 entradas
 para
@@ -8806,7 +8806,7 @@ camiones
 monstruosos
 que
 
-tendrá
+tendr�
 lugar
 esta
 noche
@@ -8816,7 +8816,7 @@ parque
 Carson
 con
 Gran
-Papá
+Pap�
 el
 coche
 de
@@ -8829,7 +8829,7 @@ La
 llamada
 número
 doce
-ganará
+ganar�
 en
 la
 emisora
@@ -8863,7 +8863,7 @@ DÍA
 Eddie
 el
 amable
-está
+est�
 hablando
 por
 un
@@ -8928,16 +8928,16 @@ Rosa
 y
 Sr
 Blanco
-están
+est�n
 apalizando
 al
 policía
 
- 
+�
 
 
 
-Cabrón!
+Cabrón
 
 Y
 le
@@ -8949,7 +8949,7 @@ puñetazo
 
 Que
 te
-gusta?
+gusta
 
 Y
 le
@@ -9014,7 +9014,7 @@ Rosa
 y
 Blanco
 siguen
-pegándole
+peg�ndole
 
 
 VUELVE
@@ -9031,7 +9031,7 @@ parece
 que
 estoy
 de
-broma?
+broma
 Joder
 que
 anda
@@ -9058,7 +9058,7 @@ repetidamente
 Que
 te
 parece
-eh?
+eh
 
 
 VUELVE
@@ -9091,17 +9091,17 @@ cogido
 no
 sé
 quién
-está
+est�
 muerto
 no
 sé
 quién
-está
+est�
 vivo
 no
 sé
 quién
-está
+est�
 
 detenido
 no
@@ -9158,7 +9158,7 @@ a
 esos
 tíos
 sobre
-papá?
+pap�
 
 pausa
 
@@ -9167,7 +9167,7 @@ Seguro
 que
 ha
 dicho
-eso?
+eso
 
 pausa
 
@@ -9198,26 +9198,26 @@ silla
 
 Sr
 Rubio
-está
+est�
 sentado
 sobre
 una
 furgoneta
 que
-está
+est�
 tapada
 con
 un
-plástico
+pl�stico
 
 
 
-Jilipollas!
+Jilipollas
 
 
 
 Venga
-listillo!
+listillo
 
 
 
@@ -9225,11 +9225,11 @@ Quieres
 ser
 un
 héroe
-eh?
+eh
 Quieres
 ser
 un
-héroe?
+héroe
 
 
 
@@ -9240,13 +9240,13 @@ poner
 guapo
 tío
 Me
-oyes?
+oyes
 Vamos
 que
 si
 vas
 a
-hablar!
+hablar
 
 
 
@@ -9276,7 +9276,7 @@ nada
 Sí
 que
 lo
-sabes!
+sabes
 
 
 
@@ -9284,7 +9284,7 @@ Quieres
 saber
 lo
 que
-pasa?
+pasa
 
 Eddie
 el
@@ -9297,7 +9297,7 @@ edificio
 
 
 
-Eh!
+Eh
 Mira
 Eddie
 tenemos
@@ -9305,7 +9305,7 @@ a
 un
 poli
 
- 
+�
 
 
 
@@ -9313,7 +9313,7 @@ Dónde
 se
 ha
 metido
-Joe?
+Joe
 
 Eddie
 ve
@@ -9325,7 +9325,7 @@ Naranja
 
 Ostias
 Naranja
-está
+est�
 muerto
 
 
@@ -9333,11 +9333,11 @@ muerto
 No
 no
 lo
-está
+est�
 Pero
 pronto
 lo
-estará
+estar�
 si
 no
 le
@@ -9374,7 +9374,7 @@ esperando
 
 
 Una
-mierda!
+mierda
 
 
 
@@ -9412,7 +9412,7 @@ listo
 quién
 lo
 ha
-hecho?
+hecho
 
 
 
@@ -9422,7 +9422,7 @@ crees
 que
 nos
 estabamos
-preguntando?
+preguntando
 
 
 
@@ -9435,7 +9435,7 @@ Crees
 que
 he
 sido
-yo?
+yo
 Crees
 que
 os
@@ -9443,7 +9443,7 @@ he
 tendido
 
 una
-trampa?
+trampa
 
 
 
@@ -9478,7 +9478,7 @@ carnicería
 No
 me
 llames
-jilipollas!
+jilipollas
 
 
 
@@ -9498,20 +9498,20 @@ no
 han
 parecido
 los
-polis!
+polis
 
 
 
 No
 me
 llames
-idiota!
+idiota
 
 
 
 Dónde
-está
-Joseph?
+est�
+Joseph
 
 
 
@@ -9529,19 +9529,19 @@ con
 Dov
 Dice
 que
-papá
+pap�
 viene
 
 hacia
 aquí
 y
 que
-está
+est�
 cabreado
 
 
 
-Cabreado?
+Cabreado
 
 al
 Sr
@@ -9559,7 +9559,7 @@ Joe
 que
 te
 ha
-dicho?
+dicho
 
 
 
@@ -9568,11 +9568,11 @@ no
 he
 hablado
 con
-él!
+él
 Sólo
 sé
 que
-está
+est�
 cabreado
 
 
@@ -9585,7 +9585,7 @@ Naranja
 Que
 hacemos
 con
-este?
+este
 
 
 
@@ -9606,10 +9606,10 @@ preguntas
 Tu
 no
 te
-estás
+est�s
 muriendo
 él
-sí!
+sí
 
 
 
@@ -9628,7 +9628,7 @@ alguien
 
 
 A
-quién?
+quién
 
 
 
@@ -9639,12 +9639,12 @@ de
 serpientes
 no
 te
-jode?
+jode
 A
 un
-médico!
+médico
 Le
-curará
+curar�
 enseguida
 
 Que
@@ -9654,9 +9654,9 @@ de
 Marrón
 y
 de
-Azul?
+Azul
 
- 
+�
 
 
 
@@ -9677,8 +9677,8 @@ Azul
 
 Marrón
 ha
-muerto?
-Seguro?
+muerto
+Seguro
 
 
 
@@ -9704,15 +9704,15 @@ ha
 pasado
 al
 Sr
-Azul?
+Azul
 
 
 
 O
-está
+est�
 vivo
 o
-está
+est�
 muerto
 O
 le
@@ -9740,7 +9740,7 @@ del
 que
 me
 has
-hablado?
+hablado
 
 refiriéndose
 al
@@ -9748,11 +9748,11 @@ poli
 
 Porqué
 le
-pegáis?
+peg�is
 
 
 
-Quizá
+Quiz�
 pueda
 decirnos
 quién
@@ -9768,9 +9768,9 @@ seguís
 pegando
 un
 poco
-más
+m�s
 os
-dirá
+dir�
 que
 él
 empezó
@@ -9790,12 +9790,12 @@ que
 tenga
 que
 ser
-cierto!
+cierto
 
 Vamos
 tío
 piensa
-Está
+Est�
 bien
 lo
 importante
@@ -9806,7 +9806,7 @@ Quién
 tiene
 las
 
-piedras?
+piedras
 Vamos
 quiere
 alguien
@@ -9821,7 +9821,7 @@ de
 decirme
 
 dónde
-están?
+est�n
 
 
 
@@ -9831,7 +9831,7 @@ yo
 las
 tengo
 yo
-vale?
+vale
 Las
 he
 escondido
@@ -9926,7 +9926,7 @@ Rubio
 
 
 Porqué
-no?
+no
 
 Sr
 Blanco
@@ -9985,7 +9985,7 @@ he
 tenido
 que
 aguantar
-Eddie?
+Eddie
 Vengo
 aquí
 les
@@ -10049,8 +10049,8 @@ pasa
 te
 has
 vuelto
-mudo?
-Díselo!
+mudo
+Díselo
 
 
 
@@ -10062,7 +10062,7 @@ el
 almacén
 pero
 ahora
-está
+est�
 bien
 
 
@@ -10168,7 +10168,7 @@ para
 montar
 una
 matanza
-bestial?
+bestial
 
 
 
@@ -10183,14 +10183,14 @@ Blanco
 
 
 Que
-más
+m�s
 da
 quién
 se
 quede
 con
 el
-poli?
+poli
 No
 podemos
 soltarle
@@ -10216,7 +10216,7 @@ nadie
 Cierra
 el
 pico
-cabrón!
+cabrón
 
 Sr
 Rosa
@@ -10247,7 +10247,7 @@ maletero
 
 
 
-Intentábamos
+Intent�bamos
 descubrir
 que
 sabía
@@ -10264,12 +10264,12 @@ sea
 no
 había
 ninguna
-trampa!
+trampa
 Y
 ahora
 a
 lo
-nuestro!
+nuestro
 Rubito
 tú
 té
@@ -10299,7 +10299,7 @@ coches
 aparcados
 ahí
 fuera
-además
+adem�s
 de
 estar
 
@@ -10307,7 +10307,7 @@ cabreado
 con
 vosotros
 lo
-estará
+estar�
 conmigo
 también
 
@@ -10320,7 +10320,7 @@ puerta
 
 
 Venga
-vámonos
+v�monos
 
 Todos
 salen
@@ -10329,7 +10329,7 @@ salen
 INT
 ALMACÉN
 DÍA
- 
+�
 EL
 Y
 EL
@@ -10372,7 +10372,7 @@ policía
 
 
 Sabes
-que?
+que
 Creo
 que
 he
@@ -10389,7 +10389,7 @@ ríe
 Bueno
 por
 dónde
-íbamos?
+íbamos
 
 
 
@@ -10455,11 +10455,11 @@ que
 no
 era
 una
-trampa!
+trampa
 
 El
 poli
-está
+est�
 tiene
 toda
 la
@@ -10471,7 +10471,7 @@ sangre
 
 
 Mi
-que?
+que
 
 
 
@@ -10500,13 +10500,13 @@ que
 tengo
 que
 hacer
-entendido?
+entendido
 Me
 has
 oído
 hijo
 de
-puta?
+puta
 
 Sr
 Rubio
@@ -10550,7 +10550,7 @@ a
 andarme
 con
 chorradas
-vale?
+vale
 
 Sr
 Rubio
@@ -10588,7 +10588,7 @@ todas
 formas
 Da
 igual
-eh?
+eh
 No
 es
 por
@@ -10688,7 +10688,7 @@ el
 supersonido
 de
 los
-'?
+'
 Es
 mi
 programa
@@ -11176,7 +11176,7 @@ Mientras
 lo
 hace
 la
-cámara
+c�mara
 apunta
 a
 otro
@@ -11187,11 +11187,11 @@ oye
 
 
 
-Estáte
-quieto!
-Estáte
+Est�te
 quieto
-cabrón!
+Est�te
+quieto
+cabrón
 
 Sr
 Rubio
@@ -11222,7 +11222,7 @@ pasado
 tan
 bien
 cómo
-yo?
+yo
 
 Sr
 Rubio
@@ -11234,7 +11234,7 @@ frente
 la
 boca
 cómo
-hablándole
+habl�ndole
 
 
 
@@ -11244,10 +11244,10 @@ oreja
 
 Eh
 que
-pasa?
+pasa
 Has
 oído
-eso?
+eso
 
 Sr
 Rubio
@@ -11390,31 +11390,31 @@ empieza
 a
 suplicar
 
- 
+�
 
- 
+�
 
 
 
 suplicando
 
-Basta!
 Basta
-basta!
+Basta
+basta
 
 
 
-Que?
+Que
 
 
 
 suplicando
 
-Basta!
-No!
+Basta
+No
 No
 lo
-haga!
+haga
 
 El
 Sr
@@ -11426,20 +11426,20 @@ gasolina
 
 
 Que
-pasa?
+pasa
 
 
 
 suplicando
 
 Por
-favor!
+favor
 
 El
 Sr
 Rubio
 tira
-más
+m�s
 gasolina
 
 
@@ -11447,22 +11447,22 @@ gasolina
 suplicando
 
 No
-no!
-Basta!
-Basta!
+no
+Basta
+Basta
 
 
 
-Duele?
+Duele
 
 
 
 suplicando
 
 Por
-favor!
+favor
 Por
-favor!
+favor
 Basta
 basta
 basta
@@ -11540,19 +11540,19 @@ suplicando
 No
 por
 favor
-no!
-No!
+no
+No
 Por
 favor
-no!
+no
 No
 lo
-haga!
+haga
 
 
 
 Has
-terminado?
+terminado
 
 Sr
 Rubio
@@ -11560,9 +11560,9 @@ saca
 su
 zippo
 
- 
+�
 
- 
+�
 
 
 
@@ -11570,12 +11570,12 @@ suplicando
 
 No
 lo
-haga!
+haga
 
 
 
 Has
-terminado?
+terminado
 
 
 
@@ -11600,8 +11600,8 @@ basta
 
 suplicando
 
-No!
-No!
+No
+No
 
 Sr
 Rubio
@@ -11617,7 +11617,7 @@ encendido
 
 Toma
 fuego
-espantapájaros
+espantap�jaros
 
 Cuando
 Sr
@@ -11670,7 +11670,7 @@ débil
 
 Cómo
 te
-llamas?
+llamas
 
 
 
@@ -11679,7 +11679,7 @@ Marvin
 
 
 Marvin
-que?
+que
 
 
 
@@ -11709,7 +11709,7 @@ sé
 sorprendido
 
 A
-sí?
+sí
 
 
 
@@ -11756,7 +11756,7 @@ Freddy
 Freddy
 que
 aspecto
-tengo?
+tengo
 
 Sr
 Naranja
@@ -11772,8 +11772,8 @@ contestar
 
 
 
-Que?
-Que?
+Que
+Que
 
 
 
@@ -11785,15 +11785,15 @@ decirte
 
 
 Ese
-cabrón!
+cabrón
 Ese
 maldito
-cabrón!
+cabrón
 Ese
 maldito
 hijo
 de
-puta!
+puta
 
 Marvin
 se
@@ -11820,12 +11820,12 @@ aquí
 
 gritando
 
-Esperando?
+Esperando
 Y
 a
 que
 cojones
-esperan?
+esperan
 Ese
 hijo
 de
@@ -11841,24 +11841,24 @@ me
 ha
 cortado
 una
-oreja!
+oreja
 Me
 ha
-desfigurado!
+desfigurado
 
 
 
 gritando
 
-Jódete!
-Jódete!
+Jódete
+Jódete
 Yo
 me
 estoy
-muriendo!
+muriendo
 Me
 estoy
-muriendo!
+muriendo
 
 Sr
 Naranja
@@ -11903,7 +11903,7 @@ Vamos
 a
 estar
 aquí
-desangrándonos
+desangr�ndonos
 hasta
 que
 Joe
@@ -11958,7 +11958,7 @@ lleva
 una
 boina
 verde
-Está
+Est�
 esperando
 a
 alguien
@@ -12013,7 +12013,7 @@ equipo
 
 
 
-Más
+M�s
 vale
 que
 no
@@ -12099,10 +12099,10 @@ llamo
 anoche
 Dijo
 Joe
-está
+est�
 listo
 te
-recogerá
+recoger�
 en
 quince
 
@@ -12112,7 +12112,7 @@ minutos
 
 Quién
 te
-recogió?
+recogió
 
 
 
@@ -12124,7 +12124,7 @@ bar
 
 
 Que
-bar?
+bar
 
 
 
@@ -12159,7 +12159,7 @@ Naranja
 
 
 Sr
-Naranja?
+Naranja
 
 
 
@@ -12176,7 +12176,7 @@ visto
 antes
 a
 ese
-cabrón?
+cabrón
 
 
 
@@ -12184,7 +12184,7 @@ A
 quién
 al
 Sr
-Blanco?
+Blanco
 
 
 
@@ -12226,7 +12226,7 @@ bien
 
 Cómo
 lo
-sabes?
+sabes
 
 
 
@@ -12241,7 +12241,7 @@ colegas
 
 
 
-Hablasteis?
+Hablasteis
 
 
 
@@ -12251,20 +12251,20 @@ poco
 
 
 Sobre
-que?
+que
 
 
 
 Los
 Brewers
 
- 
+�
 
 
 
 Los
 Milwaukee
-Brewers?
+Brewers
 
 
 
@@ -12302,7 +12302,7 @@ Wisconsin
 
 
 
-Bing!
+Bing
 
 
 
@@ -12391,7 +12391,7 @@ de
 Mike
 en
 Long
-Beach?
+Beach
 
 
 
@@ -12488,7 +12488,7 @@ hijo
 de
 puta
 que
-está
+est�
 vendiendo
 a
 sus
@@ -12502,7 +12502,7 @@ tú
 ser
 un
 buen
-tío?
+tío
 Yo
 me
 ocuparé
@@ -12545,7 +12545,7 @@ DÍA
 
 Ahora
 Freddy
-esttá
+estt�
 en
 el
 tejado
@@ -12558,18 +12558,18 @@ guión
 y
 Holdaway
 
-está
+est�
 con
 él
 
 
 
-Cuál
+Cu�l
 es
 el
 cuento
 del
-retrete?
+retrete
 
 
 
@@ -12580,7 +12580,7 @@ Apréndetela
 
 
 
-Que?
+Que
 
 
 
@@ -12646,7 +12646,7 @@ trabajo
 Ya
 Que
 es
-esto?
+esto
 
 
 
@@ -12661,7 +12661,7 @@ drogas
 
 
 
-Que?
+Que
 
 
 
@@ -12683,13 +12683,13 @@ Tengo
 que
 aprenderme
 todo
-esto?
+esto
 Aquí
 hay
-más
+m�s
 de
 cuatro
-páginas
+p�ginas
 
 
 
@@ -12698,7 +12698,7 @@ considéralo
 cómo
 un
 chiste
-vale?
+vale
 Te
 aprendes
 lo
@@ -12710,11 +12710,11 @@ te
 lo
 inventas
 de
-acuerdo?
-Sabrás
+acuerdo
+Sabr�s
 contar
 chistes
-no?
+no
 
 
 
@@ -12821,7 +12821,7 @@ utilizabas
 en
 el
 instituto
-recuerdas?
+recuerdas
 Tienes
 
 que
@@ -12892,7 +12892,7 @@ que
 en
 la
 historia
-estás
+est�s
 tú
 Y
 cómo
@@ -12922,7 +12922,7 @@ DE
 DÍA
 
 Freddy
-está
+est�
 ensayando
 el
 guión
@@ -12950,7 +12950,7 @@ tenía
 un
 contacto
 el
-cuál
+cu�l
 era
 un
 milagro
@@ -12986,19 +12986,19 @@ y
 decían
 Eh
 Freddy
-Eh!
+Eh
 decían
 Eh
 
 tronco
 vas
 a
-pillar?
+pillar
 Puedes
 conseguirme
 algo
 para
-mí?
+mí
 Sabían
 que
 yo
@@ -13096,7 +13096,7 @@ APARCAMIENTO
 DÍA
 
 Freddy
-está
+est�
 ensayando
 el
 guión
@@ -13128,7 +13128,7 @@ todo
 el
 puto
 día
-llamándome
+llam�ndome
 no
 
 podía
@@ -13144,10 +13144,10 @@ seis
 malditas
 llamadas
 
-Cuándo
+Cu�ndo
 vuelves
 a
-pillar?
+pillar
 cabrón
 estoy
 intentando
@@ -13170,7 +13170,7 @@ mis
 amigos
 y
 
-demás
+dem�s
 pero
 aún
 así
@@ -13221,7 +13221,7 @@ SOCKS
 NOCHE
 
 Freddy
-está
+est�
 contando
 la
 historia
@@ -13257,7 +13257,7 @@ emocionante
 No
 sé
 si
-recordáis
+record�is
 que
 en
 el
@@ -13307,7 +13307,7 @@ le
 dije
 que
 nunca
-más
+m�s
 
 volvería
 a
@@ -13326,8 +13326,8 @@ vendería
 a
 mis
 
-más
-más
+m�s
+m�s
 íntimos
 amigos
 Accedieron
@@ -13389,7 +13389,7 @@ sola
 
 Y
 eso
-porqué?
+porqué
 
 
 
@@ -13399,7 +13399,7 @@ pago
 de
 multas
 de
-tráfico
+tr�fico
 Le
 pagaron
 le
@@ -13486,7 +13486,7 @@ con
 la
 hierva
 
-encima?
+encima
 
 
 
@@ -13584,8 +13584,8 @@ de
 caballeros
 y
 quién
-está
-allí?
+est�
+allí
 
 Freddy
 se
@@ -13612,7 +13612,7 @@ Angeles
 y
 un
 Pastor
-Alemán
+Alem�n
 
 
 
@@ -13633,7 +13633,7 @@ imaginación
 
 
 Te
-esperaban?
+esperaban
 
 
 
@@ -13692,7 +13692,7 @@ jodida
 
 El
 pastor
-alemán
+alem�n
 empezó
 a
 ladrar
@@ -13704,7 +13704,7 @@ SERIO
 
 El
 pastor
-alemán
+alem�n
 ladra
 tres
 veces
@@ -13768,11 +13768,11 @@ ser
 
 me
 decía
-lárgate
-pasa!
+l�rgate
+pasa
 Sal
 cagando
-leches!
+leches
 Sentía
 el
 miedo
@@ -13785,7 +13785,7 @@ agua
 cómo
 un
 tiro
-PAM!
+PAM
 En
 plena
 cara
@@ -13800,7 +13800,7 @@ y
 todos
 estos
 sheriffs
-mirándome
+mir�ndome
 Y
 lo
 sabían
@@ -13841,7 +13841,7 @@ ladrando
 
 
 
-Cállate!
+C�llate
 
 El
 perro
@@ -13899,10 +13899,10 @@ le
 digo
 Alto
 allí
-joder!
+joder
 No
 te
-muevas!
+muevas
 Entonces
 el
 muy
@@ -13940,7 +13940,7 @@ Y
 le
 grito
 
-Jilipollas!
+Jilipollas
 Voy
 a
 volarte
@@ -13956,7 +13956,7 @@ manos
 en
 el
 
-volante!
+volante
 y
 se
 me
@@ -14006,7 +14006,7 @@ manos
 en
 el
 puto
-volante!
+volante
 Y
 entonces
 su
@@ -14026,7 +14026,7 @@ gritar
 Jack
 Jack
 que
-haces?
+haces
 Hazle
 caso
 al
@@ -14038,7 +14038,7 @@ las
 manos
 en
 el
-volante!
+volante
 Entonces
 cómo
 si
@@ -14059,7 +14059,7 @@ volante
 
 Que
 estaba
-buscando?
+buscando
 
 
 
@@ -14085,7 +14085,7 @@ pica
 
 
 
-Bromeas?
+Bromeas
 
 
 
@@ -14103,7 +14103,7 @@ estuvo
 de
 que
 le
-volará
+volar�
 la
 
 cabeza
@@ -14157,7 +14157,7 @@ y
 se
 va
 
- 
+�
 
 
 
@@ -14174,7 +14174,7 @@ si
 el
 abuso
 de
-autoridad?
+autoridad
 
 
 
@@ -14235,8 +14235,8 @@ hablando
 
 
 
-Háblame
-más
+H�blame
+m�s
 de
 Cabot
 
@@ -14257,7 +14257,7 @@ Recuerdas
 los
 
 cuatro
-fantásticos?
+fant�sticos
 
 
 
@@ -14299,7 +14299,7 @@ PORTÁTIL
 
 El
 teléfono
-portátil
+port�til
 empieza
 a
 sonar
@@ -14312,18 +14312,18 @@ contesta
 al
 teléfono
 
-Sí?
+Sí
 
 Eddie
 es
 el
 que
-está
+est�
 llamando
 
 VT
 
-Eh!
+Eh
 Llegó
 el
 momento
@@ -14396,7 +14396,7 @@ REGRESA
 APARTAMENTO
 
 Freddy
-está
+est�
 escuchando
 a
 la
@@ -14522,16 +14522,16 @@ contiene
 dos
 policías
 y
-está
+est�
 aparcado
-detrás
+detr�s
 del
 de
 Eddie
 La
 
-cámara
-está
+c�mara
+est�
 en
 el
 asiento
@@ -14583,7 +14583,7 @@ infiltrado
 Quieres
 uno
 de
-estos?
+estos
 
 #
 
@@ -14637,7 +14637,7 @@ que
 ahora
 Sr
 Naranja
-está
+est�
 al
 lado
 del
@@ -14748,7 +14748,7 @@ mujer
 cómo
 si
 fueran
-mierda?
+mierda
 
 
 
@@ -14794,7 +14794,7 @@ sí
 esos
 también
 
- 
+�
 
 
 
@@ -14808,7 +14808,7 @@ de
 los
 clubs
 de
-papá
+pap�
 hay
 una
 camarera
@@ -14819,7 +14819,7 @@ Elois
 
 
 
-Elois?
+Elois
 
 
 
@@ -14827,7 +14827,7 @@ Sí
 Elois
 Elois
 La
-llamábamos
+llam�bamos
 Lady
 E
 
@@ -14837,7 +14837,7 @@ De
 dónde
 era
 de
-Compton?
+Compton
 
 Todos
 ríen
@@ -14909,7 +14909,7 @@ a
 
 quién
 se
-parecía?
+parecía
 Se
 parecía
 a
@@ -14924,7 +14924,7 @@ televisión
 presentado
 por
 Christie
-Love?
+Love
 Aquella
 de
 la
@@ -14941,7 +14941,7 @@ Y
 
 Quedas
 detenido
-encanto!
+encanto
 
 Todos
 ríen
@@ -14957,7 +14957,7 @@ que
 hacía
 de
 Christie
-Love?
+Love
 
 
 
@@ -15006,7 +15006,7 @@ Entonces
 quién
 hacía
 el
-papel?
+papel
 
 
 
@@ -15014,7 +15014,7 @@ Y
 yo
 que
 cojones
-sé?
+sé
 
 
 
@@ -15063,7 +15063,7 @@ blanca
 
 
 Callaos
-vale?
+vale
 Intento
 contaros
 algo
@@ -15088,7 +15088,7 @@ club
 una
 noche
 y
-está
+est�
 Carlos
 es
 el
@@ -15111,9 +15111,9 @@ le
 digo
 Carlos
 dónde
-está
+est�
 Lady
-E?
+E
 Por
 lo
 visto
@@ -15140,17 +15140,17 @@ ella
 
 
 
-Cosas?
+Cosas
 Cómo
 que
 le
 hacía
-cosas?
+cosas
 Que
 cosas
 que
 le
-hacía?
+hacía
 
 
 
@@ -15161,7 +15161,7 @@ le
 hacía
 sólo
 cosas
-vale?
+vale
 
 
 
@@ -15196,7 +15196,7 @@ quedó
 dormido
 en
 el
-sofá
+sof�
 se
 acercó
 a
@@ -15260,7 +15260,7 @@ Se
 puso
 de
 mala
-leche?
+leche
 
 
 
@@ -15277,7 +15277,7 @@ mear
 tuvieras
 que
 hacer
-siete?
+siete
 
 Todos
 ríen
@@ -15290,7 +15290,7 @@ ALMACÉN
 DÍA
 
 Joe
-está
+est�
 repasando
 el
 plan
@@ -15300,14 +15300,14 @@ con
 los
 chicos
 Todos
-están
+est�n
 en
 sillas
 
 excepto
 Joe
 que
-está
+est�
 cómo
 un
 profesor
@@ -15321,12 +15321,12 @@ que
 os
 gusta
 contar
-chistes 
+chistes�
 reíros
 y
 gastar
 bromas
-eh?
+eh
 Exactamente
 
 cómo
@@ -15345,7 +15345,7 @@ chiste
 Cinco
 tíos
 
-están
+est�n
 sentados
 en
 una
@@ -15353,7 +15353,7 @@ celda
 de
 San
 Quintín
-preguntándose
+pregunt�ndose
 cómo
 han
 llegado
@@ -15361,28 +15361,28 @@ llegado
 allí
 Que
 hicimos
-mal?
+mal
 Que
 es
 lo
 que
 no
 debimos
-hacer?
+hacer
 Que
 es
 lo
 que
 no
 
-hicimos?
+hicimos
 Es
 tu
 culpa
 mi
 culpa
 su
-culpa?
+culpa
 Todo
 ese
 rollo
@@ -15399,20 +15399,20 @@ idea
 Un
 momento
 mientras
-planeábamos
+plane�bamos
 el
 golpe
 no
 hicimos
 
-más
+m�s
 que
 el
 tonto
 contando
 chistes
 Lo
-cogéis?
+cogéis
 No
 pretendo
 regañaros
@@ -15542,7 +15542,7 @@ a
 hacer
 así
 todo
-irá
+ir�
 bien
 Estos
 son
@@ -15551,7 +15551,7 @@ los
 nombres
 
 la
-cámara
+c�mara
 se
 fija
 en
@@ -15582,12 +15582,12 @@ Rosa
 Porqué
 yo
 Sr
-Rosa?
+Rosa
 
 
 Por
 maricón
-vale?
+vale
 
 Sr
 Rubio
@@ -15602,7 +15602,7 @@ no
 podemos
 elegir
 el
-color?
+color
 
 
 Ni
@@ -15619,7 +15619,7 @@ Habría
 cuatro
 tíos
 
-peleándose
+pele�ndose
 por
 ser
 el
@@ -15639,7 +15639,7 @@ yo
 No
 señor
 Elijo
-yo!
+yo
 Tú
 eres
 el
@@ -15654,9 +15654,9 @@ librarte
 del
 amarillo
 
- 
+�
 
- 
+�
 
 
 
@@ -15682,12 +15682,12 @@ Que
 te
 parece
 Sr
-Púrpura?
+Púrpura
 A
 mí
 me
 gusta
-más
+m�s
 
 Puedo
 ser
@@ -15697,7 +15697,7 @@ Púrpura
 
 
 No
-serás
+ser�s
 el
 Sr
 Púrpura
@@ -15710,19 +15710,19 @@ un
 Sr
 Púrpura
 Tu
-serás
+ser�s
 
 el
 Sr
-Rosa!
+Rosa
 
 
 
 Que
-más
+m�s
 da
 el
-nombre?
+nombre
 
 
 
@@ -15730,7 +15730,7 @@ Claro
 para
 ti
 es
-fácil
+f�cil
 eres
 el
 Sr
@@ -15755,12 +15755,12 @@ te
 da
 igual
 quieres
-cambiármelo?
+cambi�rmelo
 
 
 Eh
 nadie
-cambiará
+cambiar�
 con
 nadie
 Esto
@@ -15772,7 +15772,7 @@ pleno
 de
 ayuntamiento
 
-sabes?
+sabes
 Escúchame
 Sr
 Rosa
@@ -15790,11 +15790,11 @@ o
 la
 puta
 calle
-Cuál
+Cu�l
 prefiere
 usted
 Sr
-Rosa?
+Rosa
 
 
 
@@ -15826,7 +15826,7 @@ cogido
 ya
 el
 puñetero
-mensaje?
+mensaje
 Mm
 me
 
@@ -15843,7 +15843,7 @@ trabajar
 
 
 
- 
+�
 
 
 JOYERÍA
@@ -15853,7 +15853,7 @@ DÍA
 
 Se
 muestran
-imágenes
+im�genes
 de
 la
 joyería
@@ -15865,8 +15865,8 @@ Vamos
 a
 repasarlo
 Dónde
-estás
-tú?
+est�s
+tú
 
 
 VF
@@ -15891,7 +15891,7 @@ VF
 
 El
 Sr
-Marrón?
+Marrón
 
 
 VF
@@ -15903,7 +15903,7 @@ espera
 en
 el
 coche
-Está
+Est�
 aparcado
 enfrente
 Cuando
@@ -15912,7 +15912,7 @@ haga
 una
 
 señal
-vendrá
+vendr�
 a
 la
 puerta
@@ -15927,7 +15927,7 @@ Rubio
 y
 el
 Sr
-Azul?
+Azul
 
 
 VF
@@ -15960,7 +15960,7 @@ En
 el
 coche
 sólo
-están
+est�n
 ellos
 dos
 Sr
@@ -16001,18 +16001,18 @@ el
 Sr
 Rosa
 y
-yo?
+yo
 
 
 
-Lleváis
+Llev�is
 a
 dentro
 el
 director
 y
 le
-obligáis
+oblig�is
 a
 que
 os
@@ -16045,7 +16045,7 @@ minutos
 ni
 un
 segundo
-más
+m�s
 Que
 pasa
 si
@@ -16054,18 +16054,18 @@ el
 director
 no
 quiere
-dáros
+d�ros
 los
-diamantes?
+diamantes
 
- 
+�
 
 
 
 En
 almacenes
 así
-están
+est�n
 asegurados
 hasta
 el
@@ -16141,10 +16141,10 @@ fuera
 a
 ser
 la
-siguiente 
+siguiente�
 y
 ya
-verás
+ver�s
 cómo
 se
 calla
@@ -16210,7 +16210,7 @@ va
 el
 pulgar
 te
-contará
+contar�
 
 hasta
 sí
@@ -16238,7 +16238,7 @@ del
 robo
 El
 callejón
-está
+est�
 vacío
 
 En
@@ -16300,7 +16300,7 @@ y
 Sr
 Naranja
 van
-detrás
+detr�s
 
 El
 coche
@@ -16331,9 +16331,9 @@ y
 lo
 apaga
 
- 
+�
 
- 
+�
 
 
 
@@ -16341,7 +16341,7 @@ apagando
 el
 coche
 
-Joder!
+Joder
 
 Sr
 Blanco
@@ -16403,7 +16403,7 @@ ciego
 
 
 No
-estás
+est�s
 ciego
 sólo
 tienes
@@ -16411,7 +16411,7 @@ sangre
 en
 los
 ojos
-vale?
+vale
 
 Vuelve
 con
@@ -16465,18 +16465,18 @@ pistola
 
 
 
-Está
-muerto?
+Est�
+muerto
 Ha
 muerto
 o
-no?
+no
 
 Sr
 Blanco
 ve
 el
-cadáver
+cad�ver
 del
 Sr
 Marrón
@@ -16522,10 +16522,10 @@ dentro
 
 
 
-Alto!
+Alto
 Alto
 quieta
-allí!
+allí
 
 Sr
 Blanco
@@ -16559,7 +16559,7 @@ guantera
 
 Fuera
 del
-coche!
+coche
 
 Sr
 Naranja
@@ -16619,21 +16619,21 @@ Lo
 siento
 lo
 siento
-Larry!
+Larry
 No
 puedo
 creer
 que
 me
 haya
-matado!
+matado
 Quién
 coño
 
 iría
 a
 pensar
-eso!
+eso
 
 
 
@@ -16642,9 +16642,9 @@ ese
 rollo
 ahora
 mismo
-Estás
+Est�s
 herido
-estás
+est�s
 muy
 mal
 herido
@@ -16667,7 +16667,7 @@ Voy
 a
 morir
 lo
-sé!
+sé
 
 
 
@@ -16685,7 +16685,7 @@ almacén
 Marvin
 y
 Freddy
-están
+est�n
 medio
 dormidos
 
@@ -16699,7 +16699,7 @@ se
 fija
 en
 el
-cadáver
+cad�ver
 del
 Sr
 Rubio
@@ -16722,7 +16722,7 @@ almacén
 Que
 cojones
 ha
-pasado?
+pasado
 
 
 
@@ -16747,11 +16747,11 @@ vivo
 
 
 
-Que?
+Que
 No
 te
 he
-oído!
+oído
 
 
 
@@ -16789,7 +16789,7 @@ Marvin
 
 A
 este
-poli?
+poli
 
 Eddie
 saca
@@ -16805,7 +16805,7 @@ Este
 se
 muere
 
- 
+�
 
 
 
@@ -16813,8 +16813,8 @@ Se
 volvió
 así
 de
-loco?
-Más
+loco
+M�s
 o
 menos
 
@@ -16857,7 +16857,7 @@ diamantes
 Que
 te
 había
-dicho?
+dicho
 Este
 tío
 era
@@ -16940,7 +16940,7 @@ la
 oreja
 es
 cierto
-está
+est�
 cortada
 
 
@@ -16991,7 +16991,7 @@ es
 
 lo
 que
-dices?
+dices
 
 
 
@@ -17019,7 +17019,7 @@ de
 salir
 de
 la
-cárcel
+c�rcel
 Lo
 cogieron
 en
@@ -17066,7 +17066,7 @@ Sr
 Naranja
 
 me
-estás
+est�s
 diciendo
 que
 un
@@ -17098,7 +17098,7 @@ le
 
 ofrecieran
 me
-estás
+est�s
 diciendo
 que
 ahora
@@ -17119,7 +17119,7 @@ así
 de
 repente
 
-jugárnosla?
+jug�rnosla
 Porqué
 no
 nos
@@ -17128,14 +17128,14 @@ lo
 que
 en
 realidad
-pasó?
+pasó
 
 
 
 Para
-que?
+que
 Habrían
-más
+m�s
 mentidas
 
 Aparece
@@ -17155,7 +17155,7 @@ vendido
 
 
 
-Papá
+Pap�
 lo
 siento
 pero
@@ -17177,8 +17177,8 @@ sí
 De
 que
 cojones
-estás
-hablando?
+est�s
+hablando
 
 
 Ese
@@ -17227,12 +17227,12 @@ pero
 te
 equivocas
 
- 
+�
 
 
 Y
 un
-cuerno!
+cuerno
 
 
 
@@ -17243,7 +17243,7 @@ Joe
 confía
 en
 mí
-estás
+est�s
 cometiendo
 un
 error
@@ -17285,7 +17285,7 @@ sabes
 una
 mierda
 yo
-sí!
+sí
 Este
 mamón
 avisó
@@ -17306,11 +17306,11 @@ Azul
 El
 Sr
 Azul
-está
-muerto?
+est�
+muerto
 
 
-Más
+M�s
 muerto
 que
 Dillinger
@@ -17320,7 +17320,7 @@ Dillinger
 Cómo
 sabes
 todo
-eso?
+eso
 
 
 Era
@@ -17351,7 +17351,7 @@ adelante
 Esa
 es
 tu
-prueba?
+prueba
 
 
 No
@@ -17361,7 +17361,7 @@ pruebas
 cuando
 se
 tiene
-instinto!
+instinto
 Lo
 ignoré
 antes
@@ -17369,7 +17369,7 @@ pero
 ya
 no
 
-más
+m�s
 
 Joe
 saca
@@ -17480,7 +17480,7 @@ matas
 a
 este
 hombre
-morirás
+morir�s
 Repítelo
 Si
 mato
@@ -17548,7 +17548,7 @@ de
 apuntar
 a
 mi
-padre!
+padre
 
 Joe
 DISPARA
@@ -17603,7 +17603,7 @@ la
 pequeña
 rampa
 dónde
-está
+est�
 encima
 Sr
 Naranja
@@ -17660,7 +17660,7 @@ siento
 lo
 siento
 Lo
-siento!
+siento
 Larry
 Lo
 siento
@@ -17706,7 +17706,7 @@ policías
 
 gritando
 
-Alto!
+Alto
 
 Larry
 sigue
@@ -17720,7 +17720,7 @@ Suelta
 la
 pistola
 ahora
-mismo!
+mismo
 
 #
 
@@ -17728,7 +17728,7 @@ gritando
 
 Suelta
 la
-pistola!
+pistola
 
 #
 
@@ -17736,7 +17736,7 @@ gritando
 
 No
 lo
-hagas!
+hagas
 
 #
 
@@ -17744,13 +17744,13 @@ gritando
 
 Suelta
 la
-pistola!
+pistola
 
 #
 
 gritando
 
-No!
+No
 
 #
 
@@ -17758,7 +17758,7 @@ gritando
 
 Suelta
 la
-pistola!
+pistola
 
 #
 
@@ -17767,7 +17767,7 @@ gritando
 Suelta
 la
 puta
-pistola!
+pistola
 
 #
 
@@ -17778,7 +17778,7 @@ o
 te
 vuelo
 la
-cabeza!
+cabeza
 
 Se
 oye
@@ -17811,9 +17811,9 @@ canción
 CoconutHarry
 Nilsson
 
- 
+�
 
- 
+�
 
 CRÉDITOS
 
