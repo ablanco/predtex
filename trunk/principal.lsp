@@ -20,6 +20,7 @@
 
 ;; La key es el numero, value la lista de palabras
 (defparameter *corpus* (make-hash-table))
+(defparameter *corpus-compuesto* (make-hash-table))
 (defparameter *corpus-key* (make-hash-table))
 
 
@@ -27,6 +28,7 @@
 (defparameter *profundidad* 15)	
 
 (defvar *palabras-totales* 0);; Numero total de palabras reconocidas hasta el momento.
+(defvar *palabras-compuestas-totales* 0);; Numero total de palabras reconocidas hasta el momento.
 
 
 ;;Inicializa la variable teclado con los valores correspondientes
@@ -111,17 +113,24 @@
 		lista)))
 
 (defun set-palabra-compuesta (anterior palabra)
-;(format t "insertada : ~a ," (string-concat (string anterior) '" " (string palabra)))
-(if (or (null anterior) (string> 'a anterior))
-	nil ;;esto es para cortar cuando se termina la frase
-	(set-palabra 
-		(string-concat (string anterior) '" " (string palabra))
-		(codifica-palabra (string-concat (string anterior) (string palabra))))))
+(format t "insertada-palabra : '~a' |" (string-concat (string anterior) '" " (string palabra)))
+(if (> (length anterior) 0)
+	(let* ((pal (string-concat anterior palabra))
+		(numero (codifica-palabra pal)))
+	(setf *palabras-totales* (1+ *palabras-compuestas-totales*))
+	(setf (gethash numero *corpus-compuesto*)
+		(set-palabra-aux pal (gethash numero *corpus-compuesto*))))
+	nil))
+
+;; 	(set-palabra 
+;; 		(string-concat (string anterior) '" " (string palabra))
+;; 		(codifica-palabra (string-concat (string anterior) (string palabra))))))
 
 (defun set-key-compuesta (anterior palabra)
-(if (or (null anterior) (not (stringp a anterior))) ;;TODO arreglar
-	nil
+(format t "insertada-key : '~a' |" (string-concat (string anterior) '" " (string palabra)))
+(if (> (length anterior) 0) ;;TODO arreglar
 	(set-key (string-concat (string anterior) (string palabra)))))
+	
 
 (defun set-key (palabra)
   (let ((numero (codifica-palabra palabra))
@@ -158,11 +167,11 @@
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-	  	(set-palabra (string-downcase l) (codifica-palabra l)) ;;Se acrualizan las palabras al diccionario
-		(set-palabra-compuesta (string-downcase anterior) (string-downcase l))
-		(setf anterior (string-downcase l))
-		(set-key l) ;; Y al indice de keys
-		(set-key-compuesta anterior l)))))
+	  	(set-palabra (string-downcase l) (codifica-palabra (string-downcase l))) ;;Se acrualizan las palabras al diccionario
+		(set-palabra-compuesta anterior (string-downcase l))
+		(set-key (string-downcase l)) ;; Y al indice de keys
+		(set-key-compuesta anterior (string-downcase l))
+		(setf anterior (string-downcase l))))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye
