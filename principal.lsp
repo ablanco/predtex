@@ -55,12 +55,6 @@
 	(set-key l)
 	)))
 
-
-;; Carga un texto y lo codifica en memoria
-;devuelve una lista de la forma
-;(((palabra .1)(palabra . 2)) . 3)
-
-
 ;; Devuelve la lista de palabras asociada a un numero
 ;;ordenadas por probabilidad y normalizadas :D
 (defun get-palabras (numero)
@@ -200,13 +194,13 @@
 ;; 	(first lista)))
 ;; (+ 1 (rest lista)))) ;le sumo uno al tamaño
 
-
+;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
+;; Si la palabra no estaba en el *corpus* la incluye
 (defun aprendizaje (palabra)
-;;   TODO
-  )
+  (set-palabra palabra (codifica-palabra palabra)))
 
 ;; Normaliza una lista de (palabras . probabilidades)
-(defun normaliza-lista (lista) ;;TODO ya no hace falta no???
+(defun normaliza-lista (lista)
   (let* ((suma (loop for x in lista summing (rest x)))
 	  (alfa (if (= 0 suma)
 		  1
