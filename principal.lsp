@@ -293,8 +293,9 @@
       (format canal "~&~%Opciones:~%-Pulse un numero del teclado")
       (format canal "~%-Pulse la letra e para un espacio en blanco")
       (format canal "~%-Pulse la letra b para borrar la ultima pulsacion")
-      (format canal "~%-Pulse la letra q para salir")
       (format canal "~%-Pulse la letra o para escoger otra palabra predicha")
+      (format canal "~%-Pulse la letra n para incluir una palabra nueva")
+      (format canal "~%-Pulse la letra q para salir")
       (format canal "~%~%Su eleccion: ")
       (setf tecla (read))
       (cond
@@ -313,12 +314,14 @@
 	  (setf pred (prediccion-futura teclas))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
+        ((eq tecla 'n) ;; --------------------------------------------------- Nueva palabra
+          ()) ;; TODO
 	((and (eq tecla 'o) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
 	  (format canal "~&~%Introduzca el indice de la palabra deseada: ")
 	  (setf indice (1- (read)))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((not (eq tecla 'o)) ;; ---------------------------------------------- Pulsar tecla
+	((not (member tecla '(1 2 3 4 5 6 7 8 9))) ;; ------------------------ Pulsar tecla
 	  (setf teclas (append teclas (list tecla)))
 	  (setf indice 0)
 	  (setf pred (prediccion-futura teclas))
