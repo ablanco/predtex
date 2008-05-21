@@ -92,12 +92,14 @@
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun set-palabra (palabra numero)
 (cond 	((> (length palabra) 0)
-	nil)
-	(t
 	(set-key palabra numero)
 	(setf *palabras-totales* (1+ *palabras-totales*))
 		(setf (gethash numero *corpus*)
-			(set-palabra-aux palabra (gethash numero *corpus*))))))
+			(set-palabra-aux palabra (gethash numero *corpus*))))
+	(t
+	nil)))
+	
+	
 
 ;; Inserta una palabra en una lista, si esta le suma 1 si no esta le da valor 1
 (defun set-palabra-aux (palabra lista)

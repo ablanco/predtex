@@ -32,3 +32,18 @@
 ;; 		(cons (string-downcase linea) 1) ; la creo
 ;; 	(first lista)))
 ;; (+ 1 (rest lista)))) ;le sumo uno al tamaño
+
+		
+
+;; (defun get-n-palabras-relacionadas-aux (lista)
+;; 	(subseq lista 0 (min *profundidad* (length lista)))
+;; 
+;; 	(loop for x in
+;; 		(loop for i from 0 to (min *profundidad* (length lista))
+;; 			collect
+;; 			(nth i lista))
+;; 	when (not (null x))
+;; 	collect	x))
+
+;; (defun get-indices-palabra (numero)
+;; 	(gethash numero *corpus-key*))
