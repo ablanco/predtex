@@ -54,7 +54,6 @@
         ((eq l 'eof) "Fin de Fichero.")
 ;      (format t "~&Leida ~A~%" l)
 	(set-palabra l (codifica-palabra l))
-	(set-key l)
 	)))
 
 ;; Devuelve la lista de palabras asociada a un numero
@@ -65,28 +64,24 @@
 (calcula-probabilidad
   (gethash numero *corpus*))))
 
-(defun get-indices-palabra (numero)
-	(gethash numero *corpus-key*))
 
 (defun get-palabras-relacionadas (numero)
 (append
 	(get-palabras numero)
-	(get-n-palabras-relacionadas-aux
-		(get-palabras-relacionadas-aux numero))))
-
-(defun get-n-palabras-relacionadas-aux (lista)
-	(loop for x in
-		(loop for i from 0 to (min *profundidad* (length lista))
-			collect
-			(nth i lista))
-	when (not (null x))
-	collect	x))
+	(subseq ;;tomamos solo una lista de tamaño máximo *profundidad*
+	(get-palabras-relacionadas-aux numero)
+	0 (min *profundidad* (length lista)))))
 
 (defun get-palabras-relacionadas-aux (numero)
+(let ((lista (gethash numero *corpus-key*)))
 	(ordena-por-probabilidad
-	(loop for x in (get-indices-palabra numero)
-	append
-	(gethash x *corpus*))))
+		(append
+			(loop for x in lista
+			append
+			(gethash x *corpus*))
+			(loop for x in lista
+			append
+			(gethash x *corpus-compuesto*))))))
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
@@ -95,9 +90,13 @@
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun set-palabra (palabra numero)
-(setf *palabras-totales* (1+ *palabras-totales*))
-	(setf (gethash numero *corpus*)
-		(set-palabra-aux palabra (gethash numero *corpus*))))
+(cond 	((> (length palabra) 0)
+	nil)
+	(t
+	(set-key palabra numero)
+	(setf *palabras-totales* (1+ *palabras-totales*))
+		(setf (gethash numero *corpus*)
+			(set-palabra-aux palabra (gethash numero *corpus*))))))
 
 ;; Inserta una palabra en una lista, si esta le suma 1 si no esta le da valor 1
 (defun set-palabra-aux (palabra lista)
@@ -116,31 +115,22 @@
 (if (> (length anterior) 0)
 	(let* ((numero (codifica-palabra (string-concat anterior palabra))))
 	;(format t "insertada-palabra : '~a' |" (string-concat (string anterior) '" " (string palabra)))
+	(set-key 
+		(string-concat (string anterior) (string palabra)) 
+		(codifica-palabra (string-concat (string anterior) (string palabra))))
 	(setf *palabras-totales* (1+ *palabras-compuestas-totales*))
 	(setf (gethash numero *corpus-compuesto*)
 		(set-palabra-aux (string-concat anterior '" " palabra) (gethash numero *corpus-compuesto*))))
 	nil))
 
-;; 	(set-palabra 
-;; 		(string-concat (string anterior) '" " (string palabra))
-;; 		(codifica-palabra (string-concat (string anterior) (string palabra))))))
-
-(defun set-key-compuesta (anterior palabra)
-;(format t "insertada-key : '~a' |" (string-concat (string anterior) '" " (string palabra)))
-(if (> (length anterior) 0)
-	(set-key (string-concat (string anterior) (string palabra)))))
-	
-
-(defun set-key (palabra)
-  (let ((numero (codifica-palabra palabra))
-	 (lista (descompone-a-numero-aux palabra)))
+(defun set-key (palabra numero)
     ;(format t "~&numero ~a lista ~a"numero lista)
-  (loop for x in lista
+  (loop for x in (descompone-a-numero-aux palabra)
     do
     (if (member numero (gethash x *corpus-key*))
       nil
       (setf (gethash x *corpus-key*)
-	(cons numero (gethash x *corpus-key*)))))))
+	(cons numero (gethash x *corpus-key*))))))
 
 ;; Ordena de mayor a menor una lista de palabras . probabilidades
 (defun ordena-por-probabilidad (lista)
@@ -168,8 +158,6 @@
         ((eq l 'eof) "Fin de Fichero.")
 	  	(set-palabra (string-downcase l) (codifica-palabra (string-downcase l))) ;;Se acrualizan las palabras al diccionario
 		(set-palabra-compuesta anterior (string-downcase l))
-		(set-key (string-downcase l)) ;; Y al indice de keys
-		(set-key-compuesta anterior (string-downcase l))
 		(setf anterior (string-downcase l))))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
