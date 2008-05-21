@@ -66,11 +66,12 @@
 
 
 (defun get-palabras-relacionadas (numero)
+(let ((lista (get-palabras-relacionadas-aux numero)))
 (append
 	(get-palabras numero)
 	(subseq ;;tomamos solo una lista de tamaño máximo *profundidad*
-	(get-palabras-relacionadas-aux numero)
-	0 (min *profundidad* (length lista)))))
+	lista
+	0 (min *profundidad* (length lista))))))
 
 (defun get-palabras-relacionadas-aux (numero)
 (let ((lista (gethash numero *corpus-key*)))
