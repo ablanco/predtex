@@ -113,13 +113,12 @@
 		lista)))
 
 (defun set-palabra-compuesta (anterior palabra)
-(format t "insertada-palabra : '~a' |" (string-concat (string anterior) '" " (string palabra)))
 (if (> (length anterior) 0)
-	(let* ((pal (string-concat anterior palabra))
-		(numero (codifica-palabra pal)))
+	(let* ((numero (codifica-palabra (string-concat anterior palabra))))
+	;(format t "insertada-palabra : '~a' |" (string-concat (string anterior) '" " (string palabra)))
 	(setf *palabras-totales* (1+ *palabras-compuestas-totales*))
 	(setf (gethash numero *corpus-compuesto*)
-		(set-palabra-aux pal (gethash numero *corpus-compuesto*))))
+		(set-palabra-aux (string-concat anterior '" " palabra) (gethash numero *corpus-compuesto*))))
 	nil))
 
 ;; 	(set-palabra 
@@ -127,8 +126,8 @@
 ;; 		(codifica-palabra (string-concat (string anterior) (string palabra))))))
 
 (defun set-key-compuesta (anterior palabra)
-(format t "insertada-key : '~a' |" (string-concat (string anterior) '" " (string palabra)))
-(if (> (length anterior) 0) ;;TODO arreglar
+;(format t "insertada-key : '~a' |" (string-concat (string anterior) '" " (string palabra)))
+(if (> (length anterior) 0)
 	(set-key (string-concat (string anterior) (string palabra)))))
 	
 
