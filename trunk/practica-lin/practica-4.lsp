@@ -1,7 +1,3 @@
-
-
-
-
 ;;Alumno Manuel Gomar Acosta
 ;; DNI 14317632-v
 
