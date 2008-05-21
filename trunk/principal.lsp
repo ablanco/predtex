@@ -119,7 +119,7 @@
 		(codifica-palabra (string-concat (string anterior) (string palabra))))))
 
 (defun set-key-compuesta (anterior palabra)
-(if (null anterior)
+(if (or (null anterior) (not (stringp a anterior))) ;;TODO arreglar
 	nil
 	(set-key (string-concat (string anterior) (string palabra)))))
 
