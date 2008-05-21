@@ -277,7 +277,6 @@
   (entrenamiento *corpus-location*)
   (main canal))
 
-;; TODO - Poder meter palabras que no estan
 ;; Bucle principal del algoritmo
 (defun main (canal)
   (let ((terminado nil)
@@ -330,7 +329,9 @@
 	  (setf indice 0)
 	  (setf pred (prediccion-futura teclas))
 	  (setf palabra (first (nth indice pred)))
-	  (print-prediccion canal teclas palabra pred frase))))))
+	  (print-prediccion canal teclas palabra pred frase))
+        (t
+	  (format canal "~&~%Opcion invalida. Escoja otra vez.~%"))))))
 
 ;; Funcion auxiliar
 (defun print-prediccion (canal teclas palabra pred frase)
