@@ -205,16 +205,15 @@
 ;;   TODO
   )
 
-;;TODO, esa funcion tampoco sirve no????
 ;; Normaliza una lista de (palabras . probabilidades)
-;; (defun normaliza-lista (lista) ;;TODO ya no hace falta no???
-;;   (let* ((suma (loop for x in lista summing (rest x)))
-;; 	  (alfa (if (= 0 suma)
-;; 		  1
-;; 		  (/ 1 suma))))
-;;     (loop for x in lista
-;;       collect
-;;       (cons (first x) (* alfa (rest x))))))
+(defun normaliza-lista (lista) ;;TODO ya no hace falta no???
+  (let* ((suma (loop for x in lista summing (rest x)))
+	  (alfa (if (= 0 suma)
+		  1
+		  (/ 1 suma))))
+    (loop for x in lista
+      collect
+      (cons (first x) (* alfa (rest x))))))
 
 ;; Consulta el corpus y devuelve la lista de palabras correspondientes
 ;; a esas pulsaciones de teclas, ordenadas por probabilidad
@@ -322,7 +321,7 @@
       (format canal "~%-Pulse la letra e para un espacio en blanco")
       (format canal "~%-Pulse la letra b para borrar la ultima pulsacion")
       (format canal "~%-Pulse la letra q para salir")
-      (format canal "~%-Pulse la letra n para la proxima palabra predicha")
+      (format canal "~%-Pulse la letra o para escoger otra palabra predicha")
       (format canal "~%~%Su eleccion: ")
       (setf tecla (read))
       (cond
@@ -341,11 +340,12 @@
 	  (setf pred (prediccion-futura teclas))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((and (eq tecla 'n) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
-	  (setf indice (+ 1 indice))
+	((and (eq tecla 'o) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
+	  (format canal "~&~%Introduzca el indice de la palabra deseada: ")
+	  (setf indice (1- (read)))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
-	((not (eq tecla 'n)) ;; ---------------------------------------------- Pulsar tecla
+	((not (eq tecla 'o)) ;; ---------------------------------------------- Pulsar tecla
 	  (setf teclas (append teclas (list tecla)))
 	  (setf indice 0)
 	  (setf pred (prediccion-futura teclas))
@@ -362,8 +362,10 @@
 
 ;; Funcion auxiliar
 (defun print-prediccion-aux (canal pred)
-  (loop for x in pred do
-    (format canal "'~a' " (first x))))
+  (let ((prednorm (normaliza-lista pred)))
+	 (loop for x in prednorm
+               for i from 1 to (length prednorm) do
+	   (format canal "~a.-'~a'(~a) | " i (first x) (rest x)))))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
