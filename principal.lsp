@@ -64,7 +64,6 @@
 (calcula-probabilidad
   (gethash numero *corpus*))))
 
-
 (defun get-palabras-relacionadas (numero)
 (let ((lista (get-palabras-relacionadas-aux numero)))
 (append
@@ -142,9 +141,6 @@
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Devuelve la probabilidad de una palabra, recibe el numero de
-;; apariciones de esa palabra
-
 ;;Calcula la probabilidad total de cada elemento de la lista 
 (defun calcula-probabilidad (lista)
 	(loop for x in lista
@@ -187,6 +183,12 @@
 ;; pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion-futura (teclas)
   (get-palabras-relacionadas (palabra-a-numero-aux teclas)))
+
+(defun funcion-de-evaluacion (cadena)
+  )
+
+(defun funcion-de-aprendizaje (cadena)
+  )
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
