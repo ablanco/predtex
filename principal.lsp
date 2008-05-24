@@ -184,8 +184,9 @@
 
 ;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
-  (loop for x in (parser cadena) collect
-    nil))
+  (list-to-string
+    (loop for x in (parser cadena) collect
+      (first (first (get-palabras-relacionadas (string-to-integer x)))))))
 
 ;; (funcion-de-aprendizaje "algoritmo de texto predictivo.")
 (defun funcion-de-aprendizaje (cadena)
@@ -206,6 +207,11 @@
 		(list (1+ ind)	(setf ind i))) ;;inicio y fin de la pralabra
 	collect
 	(subseq cadena (first x) (second x))))) ;;extraccion de palabras
+
+;; TODO
+;; Funcion inversa a parser. ("soy" "una" "cadena") -> '"soy una cadena"
+(defun list-to-string (lista)
+  )
 
 ;; Codifica la palabra a una lista de codigos ascii
 ;; NOTA. diferencia con la que no es ascii
