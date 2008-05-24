@@ -196,7 +196,7 @@
 ;;        (funcion-de-aprendizaje "algoritmo de texto predictivo.")
 
 ;;Funcion que dad una frase '"soy una cadena" -> ("soy" "una" "cadena") la descompone en palabras
-(defun funcion-reconocimiento (cadena)
+(defun parser (cadena)
 (let ((lista (reverse (cons '#\Space (reverse (loop for x across cadena collect x))))) ;;Insertamos espacio al final
 		(ind -1)) ;;Indice
 	(loop for x in
