@@ -191,6 +191,22 @@
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;TODO
+;;       (funcion-de-evaluacion "254674866 33 83986 77334284861")
+;;        (funcion-de-aprendizaje "algoritmo de texto predictivo.")
+
+;;Funcion que dad una frase '"soy una cadena" -> ("soy" "una" "cadena") la descompone en palabras
+(defun funcion-reconocimiento (cadena)
+(let ((lista (reverse (cons '#\Space (reverse (loop for x across cadena collect x))))) ;;Insertamos espacio al final
+		(ind -1)) ;;Indice
+	(loop for x in
+		(loop for i from 0 to (length lista)
+		when (equal (nth i lista) '#\Space) ;;Si hay un espacio
+		collect
+		(list (1+ ind)	(setf ind i))) ;;inicio y fin de la pralabra
+	collect
+	(subseq cadena (first x) (second x))))) ;;extraccion de palabras
+
 ;; Codifica la palabra a una lista de codigos ascii
 ;; NOTA. diferencia con la que no es ascii
 ;; palabra esta en upercase y no es una secuencia
