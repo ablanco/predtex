@@ -184,9 +184,8 @@
 
 ;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
-  (string-to-integer
     (loop for x in (parser cadena) collect
-      (first (first (get-palabras-relacionadas (string-to-integer x)))))))
+      (first (first (get-palabras-relacionadas (string-to-integer x))))))
 
 ;; (funcion-de-aprendizaje "algoritmo de texto predictivo.")
 (defun funcion-de-aprendizaje (cadena)
