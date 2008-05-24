@@ -268,21 +268,21 @@
 
 ;; Lanza el programa mostrando los resultados por pantalla
 (defun inicio ()
-  (lanzador t))
+  (carga-datos)
+  (main t))
 
 ;; Lanza el programa escribiendo los resultados en un fichero
 (defun inicio-fichero (fichero)
 ;;   TODO Probablemente esta opcion no tenga sentido XD
   )
 
-;; Prepara las variables y lanza el algoritmo
-(defun lanzador (canal)
+;; Carga los datos necesarios para ejecutar las funciones
+(defun carga-datos ()
   (crea-teclado)
   (format canal "~&Carga del diccionario")
- ; (leer-diccionario) ;;TODO aligera los test
+  ; (leer-diccionario) ;;TODO aligera los test
   (format canal "~&Proceso de entrenamiento~%~%")
-  (entrenamiento *corpus-location*)
-  (main canal))
+  (entrenamiento *corpus-location*))
 
 ;; Bucle principal del algoritmo
 (defun main (canal)
