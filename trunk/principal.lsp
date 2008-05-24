@@ -57,7 +57,7 @@
 	)))
 
 ;; Devuelve la lista de palabras asociada a un numero
-;;ordenadas por probabilidad y normalizadas :D
+;;ordenadas por probabilidad
 (defun get-palabras (numero)
 (ordena-por-probabilidad
 ;;(normaliza-lista
@@ -97,8 +97,6 @@
 			(set-palabra-aux palabra (gethash numero *corpus*))))
 	(t
 	nil)))
-	
-	
 
 ;; Inserta una palabra en una lista, si esta le suma 1 si no esta le da valor 1
 (defun set-palabra-aux (palabra lista)
@@ -184,18 +182,18 @@
 (defun prediccion-futura (teclas)
   (get-palabras-relacionadas (palabra-a-numero-aux teclas)))
 
+;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
-  )
+  (loop for x in (parser cadena) collect
+    nil))
 
+;; (funcion-de-aprendizaje "algoritmo de texto predictivo.")
 (defun funcion-de-aprendizaje (cadena)
-  )
+  (loop for x in (parser cadena) do
+    (aprendizaje x)))
 
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;TODO
-;;       (funcion-de-evaluacion "254674866 33 83986 77334284861")
-;;        (funcion-de-aprendizaje "algoritmo de texto predictivo.")
 
 ;;Funcion que dad una frase '"soy una cadena" -> ("soy" "una" "cadena") la descompone en palabras
 (defun parser (cadena)
