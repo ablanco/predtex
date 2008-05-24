@@ -8,6 +8,16 @@
 (defun concatena (a b)
 (string-concat (string a) (string b)))
 
+
+(defun leer-prueba()
+ (with-open-file (s '"corpus_sin_tratar/reservoir_dogs-sintildes")
+    (do ((l (read-line s) (read-line s nil 'eof)))
+        ((eq l 'eof) "Fin de Fichero.")
+     (format t "~&Leida ~A~%" (parser (string l)))
+;; 	(set-palabra l (codifica-palabra l))
+	)))
+	
+	
 ;;TODO borrar
 ;; (defun entrenamiento (fichero)
 ;;   (let* ((lista (entrenamientofichero))

@@ -184,7 +184,7 @@
 
 ;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
-  (list-to-string
+  (string-to-integer
     (loop for x in (parser cadena) collect
       (first (first (get-palabras-relacionadas (string-to-integer x)))))))
 
@@ -208,10 +208,44 @@
 	collect
 	(subseq cadena (first x) (second x))))) ;;extraccion de palabras
 
-;; TODO
+
 ;; Funcion inversa a parser. '("soy" "una" "cadena") -> '"soy una cadena"
-(defun list-to-string (lista)
-  )
+(defun parser-inversa (cadena)
+(apply #'string-concat ;;concateno todas las listas
+	(reverse
+		(rest ;;le quito el ultimo espacio
+			(reverse
+				(loop for x in cadena
+				append
+				(list x " "))))))) ;;meto palabra y espacio
+
+
+;;Pasa de un string "2222" a un numero 2222
+(defun string-to-integer (cadena)
+(palabra-a-numero-aux
+(loop for x across cadena
+	collect
+(cond
+	((equal x '#\0)
+	0)
+	((equal x '#\1)
+	1)
+	((equal x '#\2)
+	2)
+	((equal x '#\3)
+	3)
+	((equal x '#\4)
+	4)
+	((equal x '#\5)
+	5)
+	((equal x '#\6)
+	6)
+	((equal x '#\7)
+	7)
+	((equal x '#\8)
+	8)
+	(t
+	9)))))
 
 ;; Codifica la palabra a una lista de codigos ascii
 ;; NOTA. diferencia con la que no es ascii
