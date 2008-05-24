@@ -209,7 +209,7 @@
 	(subseq cadena (first x) (second x))))) ;;extraccion de palabras
 
 ;; TODO
-;; Funcion inversa a parser. ("soy" "una" "cadena") -> '"soy una cadena"
+;; Funcion inversa a parser. '("soy" "una" "cadena") -> '"soy una cadena"
 (defun list-to-string (lista)
   )
 
