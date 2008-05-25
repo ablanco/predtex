@@ -184,8 +184,9 @@
 
 ;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
+  (parser-inversa
     (loop for x in (parser cadena) collect
-      (first (first (get-palabras-relacionadas (string-to-integer x))))))
+      (first (first (get-palabras-relacionadas (string-to-integer x)))))))
 
 ;; (funcion-de-aprendizaje "algoritmo de texto predictivo.")
 (defun funcion-de-aprendizaje (cadena)
@@ -208,15 +209,15 @@
 	(subseq cadena (first x) (second x))))) ;;extraccion de palabras
 
 
-;; Funcion inversa a parser. '("soy" "una" "cadena") -> '"soy una cadena"
-(defun parser-inversa (cadena)
+;; Funcion inversa a parser. '(soy una cadena) -> '"soy una cadena"
+(defun parser-inversa (lista)
 (apply #'string-concat ;;concateno todas las listas
 	(reverse
 		(rest ;;le quito el ultimo espacio
 			(reverse
-				(loop for x in cadena
+				(loop for x in lista
 				append
-				(list x " "))))))) ;;meto palabra y espacio
+				(list (string x) " "))))))) ;;meto palabra y espacio
 
 
 ;;Pasa de un string "2222" a un numero 2222
@@ -307,7 +308,7 @@
 
 ;; Lanza el programa mostrando los resultados por pantalla
 (defun inicio ()
-  (carga-datos)
+  (carga-datos t)
   (main t))
 
 ;; Lanza el programa escribiendo los resultados en un fichero
@@ -316,7 +317,7 @@
   )
 
 ;; Carga los datos necesarios para ejecutar las funciones
-(defun carga-datos ()
+(defun carga-datos (canal)
   (crea-teclado)
   (format canal "~&Carga del diccionario")
   ; (leer-diccionario) ;;TODO aligera los test
