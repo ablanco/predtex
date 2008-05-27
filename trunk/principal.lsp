@@ -15,7 +15,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Rutas de los ficheros
-(defparameter *corpus-location* '"corpus/reservoir-dogs.txt")
+;; (defparameter *corpus-location* '"corpus/reservoir-dogs.txt")
+(defparameter *corpus-location* '"corpus_sin_tratar/reservoir_dogs-sintildes")
 (defparameter *diccionario-location* '"subdiccionario.txt")	;; TODO Quitar el sub
 
 ;; La key es el numero, value la lista de palabras
@@ -35,16 +36,16 @@
 (defun crea-teclado ()
   (setf teclado
     (list
-    (cons (codifica-palabra-a-lista-numeros-consola "''¿?¡()/!)#") 0) ;;TODO limpiar el corpus de esto sibolos
-    (cons (codifica-palabra-a-lista-numeros-consola ". ") 1)
-      (cons (codifica-palabra-a-lista-numeros-consola 'aábc) 2)
-      (cons (codifica-palabra-a-lista-numeros-consola 'deéf) 3)
-      (cons (codifica-palabra-a-lista-numeros-consola 'ghií) 4)
-      (cons (codifica-palabra-a-lista-numeros-consola 'jkl) 5)
-      (cons (codifica-palabra-a-lista-numeros-consola 'mnoóñ) 6)
-      (cons (codifica-palabra-a-lista-numeros-consola 'pqrs) 7)
-      (cons (codifica-palabra-a-lista-numeros-consola 'tuúvü) 8)
-      (cons (codifica-palabra-a-lista-numeros-consola 'wxyz) 9))))
+    (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0) ;;TODO limpiar el corpus de estos sibolos
+    (cons (codifica-palabra-ascii ". 1") 1)
+      (cons (codifica-palabra-ascii 'aábc2) 2)
+      (cons (codifica-palabra-ascii 'deéf3) 3)
+      (cons (codifica-palabra-ascii 'ghií4) 4)
+      (cons (codifica-palabra-ascii 'jkl5) 5)
+      (cons (codifica-palabra-ascii 'mnoóñ6) 6)
+      (cons (codifica-palabra-ascii 'pqrs7) 7)
+      (cons (codifica-palabra-ascii 'tuúvü8) 8)
+      (cons (codifica-palabra-ascii 'wxyz9) 9))))
 
 ;; FUNCIONES DE MANEJO DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -66,6 +67,8 @@
 (calcula-probabilidad
   (gethash numero *corpus*))))
 
+;;Nos devuelve una lista de palabras y probabilidades ordenadas por probalididad
+;;NOTA, las palabras del mismo tamaño que el numero tienen prioridad
 (defun get-palabras-relacionadas (numero)
 (let ((lista (get-palabras-relacionadas-aux numero)))
 (append
@@ -73,26 +76,28 @@
 	(subseq ;;tomamos solo una lista de tamaño máximo *profundidad*
 	lista
 	0 (min *profundidad* (length lista))))))
+;;> (get-palabras-relacionadas-aux 223)
+;; (("cada" . 4) ("acerca" . 3) ("cafe," . 3) ("cadaver" . 2) ("acercan" . 2) ....
 
 (defun get-palabras-relacionadas-aux (numero)
-(let ((lista (gethash numero *corpus-key*)))
+(let ((lista (gethash numero *corpus-key*))) ;; Indices del corpus-key
 	(ordena-por-probabilidad
 		(append
 			(loop for x in lista
 			append
-			(gethash x *corpus*))
-			(loop for x in lista
-			append
-			(gethash x *corpus-compuesto*))))))
+			(gethash x *corpus*)) ;;Palabras del corpus
+ 			(loop for x in lista
+ 			append
+			(gethash x *corpus-compuesto*)))))) ;;Palabras del corpus-compuesto
+
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
-	(rest
-		(assoc palabra (get-palabras (codifica-palabra-consola palabra)) :test #' string-equal)))
+(rest (assoc palabra (get-palabras (codifica-palabra palabra)) :test #' string-equal)))
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun set-palabra (palabra numero)
-(cond 	((> (length palabra) 0)
+(cond 	((not (string= " " palabra)) ;;La palabra no es un espacio en blanco
 	(set-key palabra numero)
 	(setf *palabras-totales* (1+ *palabras-totales*))
 		(setf (gethash numero *corpus*)
@@ -102,34 +107,36 @@
 
 ;; Inserta una palabra en una lista, si esta le suma 1 si no esta le da valor 1
 (defun set-palabra-aux (palabra lista)
-	;(ordena-por-probabilidad ;;esto es muy pesado
 (if (assoc palabra lista :test #'equal) ;;si esta en la lista
-	(loop for x in lista
+	(loop for x in lista 
 		collect
-		(if (equal (first x) (string palabra))
+		(if (equal (first x) (string palabra)) ;;si es
 		(cons palabra (1+ (rest x))) ;;suma una aparicion
-		x))	
+		x)) ;; no es
 	(cons 
 		(cons palabra 1) ;;aparicion inicial
 		lista)))
+;;> (set-palabra-aux "hola" '(("hola" . 1) ("uno" . 1) ("dos" . 2) ("tres". 3)))
+;; (("hola" . 2) ("uno" . 1) ("dos" . 2) ("tres" . 3))
 
+;;Inserta una palabra compuesta en el corpus actualizando sus repeticiones
 (defun set-palabra-compuesta (anterior palabra)
-(if (> (length anterior) 0)
-	(let* ((numero (codifica-palabra (string-concat anterior palabra)))
-		(bipalabra (string-concat anterior '" " palabra)))
+(if (or 	
+	(< 0 (length palabra))(< 0 (length anterior))) ;;Si no son nulas o blancos ("")
+	(let* ;;e.c.o.c
+		((palabra-compuesta (string-concat anterior '" " palabra)) ;;palabra-compuesta
+		(numero (codifica-palabra palabra-compuesta))) ;;numero de la palabra-compuesta
 	;(format t "insertada-palabra : '~a' |" (string-concat (string anterior) '" " (string palabra)))
-	(set-key 
-;; 		(string-concat (string anterior) (string palabra)) 
-;; 		(codifica-palabra (string-concat (string anterior) (string palabra))))
-	bipalabra (codifica-palabra bipalabra))
-	(setf *palabras-totales* (1+ *palabras-compuestas-totales*))
-	(setf (gethash numero *corpus-compuesto*)
-		(set-palabra-aux bipalabra (gethash numero *corpus-compuesto*))))
-	nil))
+	(set-key ;;Llamamos a setkey
+		palabra-compuesta (codifica-palabra palabra-compuesta))
+	(setf *palabras-totales* (1+ *palabras-compuestas-totales*)) ;;inc contador palarbas-compuestas
+	(setf (gethash numero *corpus-compuesto*) ;;Actualizamos la referencia
+		(set-palabra-aux palabra-compuesta (gethash numero *corpus-compuesto*))))
+	nil));;no se hace nada
 
 (defun set-key (palabra numero)
     ;(format t "~&numero ~a lista ~a"numero lista)
-  (loop for x in (descompone-a-numero-aux palabra)
+  (loop for x in (lista-indices-relacionados palabra)
     do
     (if (member numero (gethash x *corpus-key*))
       nil
@@ -160,14 +167,15 @@
         (format t "~& leido ~a"l)
         (loop for x in (parser l)
         do
-	  	(set-palabra (string-downcase x) (codifica-palabra (string-downcase x))) ;;Se acrualizan las palabras al diccionario
-		(set-palabra-compuesta anterior (string-downcase x))
-		(setf anterior (string-downcase x)))))))
+	  	(set-palabra ;;Se acrualizan las palabras al diccionario
+			x (codifica-palabra x))
+		(set-palabra-compuesta anterior x)
+		(setf anterior x))))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye
 (defun aprendizaje (palabra)
-  (set-palabra palabra (codifica-palabra palabra)))
+  (set-palabra (string-downcase palabra) (codifica-palabra palabra)))
 
 ;; Normaliza una lista de (palabras . probabilidades)
 (defun normaliza-lista (lista)
@@ -182,12 +190,12 @@
 ;; Consulta el corpus y devuelve la lista de palabras correspondientes
 ;; a esas pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion (teclas)
-  (get-palabras (palabra-a-numero-aux teclas)))
+  (get-palabras (lista-a-numero-aux teclas)))
 
 ;; Devuelve las palabras que se pueden llegar a escribir con esas
 ;; pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion-futura (teclas)
-  (get-palabras-relacionadas (palabra-a-numero-aux teclas)))
+  (get-palabras-relacionadas (lista-a-numero-aux teclas)))
 
 ;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
@@ -203,9 +211,9 @@
 ;; FUNCIONES DE CODIFICACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Funcion que dad una frase '"soy una cadena" -> ("soy" "una" "cadena") la descompone en palabras
+;;Funcion que pasa de una cadena a una lista de cadenas (palabras)
 (defun parser (cadena)
-(let ((lista (reverse (cons '#\Space (reverse (loop for x across cadena collect x))))) ;;Insertamos espacio al final
+(let ((lista (reverse (cons '#\Space (reverse (loop for x across (string-downcase cadena) collect x))))) ;;Insertamos espacio al final
 		(ind -1)) ;;Indice
 	(loop for x in
 		(loop for i from 0 to (length lista)
@@ -214,9 +222,11 @@
 		(list (1+ ind)	(setf ind i))) ;;inicio y fin de la pralabra
 	collect
 	(subseq cadena (first x) (second x))))) ;;extraccion de palabras
+;;> (parser "hola a   todos soy una   cadena ")
+;; ("hola" "a" "" "" "todos" "soy" "una" "" "" "cadena" "")
 
 
-;; Funcion inversa a parser. '(soy una cadena) -> '"soy una cadena"
+;; Funcion inversa a parser lista-cadena
 (defun parser-inversa (lista)
 (apply #'string-concat ;;concateno todas las listas
 	(reverse
@@ -225,11 +235,12 @@
 				(loop for x in lista
 				append
 				(list (string x) " "))))))) ;;meto palabra y espacio
-
+;;> (parser-inversa '("hola" "a" "" "" "todos" "soy" "una" "" "" "cadena" ""))
+;; "hola a   todos soy una   cadena "
 
 ;;Pasa de un string "2222" a un numero 2222
 (defun string-to-integer (cadena)
-(palabra-a-numero-aux
+(lista-a-numero-aux
 (loop for x across cadena
 	collect
 (cond
@@ -253,60 +264,56 @@
 	8)
 	(t
 	9)))))
+;;> (string-to-integer "22222")
+;; 22222
 
 ;; Codifica la palabra a una lista de codigos ascii
-;; NOTA. diferencia con la que no es ascii
-;; palabra esta en upercase y no es una secuencia
-(defun codifica-palabra-a-lista-numeros-consola (palabra)
-  (loop for x across (string palabra) collect
-    (char-code (char-downcase (character x)))))
+(defun codifica-palabra-ascii (palabra)
+  (loop for x across (string-downcase palabra) collect
+    (char-code (character x))))
+;;> (codifica-palabra-ascii 'hola)
+;; (104 111 108 97)
+
+
 
 ;; Codifica una palabra a un numero de teclado
-(defun codifica-palabra-consola (palabra)
-	(palabra-a-numero-aux
-	(loop for x in 
-	(codifica-palabra-a-lista-numeros-consola palabra)
-	append
-   	(loop for tecla in teclado
-		when (member x (first tecla))
-		collect
-		;;(list x tecla))))
-		(rest tecla)))))
-
-;; Codifica una palabra a un numero de teclado
-;; NOTA. diferencia con la que es ascii
-;; palabra esta tal y como la lee del archivo y es una secuencia
 (defun codifica-palabra (palabra)
-	(palabra-a-numero-aux
-	(loop for x across palabra
-	collect 
-	(rest
-	(assoc (char-code x) teclado :test #'member)))))
+(lista-a-numero-aux
+	(codifica-palabra-lista (string-downcase palabra))))
+;;> (codifica-palabra 'hola)
+;; 4652
 
-;;TODO reescribir metodos
+
 ;; Pasa una lista de numeros '(1 2 3 4 5) a un literal '54321
-(defun palabra-a-numero-aux (lista)
+(defun lista-a-numero-aux (lista)
   (let ((tam (1- (length lista)))
 	(l (reverse lista)))
     ;(format t "~&lista ~a"lista)
     (loop for i from 0 to tam
       summing
       (* (expt 10 i) (nth i l)))))
+;;> (lista-a-numero-aux '(1 2 3 4 5))
+;; 12345
 
-(defun descompone-a-numero-aux (palabra)
+;; Nos da una lista de indices relacionados con nuestra palabra
+(defun lista-indices-relacionados (palabra)
 	(let ((lista (codifica-palabra-lista palabra))) ;obtenemos la lista de numeros
 	(loop for i from (- (length lista) 3 ) downto 1 ;;tamaño minimo 3
 	collect
-	(palabra-a-numero-aux ;;pasamos a numero la lista
+	(lista-a-numero-aux ;;pasamos a numero la lista
 		(reverse (subseq (reverse lista) i))))))  ;;obtenemos una lista cada vez mas grande :D
+;;> (lista-indices-relacionados "hola amigo")
+;; (465 4652 46521 465212 4652126 46521264 465212644)
 
+;;Codifica una palabra a una lista de numeros del teclado
 (defun codifica-palabra-lista (palabra)
-  	(loop for x in 
-	(loop for x across palabra collect (char-code (char-downcase x)))	
-		append
-   		(loop for tecla in teclado
-			when (member x (first tecla))
-			collect (rest tecla))))
+  	(loop for x across (string-downcase palabra)
+;;	when (not (= 0 (rest (assoc (char-code x) teclado :test #'member))))
+	collect 
+	(rest
+	(assoc (char-code x) teclado :test #'member))))
+;;> (codifica-palabra-lista 'hola)
+;; (4 6 5 2)
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -390,7 +397,7 @@
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
   (format canal "~&Palabras posibles: ")
   (print-prediccion-aux canal pred)
-  (format canal "~&Frase hasta ahora: ~a~%" frase)
+  (format canal "~&Frase hasta ahora: ~a~%" frase) ;;TODO no la almacena :S
   (format canal "~&Teclas pulsadas: ~a~%~%" teclas))
 
 ;; Funcion auxiliar
@@ -404,7 +411,7 @@
 (defun escribe-teclado (canal)
   (escribe-linea canal)
   (format canal "~&+  1  +  2  +  3  +")
-  (format canal "~&+     + ABC + DEF +")
+  (format canal "~&+  .  + ABC + DEF +")
   (escribe-linea canal)
   (format canal "~&+  4  +  5  +  6  +")
   (format canal "~&+ GHI + JKL + MNO +")
