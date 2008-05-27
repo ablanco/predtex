@@ -35,13 +35,15 @@
 (defun crea-teclado ()
   (setf teclado
     (list
+    (cons (codifica-palabra-a-lista-numeros-consola "''¿?¡()/!)#") 0) ;;TODO limpiar el corpus de esto sibolos
+    (cons (codifica-palabra-a-lista-numeros-consola ". ") 1)
       (cons (codifica-palabra-a-lista-numeros-consola 'aábc) 2)
       (cons (codifica-palabra-a-lista-numeros-consola 'deéf) 3)
       (cons (codifica-palabra-a-lista-numeros-consola 'ghií) 4)
       (cons (codifica-palabra-a-lista-numeros-consola 'jkl) 5)
       (cons (codifica-palabra-a-lista-numeros-consola 'mnoóñ) 6)
       (cons (codifica-palabra-a-lista-numeros-consola 'pqrs) 7)
-      (cons (codifica-palabra-a-lista-numeros-consola 'tuúv) 8)
+      (cons (codifica-palabra-a-lista-numeros-consola 'tuúvü) 8)
       (cons (codifica-palabra-a-lista-numeros-consola 'wxyz) 9))))
 
 ;; FUNCIONES DE MANEJO DE DATOS
@@ -113,14 +115,16 @@
 
 (defun set-palabra-compuesta (anterior palabra)
 (if (> (length anterior) 0)
-	(let* ((numero (codifica-palabra (string-concat anterior palabra))))
+	(let* ((numero (codifica-palabra (string-concat anterior palabra)))
+		(bipalabra (string-concat anterior '" " palabra)))
 	;(format t "insertada-palabra : '~a' |" (string-concat (string anterior) '" " (string palabra)))
 	(set-key 
-		(string-concat (string anterior) (string palabra)) 
-		(codifica-palabra (string-concat (string anterior) (string palabra))))
+;; 		(string-concat (string anterior) (string palabra)) 
+;; 		(codifica-palabra (string-concat (string anterior) (string palabra))))
+	bipalabra (codifica-palabra bipalabra))
 	(setf *palabras-totales* (1+ *palabras-compuestas-totales*))
 	(setf (gethash numero *corpus-compuesto*)
-		(set-palabra-aux (string-concat anterior '" " palabra) (gethash numero *corpus-compuesto*))))
+		(set-palabra-aux bipalabra (gethash numero *corpus-compuesto*))))
 	nil))
 
 (defun set-key (palabra numero)
@@ -153,9 +157,12 @@
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-	  	(set-palabra (string-downcase l) (codifica-palabra (string-downcase l))) ;;Se acrualizan las palabras al diccionario
-		(set-palabra-compuesta anterior (string-downcase l))
-		(setf anterior (string-downcase l))))))
+        (format t "~& leido ~a"l)
+        (loop for x in (parser l)
+        do
+	  	(set-palabra (string-downcase x) (codifica-palabra (string-downcase x))) ;;Se acrualizan las palabras al diccionario
+		(set-palabra-compuesta anterior (string-downcase x))
+		(setf anterior (string-downcase x)))))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye
@@ -271,14 +278,12 @@
 ;; palabra esta tal y como la lee del archivo y es una secuencia
 (defun codifica-palabra (palabra)
 	(palabra-a-numero-aux
-  	(loop for x in 
-	(loop for x across palabra collect (char-code x))	
-		append
-   		(loop for tecla in teclado
-			when (member x (first tecla))
-			collect
-			(rest tecla)))))
+	(loop for x across palabra
+	collect 
+	(rest
+	(assoc (char-code x) teclado :test #'member)))))
 
+;;TODO reescribir metodos
 ;; Pasa una lista de numeros '(1 2 3 4 5) a un literal '54321
 (defun palabra-a-numero-aux (lista)
   (let ((tam (1- (length lista)))
