@@ -213,15 +213,12 @@
 
 ;;Funcion que pasa de una cadena a una lista de cadenas (palabras)
 (defun parser (cadena)
-(let ((lista (reverse (cons '#\Space (reverse (loop for x across (string-downcase cadena) collect x))))) ;;Insertamos espacio al final
+(let ((lista (append (loop for x across cadena collect x) (list (character " ")))) ;;Insertamos espacio al final
 		(ind -1)) ;;Indice
-	(loop for x in
-		(loop for i from 0 to (length lista)
-		when (equal (nth i lista) '#\Space) ;;Si hay un espacio
+	(loop for i from 0 to (length lista)
+		when (string= (nth i lista) '#\Space) ;;Si hay un espacio
 		collect
-		(list (1+ ind)	(setf ind i))) ;;inicio y fin de la pralabra
-	collect
-	(subseq cadena (first x) (second x))))) ;;extraccion de palabras
+		(string-downcase (subseq cadena (1+ ind) (setf ind i))))))
 ;;> (parser "hola a   todos soy una   cadena ")
 ;; ("hola" "a" "" "" "todos" "soy" "una" "" "" "cadena" "")
 
