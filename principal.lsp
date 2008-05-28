@@ -164,7 +164,7 @@
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-        (format t "~& leido ~a"l)
+;;         (format t "~& leido ~a"l)
         (loop for x in (parser l)
         do
 	  	(set-palabra ;;Se acrualizan las palabras al diccionario
