@@ -121,8 +121,8 @@
 
 ;;Inserta una palabra compuesta en el corpus actualizando sus repeticiones
 (defun set-palabra-compuesta (anterior palabra)
-(if (or 	
-	(< 0 (length palabra))(< 0 (length anterior))) ;;Si no son nulas o blancos ("")
+(if (and 	
+	(< 0 (length palabra))(< 0 (length anterior))) ;;no son nulas o blancos ("")
 	(let* ;;e.c.o.c
 		((palabra-compuesta (string-concat anterior '" " palabra)) ;;palabra-compuesta
 		(numero (codifica-palabra palabra-compuesta))) ;;numero de la palabra-compuesta
@@ -164,7 +164,7 @@
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-;;         (format t "~& leido ~a"l)
+         (format t "~& leido ~a"l)
         (loop for x in (parser l)
         do
 	  	(set-palabra ;;Se acrualizan las palabras al diccionario
@@ -213,14 +213,21 @@
 
 ;;Funcion que pasa de una cadena a una lista de cadenas (palabras)
 (defun parser (cadena)
+(parser-aux
 (let ((lista (append (loop for x across cadena collect x) (list (character " ")))) ;;Insertamos espacio al final
 		(ind -1)) ;;Indice
 	(loop for i from 0 to (length lista)
 		when (string= (nth i lista) '#\Space) ;;Si hay un espacio
 		collect
-		(string-downcase (subseq cadena (1+ ind) (setf ind i))))))
+		(string-downcase (subseq cadena (1+ ind) (setf ind i)))))))
 ;;> (parser "hola a   todos soy una   cadena ")
-;; ("hola" "a" "" "" "todos" "soy" "una" "" "" "cadena" "")
+;; ("hola" "a" "todos" "soy" "una" "cadena" "")
+(defun parser-aux (cadena)
+(if (null cadena)
+nil
+(loop for x in cadena
+when (< 0 (length x))
+collect x)))
 
 
 ;; Funcion inversa a parser lista-cadena
