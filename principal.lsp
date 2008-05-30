@@ -67,6 +67,11 @@
 (calcula-probabilidad
   (gethash numero *corpus*))))
 
+(defun get-bi-palabras (numero)
+(ordena-por-probabilidad
+(calcula-probabilidad
+  (gethash numero *corpus-compuesto*))))
+  
 ;;Nos devuelve una lista de palabras y probabilidades ordenadas por probalididad
 ;;NOTA, las palabras del mismo tamaño que el numero tienen prioridad
 (defun get-palabras-relacionadas (numero)
@@ -94,6 +99,28 @@
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
 (rest (assoc palabra (get-palabras (codifica-palabra palabra)) :test #' string-equal)))
+
+;;TODO
+;; Devuelve la probabilidad de una palabra en el modelo bigram
+(defun get-bi-probabilidad (palabra)
+(let* ((palabras (parser palabra))
+(p (get-probabilidad (first palabras))))
+		(if (or (null p )(<= p 0))
+		0
+		(/ (rest (assoc palabra (get-bi-palabras (codifica-palabra palabra)) :test #' string-equal))
+			p))))
+			
+;; Separa una palabra compuesta en una lista de sus codificaciones
+(defun get-bi-probabilidad-aux (palabra)
+(let ((lista (codifica-palabra-lista (string-downcase palabra))))
+(loop for x in
+		(append (loop for i from 0 to (1- (length lista))
+		when (= (nth i lista) 1)
+		collect i) (list (length lista)))
+	collect (lista-a-numero-aux (subseq lista 0 x)))))
+;; (get-bi-probabilidad-aux "hola amigo")
+;; (4652 4652126446)
+
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun set-palabra (palabra numero)
@@ -164,7 +191,7 @@
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-         (format t "~& leido ~a"l)
+         ;;(format t "~& leido ~a"l)
         (loop for x in (parser l)
         do
 	  	(set-palabra ;;Se acrualizan las palabras al diccionario
