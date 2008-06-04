@@ -52,45 +52,35 @@
  (with-open-file (s *diccionario-location*)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-;      (format t "~&Leida ~A~%" l)
+;;      (format t "~&DEBUG - Leida ~A~%" l)
 	(set-palabra l (codifica-palabra l))
 	)))
 
-;; Devuelve la lista de palabras asociada a un numero
-;;ordenadas por probabilidad
-(defun get-palabras (numero)
+;; Devuelve la lista de palabras asociada a un numero, ordenadas por probabilidad
+(defun get-lista-palabras (numero)
 (ordena-por-probabilidad
-;;(normaliza-lista
 (calcula-probabilidad
   (gethash numero *corpus*))))
+;; TODO Poner ejemplo
 
-(defun get-bi-palabras (numero)
-(ordena-por-probabilidad
-(calcula-probabilidad
-  (gethash numero *corpus-compuesto*))))
-  
-;;Nos devuelve una lista de palabras y probabilidades ordenadas por probalididad
-;;NOTA, las palabras del mismo tamaño que el numero tienen prioridad
-(defun get-palabras-relacionadas (numero)
-(let ((lista (get-palabras-relacionadas-aux numero)))
-(append
-	(get-palabras numero)
-	(subseq ;;tomamos solo una lista de tamaño máximo *profundidad*
-	lista
-	0 (min (1- *profundidad*) (length lista))))))
-;;> (get-palabras-relacionadas-aux 223)
-;; (("cada" . 4) ("acerca" . 3) ("cafe," . 3) ("cadaver" . 2) ("acercan" . 2) ....
-
-(defun get-palabras-relacionadas-aux (numero)
+;; Devuelve una lista de palabras y probabilidades, ordenadas por probalididad
+(defun get-lista-palabras-relacionadas (numero)
 (let ((lista (gethash numero *corpus-key*))) ;; Indices del corpus-key
-	(ordena-por-probabilidad
+	(subseq ;; Tomamos solo una lista de tam maximo *profundidad*
 		(append
-			(loop for x in lista
-			append
-			(gethash x *corpus*)) ;;Palabras del corpus
- 			(loop for x in lista
- 			append
-			(gethash x *corpus-compuesto*)))))) ;;Palabras del corpus-compuesto
+			(get-lista-palabras numero) ;; Palabras que codifica el numero
+						    ;; Estan puestas fuera del ordena para que siempre aparezcan antes
+			(ordena-por-probabilidad
+			(append
+				(loop for x in lista
+				append
+				(gethash x *corpus*)) ;; Palabras del corpus
+	 			(loop for x in lista
+ 				append
+				(gethash x *corpus-compuesto*)))))
+	0 (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
+;; (get-lista-palabras-relacionadas 771)
+;; (("sr." . 705) ("sr. blanco" . 229) ("sr. rosa" . 180) ("sr. rubio" . 118) ("sr. naranja" . 94) ("sr. marrón" . 14) ("sr. azul" . 13))
 
 
 ;; Devuelve la probabilidad de una palabra
@@ -101,6 +91,7 @@
 (/
 (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
 *palabras-totales*))))
+
 
 ;;TODO
 ;; Devuelve la probabilidad de una palabra en el modelo bigram
@@ -173,9 +164,6 @@
 	(cons (first x)
 	(get-probabilidad (first x)))))
 
-;; TODO
-;; 	(cons (first x)
-;; 		(/ (rest x) *palabras-totales*))))
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
@@ -210,18 +198,18 @@
 ;; Consulta el corpus y devuelve la lista de palabras correspondientes
 ;; a esas pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion (teclas)
-  (get-palabras (lista-a-numero-aux teclas)))
+  (get-lista-palabras (lista-a-numero-aux teclas)))
 
 ;; Devuelve las palabras que se pueden llegar a escribir con esas
 ;; pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion-futura (teclas)
-  (get-palabras-relacionadas (lista-a-numero-aux teclas)))
+  (get-lista-palabras-relacionadas (lista-a-numero-aux teclas)))
 
 ;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
   (parser-inversa
     (loop for x in (parser cadena) collect
-      (first (first (get-palabras-relacionadas (string-to-integer x)))))))
+      (first (first (get-lista-palabras-relacionadas (string-to-integer x)))))))
 
 ;; (funcion-de-aprendizaje "algoritmo de texto predictivo.")
 (defun funcion-de-aprendizaje (cadena)

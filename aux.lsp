@@ -1,5 +1,6 @@
 (defun l ()
-  (load "principal.lsp"))
+  (load "principal.lsp")
+  (inicio))
 
 ;(defun linea-a-lista-palabras (l)
 ;(loop for x across l collect x ))
@@ -20,7 +21,12 @@
 (defvar *palabras-compuestas-totales* 0);; Numero total de palabras reconocidas hasta el momento.
 
 
-;; ;; Separa una palabra compuesta en una lista de sus codificaciones
+(defun get-bi-palabras (numero)
+(ordena-por-probabilidad
+(calcula-probabilidad
+  (gethash numero *corpus-compuesto*))))
+
+;; ;; Separa una palabra compuesta e una lista de sus codificaciones
 ;; (defun get-bi-probabilidad-aux (palabra)
 ;; (let ((lista (codifica-palabra-lista (string-downcase palabra))))
 ;; (loop for x in
