@@ -17,6 +17,9 @@
 ;; 	(set-palabra l (codifica-palabra l))
 	)))
 
+(defvar *palabras-compuestas-totales* 0);; Numero total de palabras reconocidas hasta el momento.
+
+
 ;; ;; Separa una palabra compuesta en una lista de sus codificaciones
 ;; (defun get-bi-probabilidad-aux (palabra)
 ;; (let ((lista (codifica-palabra-lista (string-downcase palabra))))
@@ -28,7 +31,6 @@
 ;; ;; (get-bi-probabilidad-aux "hola amigo")
 ;; ;; (4652 4652126446)
 
-	
 ;;TODO borrar
 ;; (defun entrenamiento (fichero)
 ;;   (let* ((lista (entrenamientofichero))
