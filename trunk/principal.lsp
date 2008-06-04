@@ -32,116 +32,113 @@
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
   (setf teclado
-    (list
-    (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0) ;;TODO limpiar el corpus de estos sibolos
-    (cons (codifica-palabra-ascii ". 1") 1)
-      (cons (codifica-palabra-ascii 'aábc2) 2)
-      (cons (codifica-palabra-ascii 'deéf3) 3)
-      (cons (codifica-palabra-ascii 'ghií4) 4)
-      (cons (codifica-palabra-ascii 'jkl5) 5)
-      (cons (codifica-palabra-ascii 'mnoóñ6) 6)
-      (cons (codifica-palabra-ascii 'pqrs7) 7)
-      (cons (codifica-palabra-ascii 'tuúvü8) 8)
-      (cons (codifica-palabra-ascii 'wxyz9) 9))))
+	(list
+	 (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0) ;;TODO limpiar el corpus de estos sibolos
+	 (cons (codifica-palabra-ascii ". 1") 1)
+	 (cons (codifica-palabra-ascii 'aábc2) 2)
+	 (cons (codifica-palabra-ascii 'deéf3) 3)
+	 (cons (codifica-palabra-ascii 'ghií4) 4)
+	 (cons (codifica-palabra-ascii 'jkl5) 5)
+	 (cons (codifica-palabra-ascii 'mnoóñ6) 6)
+	 (cons (codifica-palabra-ascii 'pqrs7) 7)
+	 (cons (codifica-palabra-ascii 'tuúvü8) 8)
+	 (cons (codifica-palabra-ascii 'wxyz9) 9))))
 
 ;; FUNCIONES DE MANEJO DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;Lee el diccionario y lo inserta en la tabla corpus
 (defun leer-diccionario()
- (with-open-file (s *diccionario-location*)
-    (do ((l (read-line s) (read-line s nil 'eof)))
-        ((eq l 'eof) "Fin de Fichero.")
-;;      (format t "~&DEBUG - Leida ~A~%" l)
-	(set-palabra l (codifica-palabra l))
-	)))
+  (with-open-file (s *diccionario-location*)
+		  (do ((l (read-line s) (read-line s nil 'eof)))
+		      ((eq l 'eof) "Fin de Fichero.")
+		      ;;      (format t "~&DEBUG - Leida ~A~%" l)
+		      (add-palabra l (codifica-palabra l))
+		      )))
 
 ;; Devuelve la lista de palabras asociada a un numero, ordenadas por probabilidad
 (defun get-lista-palabras (numero)
-(ordena-por-probabilidad
-(calcula-probabilidad
-  (gethash numero *corpus*))))
+  (ordena-por-probabilidad
+   (calcula-probabilidad
+    (gethash numero *corpus*))))
 ;; TODO Poner ejemplo
 
 ;; Devuelve una lista de palabras y probabilidades, ordenadas por probalididad
 (defun get-lista-palabras-relacionadas (numero)
-(let ((lista (gethash numero *corpus-key*))) ;; Indices del corpus-key
-	(subseq ;; Tomamos solo una lista de tam maximo *profundidad*
-		(append
-			(get-lista-palabras numero) ;; Palabras que codifica el numero
-						    ;; Estan puestas fuera del ordena para que siempre aparezcan antes
-			(ordena-por-probabilidad
-			(append
-				(loop for x in lista
-				append
-				(gethash x *corpus*)) ;; Palabras del corpus
-	 			(loop for x in lista
- 				append
-				(gethash x *corpus-compuesto*)))))
-	0 (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
+  (let ((lista (gethash numero *corpus-key*))) ;; Indices del corpus-key
+    (subseq ;; Tomamos solo una lista de tam maximo *profundidad*
+     (append
+      (get-lista-palabras numero) ;; Palabras que codifica el numero
+                                  ;; Estan puestas fuera del ordena para que siempre aparezcan antes
+      (ordena-por-probabilidad
+       (append
+	(loop for x in lista
+	      append
+	      (gethash x *corpus*)) ;; Palabras del corpus
+	(loop for x in lista
+	      append
+	      (gethash x *corpus-compuesto*)))))
+     0 (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
 ;; (get-lista-palabras-relacionadas 771)
 ;; (("sr." . 705) ("sr. blanco" . 229) ("sr. rosa" . 180) ("sr. rubio" . 118) ("sr. naranja" . 94) ("sr. marrón" . 14) ("sr. azul" . 13))
 
-
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
-(let ((palabras (parser palabra)))
-(if (< 1 (length palabras))
-(get-bi-probabilidad (first palabras) palabra)
-(/
-(rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
-*palabras-totales*))))
+  (let ((palabras (parser palabra)))
+    (if (< 1 (length palabras))
+	(get-bi-probabilidad (first palabras) palabra)
+      (/
+       (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
+       *palabras-totales*))))
+;; TODO Poner ejemplo
 
-
-;;TODO
-;; Devuelve la probabilidad de una palabra en el modelo bigram
+;; Devuelve la probabilidad de una palabra compuesta en el modelo bigram
 (defun get-bi-probabilidad (palabra bipalabra)
-(/ 
-(rest (assoc bipalabra (gethash (codifica-palabra bipalabra) *corpus-compuesto*) :test #' string-equal))
-(rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))))
-
+  (/ 
+   (rest (assoc bipalabra (gethash (codifica-palabra bipalabra) *corpus-compuesto*) :test #' string-equal))
+   (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*)
+		:test #' string-equal))))
+;; TODO Poner ejemplo
 			
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
-(defun set-palabra (palabra numero)
-(cond 	((not (string= " " palabra)) ;;La palabra no es un espacio en blanco
-	(set-key palabra numero)
-	(setf *palabras-totales* (1+ *palabras-totales*))
-		(setf (gethash numero *corpus*)
-			(set-palabra-aux palabra (gethash numero *corpus*))))
+(defun add-palabra (palabra numero)
+  (cond ((not (string= " " palabra)) ;;La palabra no es un espacio en blanco
+	 (set-key palabra numero)
+	 (setf *palabras-totales* (1+ *palabras-totales*))
+	 (setf (gethash numero *corpus*)
+	       (add-palabra-aux palabra (gethash numero *corpus*))))
 	(t
-	nil)))
+	 nil)))
 
-;; Inserta una palabra en una lista, si esta le suma 1 si no esta le da valor 1
-(defun set-palabra-aux (palabra lista)
-(if (assoc palabra lista :test #'equal) ;;si esta en la lista
+;; Inserta una palabra en una lista, si esta le suma 1 a sus apariciones si no esta le da valor 1
+(defun add-palabra-aux (palabra lista)
+(if (assoc palabra lista :test #'equal) ;; Se comprueba si esta en la lista
 	(loop for x in lista 
 		collect
-		(if (equal (first x) (string palabra)) ;;si es
-		(cons palabra (1+ (rest x))) ;;suma una aparicion
-		x)) ;; no es
+		(if (equal (first x) (string palabra)) ;; Si es la buscada
+		(cons palabra (1+ (rest x))) ;; Suma una aparicion
+		x)) ;; No lo es
 	(cons 
-		(cons palabra 1) ;;aparicion inicial
+		(cons palabra 1) ;; No esta en la lista
 		lista)))
-;;> (set-palabra-aux "hola" '(("hola" . 1) ("uno" . 1) ("dos" . 2) ("tres". 3)))
+;;> (add-palabra-aux "hola" '(("hola" . 1) ("uno" . 1) ("dos" . 2) ("tres". 3)))
 ;; (("hola" . 2) ("uno" . 1) ("dos" . 2) ("tres" . 3))
 
-;;Inserta una palabra compuesta en el corpus actualizando sus repeticiones
-(defun set-palabra-compuesta (anterior palabra)
+;; Inserta una palabra compuesta en el corpus compuesto actualizando sus repeticiones
+(defun add-palabra-compuesta (anterior palabra)
 (if (and 	
-	(< 0 (length palabra))(< 0 (length anterior))) ;;no son nulas o blancos ("")
-	(let* ;;e.c.o.c
-		((palabra-compuesta (string-concat anterior '" " palabra)) ;;palabra-compuesta
-		(numero (codifica-palabra palabra-compuesta))) ;;numero de la palabra-compuesta
-	;(format t "insertada-palabra : '~a' |" (string-concat (string anterior) '" " (string palabra)))
-	(set-key ;;Llamamos a setkey
+	(< 0 (length palabra))(< 0 (length anterior))) ;; No son nulas o blancos ("")
+	(let* ;; e.o.c
+		((palabra-compuesta (string-concat anterior '" " palabra)) ;; Concatena las palabras
+		(numero (codifica-palabra palabra-compuesta))) ;; Numero de la palabra-compuesta
+	(set-key
 		palabra-compuesta (codifica-palabra palabra-compuesta))
-	(setf *palabras-totales* (1+ *palabras-compuestas-totales*)) ;;inc contador palarbas-compuestas
-	(setf (gethash numero *corpus-compuesto*) ;;Actualizamos la referencia
-		(set-palabra-aux palabra-compuesta (gethash numero *corpus-compuesto*))))
-	nil));;no se hace nada
+	(setf (gethash numero *corpus-compuesto*) ;; Actualizamos (si no esta se incluye) la palabra en el corpus compuesto
+		(add-palabra-aux palabra-compuesta (gethash numero *corpus-compuesto*))))
+	nil))
 
+;; Incluye en corpus key todas las posibles palabras que se pueden llegar a escribir a partir de la dada
 (defun set-key (palabra numero)
-    ;(format t "~&numero ~a lista ~a"numero lista)
   (loop for x in (lista-indices-relacionados palabra)
     do
     (if (member numero (gethash x *corpus-key*))
@@ -149,21 +146,19 @@
       (setf (gethash x *corpus-key*)
 	(cons numero (gethash x *corpus-key*))))))
 
-;; Ordena de mayor a menor una lista de palabras . probabilidades
+;; Ordena de mayor a menor una lista de (palabras . probabilidades)
 (defun ordena-por-probabilidad (lista)
 	(sort lista #'(lambda (x y) (> (rest x) (rest y)))))
 
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Calcula la probabilidad total de cada elemento de la lista 
-;;Esto es lo que hay que cambiar
+;; Calcula la probabilidad total de cada elemento de la lista
 (defun calcula-probabilidad (lista)
 	(loop for x in lista
 	collect
 	(cons (first x)
 	(get-probabilidad (first x)))))
-
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
@@ -175,15 +170,15 @@
          ;;(format t "~& leido ~a"l)
         (loop for x in (parser l)
         do
-	  	(set-palabra ;;Se acrualizan las palabras al diccionario
+	  	(add-palabra ;;Se acrualizan las palabras al diccionario
 			x (codifica-palabra x))
-		(set-palabra-compuesta anterior x)
+		(add-palabra-compuesta anterior x)
 		(setf anterior x))))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye
 (defun aprendizaje (palabra)
-  (set-palabra (string-downcase palabra) (codifica-palabra palabra)))
+  (add-palabra (string-downcase palabra) (codifica-palabra palabra)))
 
 ;; Normaliza una lista de (palabras . probabilidades)
 (defun normaliza-lista (lista)
