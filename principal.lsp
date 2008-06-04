@@ -356,6 +356,7 @@ collect x))
 
 ;; TODO Opciones del programa
 (defun configuracion (canal)
+;; Elegir corpus
   (format canal "~&Número de palabras predichas (por ejemplo 15): ")
   (setf *profundidad* (read))
   )
