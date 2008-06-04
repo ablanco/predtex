@@ -98,7 +98,11 @@
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
-(rest (assoc palabra (get-palabras (codifica-palabra palabra)) :test #' string-equal)))
+(if (member 1 (codifica-palabra-lista palabra))
+(get-bi-probabilidad (palabra))
+(/
+(rest (assoc palabra (get-palabras (codifica-palabra palabra)) :test #' string-equal))
+*palabras-totales*)))
 
 ;;TODO
 ;; Devuelve la probabilidad de una palabra en el modelo bigram
@@ -178,11 +182,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;Calcula la probabilidad total de cada elemento de la lista 
+;;Esto es lo que hay que cambiar
 (defun calcula-probabilidad (lista)
 	(loop for x in lista
 	collect
 	(cons (first x)
-		(/ (rest x) *palabras-totales*)))) 
+		(/ (rest x) *palabras-totales*))))
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
@@ -240,22 +245,17 @@
 
 ;;Funcion que pasa de una cadena a una lista de cadenas (palabras)
 (defun parser (cadena)
-(parser-aux
+(loop for x in
 (let ((lista (append (loop for x across cadena collect x) (list (character " ")))) ;;Insertamos espacio al final
 		(ind -1)) ;;Indice
 	(loop for i from 0 to (length lista)
 		when (string= (nth i lista) '#\Space) ;;Si hay un espacio
 		collect
-		(string-downcase (subseq cadena (1+ ind) (setf ind i)))))))
+		(string-downcase (subseq cadena (1+ ind) (setf ind i)))))
+when (< 0 (length x))
+collect x))
 ;;> (parser "hola a   todos soy una   cadena ")
 ;; ("hola" "a" "todos" "soy" "una" "cadena" "")
-(defun parser-aux (cadena)
-(if (null cadena)
-nil
-(loop for x in cadena
-when (< 0 (length x))
-collect x)))
-
 
 ;; Funcion inversa a parser lista-cadena
 (defun parser-inversa (lista)
