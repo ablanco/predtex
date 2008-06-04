@@ -102,13 +102,11 @@
 			
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun add-palabra (palabra numero)
-  (cond ((not (string= " " palabra)) ;;La palabra no es un espacio en blanco
 	 (set-key palabra numero)
+;; 	 (format t "~&Añadiendo palabra ~a con num ~a total : ~a" palabra numero *palabras-totales*)
 	 (setf *palabras-totales* (1+ *palabras-totales*))
 	 (setf (gethash numero *corpus*)
 	       (add-palabra-aux palabra (gethash numero *corpus*))))
-	(t
-	 nil)))
 
 ;; Inserta una palabra en una lista, si esta le suma 1 a sus apariciones si no esta le da valor 1
 (defun add-palabra-aux (palabra lista)
