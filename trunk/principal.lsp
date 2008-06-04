@@ -95,22 +95,20 @@
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
-(if (member 1 (codifica-palabra-lista palabra))
-(get-bi-probabilidad (palabra))
+(let ((palabras (parser palabra)))
+(if (< 1 (length palabras))
+(get-bi-probabilidad (first palabras) palabra)
 (/
-(rest (assoc palabra (get-palabras (codifica-palabra palabra)) :test #' string-equal))
-*palabras-totales*)))
-
+(rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
+*palabras-totales*))))
 
 ;;TODO
 ;; Devuelve la probabilidad de una palabra en el modelo bigram
-(defun get-bi-probabilidad (palabra)
-(let* ((palabras (parser palabra))
-(p (rest (assoc palabra (get-palabras (codifica-palabra (first palabras))) :test #' string-equal)))
-		(if (or (null p )(<= p 0))
-		0
-		(/ (rest (assoc palabra (get-bi-palabras (codifica-palabra palabra)) :test #' string-equal))
-			p))))
+(defun get-bi-probabilidad (palabra bipalabra)
+(/ 
+(rest (assoc bipalabra (gethash (codifica-palabra bipalabra) *corpus-compuesto*) :test #' string-equal))
+(rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))))
+
 			
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun set-palabra (palabra numero)
@@ -173,7 +171,11 @@
 	(loop for x in lista
 	collect
 	(cons (first x)
-		(/ (rest x) *palabras-totales*))))
+	(get-probabilidad (first x)))))
+
+;; TODO
+;; 	(cons (first x)
+;; 		(/ (rest x) *palabras-totales*))))
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
