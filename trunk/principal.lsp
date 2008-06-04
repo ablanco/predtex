@@ -77,7 +77,7 @@
 	(get-palabras numero)
 	(subseq ;;tomamos solo una lista de tamaño máximo *profundidad*
 	lista
-	0 (min *profundidad* (length lista))))))
+	0 (min (1- *profundidad*) (length lista))))))
 ;;> (get-palabras-relacionadas-aux 223)
 ;; (("cada" . 4) ("acerca" . 3) ("cafe," . 3) ("cadaver" . 2) ("acercan" . 2) ....
 
@@ -349,14 +349,15 @@ collect x))
 ;; Carga los datos necesarios para ejecutar las funciones
 (defun carga-datos (canal)
   (crea-teclado)
-  (format canal "~&Carga del diccionario")
-  ; (leer-diccionario) ;;TODO aligera los test
+  ; (format canal "~&Carga del diccionario")
+  ; (leer-diccionario) ;; TODO aligera los test
   (format canal "~&Proceso de entrenamiento~%~%")
   (entrenamiento *corpus-location*))
 
 ;; TODO Opciones del programa
 (defun configuracion (canal)
-  ;; TODO Profundidad
+  (format canal "~&Número de palabras predichas (por ejemplo 15): ")
+  (setf *profundidad* (read))
   )
 
 ;; Bucle principal del algoritmo
