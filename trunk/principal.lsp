@@ -15,9 +15,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Rutas de los ficheros
-;; (defparameter *corpus-location* '"corpus/reservoir-dogs.txt")
 (defparameter *corpus-location* '"corpus_sin_tratar/reservoir_dogs-sintildes")
-(defparameter *diccionario-location* '"subdiccionario.txt")	;; TODO Quitar el sub
+(defparameter *diccionario-location* '"diccionario.txt")
 
 ;; La key es el numero, value la lista de palabras
 (defparameter *corpus* (make-hash-table))
@@ -29,8 +28,6 @@
 (defparameter *profundidad* 15)	
 
 (defvar *palabras-totales* 0);; Numero total de palabras reconocidas hasta el momento.
-(defvar *palabras-compuestas-totales* 0);; Numero total de palabras reconocidas hasta el momento.
-
 
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
@@ -352,6 +349,7 @@ collect x))
 ;; Lanza el programa mostrando los resultados por pantalla
 (defun inicio ()
   (carga-datos t)
+  (configuracion t)
   (main t))
 
 ;; Lanza el programa escribiendo los resultados en un fichero
@@ -366,6 +364,11 @@ collect x))
   ; (leer-diccionario) ;;TODO aligera los test
   (format canal "~&Proceso de entrenamiento~%~%")
   (entrenamiento *corpus-location*))
+
+;; TODO Opciones del programa
+(defun configuracion (canal)
+  ;; TODO Profundidad
+  )
 
 ;; Bucle principal del algoritmo
 (defun main (canal)
