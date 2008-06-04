@@ -298,7 +298,8 @@ collect x))
 ;; Nos da una lista de indices relacionados con nuestra palabra
 (defun lista-indices-relacionados (palabra)
 	(let ((lista (codifica-palabra-lista palabra))) ;obtenemos la lista de numeros
-	(loop for i from (- (length lista) 3 ) downto 1 ;;tamaño minimo 3
+ 	(loop for i from (- (length lista) 3 ) downto 1 ;;tamaño minimo 3
+;;	(loop for i from (length lista) downto 1 ;;tamaño minimo 3
 	collect
 	(lista-a-numero-aux ;;pasamos a numero la lista
 		(reverse (subseq (reverse lista) i))))))  ;;obtenemos una lista cada vez mas grande :D
