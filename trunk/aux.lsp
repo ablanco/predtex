@@ -16,7 +16,18 @@
      (format t "~&Leida ~A~%" (parser (string l)))
 ;; 	(set-palabra l (codifica-palabra l))
 	)))
-	
+
+;; ;; Separa una palabra compuesta en una lista de sus codificaciones
+;; (defun get-bi-probabilidad-aux (palabra)
+;; (let ((lista (codifica-palabra-lista (string-downcase palabra))))
+;; (loop for x in
+;; 		(append (loop for i from 0 to (1- (length lista))
+;; 		when (= (nth i lista) 1)
+;; 		collect i) (list (length lista)))
+;; 	collect (lista-a-numero-aux (subseq lista 0 x)))))
+;; ;; (get-bi-probabilidad-aux "hola amigo")
+;; ;; (4652 4652126446)
+
 	
 ;;TODO borrar
 ;; (defun entrenamiento (fichero)
