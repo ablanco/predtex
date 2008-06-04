@@ -101,28 +101,17 @@
 (rest (assoc palabra (get-palabras (codifica-palabra palabra)) :test #' string-equal))
 *palabras-totales*)))
 
+
 ;;TODO
 ;; Devuelve la probabilidad de una palabra en el modelo bigram
 (defun get-bi-probabilidad (palabra)
 (let* ((palabras (parser palabra))
-(p (get-probabilidad (first palabras))))
+(p (rest (assoc palabra (get-palabras (codifica-palabra (first palabras))) :test #' string-equal)))
 		(if (or (null p )(<= p 0))
 		0
 		(/ (rest (assoc palabra (get-bi-palabras (codifica-palabra palabra)) :test #' string-equal))
 			p))))
 			
-;; Separa una palabra compuesta en una lista de sus codificaciones
-(defun get-bi-probabilidad-aux (palabra)
-(let ((lista (codifica-palabra-lista (string-downcase palabra))))
-(loop for x in
-		(append (loop for i from 0 to (1- (length lista))
-		when (= (nth i lista) 1)
-		collect i) (list (length lista)))
-	collect (lista-a-numero-aux (subseq lista 0 x)))))
-;; (get-bi-probabilidad-aux "hola amigo")
-;; (4652 4652126446)
-
-
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun set-palabra (palabra numero)
 (cond 	((not (string= " " palabra)) ;;La palabra no es un espacio en blanco
