@@ -118,8 +118,6 @@ lista))
 	(numero (codifica-palabra (first palabras)))
 	(numero-compuesto nil)
 	(palabra-compuesta nil))
-	
-	
 	(setf *palabras-totales* (1+ *palabras-totales*))
 	(setf (gethash numero *corpus*)
 		(add-palabra-aux (first palabras) (gethash numero *corpus*)))
@@ -152,19 +150,19 @@ lista))
 
 ;; Incluye en corpus key todas las posibles palabras que se pueden llegar a escribir a partir de la dada
 (defun set-key (palabra1 palabra2)
-(let ((indice (lista-a-numero-aux (subseq (codifica-palabra-lista palabra1) 0 (1- (length palabra1))))))
+(let ((numero (codifica-palabra palabra1)))
 ;; (format t "~&DeBUG : '~a' (ind: ~a) (cod: ~a)" palabra1 indice (codifica-palabra palabra1))
 ;; (if (not (null palabra2)) ;;Si no es una palabra compuesta
 ;; 		(format t "-> '~a'  (cod: ~a)" (string-concat palabra1 " " palabra2) (codifica-palabra (string-concat palabra1 " " palabra2))))
 	(set-key-aux
 		palabra1
-		indice
-		(codifica-palabra palabra1))
+		(lista-a-numero-aux (subseq (codifica-palabra-lista palabra1) 0 (1- (length palabra1))))
+		numero)
 	(if (null palabra2) ;;Si no es una palabra compuesta
 	nil ;;No se hace nada
 	(set-key-aux ;;Para añadir una palabra compuesta
 		(string-concat palabra1 " " palabra2)
-		indice
+		numero
 		(codifica-palabra (string-concat palabra1 " " palabra2))))))
 
 (defun set-key-aux (palabra indice numero)
@@ -211,15 +209,6 @@ collect
 ;; (separa-en-bipalabras '("hola" "amigo" "mio"))
 ;; (("hola" "amigo") ("amigo" "mio") ("mio" NIL))
 
-
-(defun separa-en-bipalabras-aux (lista numero)
-(if (< (length lista) numero)
-nil ;;Fuera de rango
-(nth numero lista)))
-;; (separa-en-bipalabras-aux '("hola" "amigo" "mio") 1)
-;; "amigo"
-;; (separa-en-bipalabras-aux '("hola" "amigo" "mio") 4)
-;; NIL
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye
@@ -348,7 +337,6 @@ collect x))
 ;;Codifica una palabra a una lista de numeros del teclado
 (defun codifica-palabra-lista (palabra)
   	(loop for x across (string-downcase palabra)
-;;	when (not (= 0 (rest (assoc (char-code x) teclado :test #'member))))
 	collect 
 	(rest
 	(assoc (char-code x) teclado :test #'member))))
