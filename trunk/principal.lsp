@@ -348,8 +348,8 @@ collect x))
 
 ;; Lanza el programa mostrando los resultados por pantalla
 (defun inicio ()
-  (carga-datos t)
   (configuracion t)
+  (carga-datos t)
   (main t))
 
 ;; Lanza el programa escribiendo los resultados en un fichero
@@ -365,12 +365,22 @@ collect x))
   (format canal "~&Proceso de entrenamiento~%~%")
   (entrenamiento *corpus-location*))
 
-;; TODO Opciones del programa
+;; Opciones del programa
 (defun configuracion (canal)
-;; Elegir corpus
+  (escoge-corpus canal)
   (format canal "~&Número de palabras predichas (por ejemplo 15): ")
-  (setf *profundidad* (read))
-  )
+  (setf *profundidad* (read)))
+
+;; Permite escoger el corpus a utilizar
+(defun escoge-corpus (canal)
+  (let ((lista (directory 'corpus/*)))
+    (format canal "~&Escoge el corpus que quieres usar: ")
+    (loop for x in lista
+	  for i from 1 to (length lista)
+	  do
+	    (format canal "~&~a.- ~a" i x))
+    (format canal "~&Corpus a utilizar: ")
+    (setf *corpus-location* (nth (1- (read)) lista))))
 
 ;; Bucle principal del algoritmo
 (defun main (canal)
