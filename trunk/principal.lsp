@@ -203,9 +203,11 @@ collect
 
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
-;; Si la palabra no estaba en el *corpus* la incluye
+;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
 (defun aprendizaje (palabra)
-  (add-palabra (string-downcase palabra)))
+  (add-palabra (string-downcase palabra))
+(with-open-file (s *diccionario-location*) )
+(write-line palabra)))
 
 ;; Normaliza una lista de (palabras . probabilidades)
 (defun normaliza-lista (lista)
