@@ -80,16 +80,8 @@
 	(loop for x in (gethash numero *corpus-key*)
 		append
 		(get-lista-palabras-relacionadas-aux x))))
-
-
-(defun aplana(lista)
-(if (listp (first lista))
-(loop for x in lista
-append
-(aplana x))
-lista))
-;; (aplana '((hola (amigo))))
-;; (HOLA AMIGO)
+;; (get-lista-palabras-relacionadas 783)
+;; (("que" . 551/15738) ("puedo" . 2/2623) ("puede" . 11/15738) ("pues" . 3/5246) ("queda" . 1/2623) .....
 
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra)
@@ -124,7 +116,7 @@ lista))
 	(cond
 		((< 1 (length palabras)) ;;Palabra compuesta
 			(set-key (first palabras) (second palabras))
-			(setf palabra-compuesta (string-concat (first palabras) " "(second palabras)))
+			(setf palabra-compuesta (string-concat (first palabras) " " (second palabras)))
 			(setf numero-compuesto (codifica-palabra palabra-compuesta))
 			(setf (gethash numero-compuesto *corpus*)
 				(add-palabra-aux palabra-compuesta (gethash numero-compuesto *corpus*))))
@@ -193,7 +185,7 @@ lista))
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-;;           (format t "~&DEBUG leido ~a"l)
+;;            (format t "~&DEBUG leido ~a como ~a"l (separa-en-bipalabras (parser l)))
         (loop for x in (separa-en-bipalabras (parser l))
         do
         (if (null (second x))
