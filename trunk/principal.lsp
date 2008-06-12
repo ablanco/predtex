@@ -49,12 +49,7 @@
 
 ;;Lee el diccionario y lo inserta en la tabla corpus
 (defun leer-diccionario()
-  (with-open-file (s *diccionario-location*)
-		  (do ((l (read-line s) (read-line s nil 'eof)))
-		      ((eq l 'eof) "Fin de Fichero.")
-		      ;;      (format t "~&DEBUG - Leida ~A~%" l)
-		      (add-palabra l)
-		      )))
+  (entrenamiento *diccionario-location*))
 
 ;; Devuelve la lista de palabras asociada a un numero, ordenadas por probabilidad
 (defun get-lista-palabras (numero)
@@ -105,12 +100,12 @@
 			
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun add-palabra (palabra)
-(format t "~& ~t~t~t~tDEBUG add '~a'" palabra)
+;; (format t "~& ~t~t~t~tDEBUG add-palabra '~a'" palabra)
 (let*
 	((palabras (parser palabra))
 	(numero (codifica-palabra (first palabras)))
 	(numero-compuesto nil))
-	 (format t " numero '~a' numero-compuesto '~a'"numero (codifica-palabra palabra))
+;; 	 (format t " numero '~a' numero-compuesto '~a'"numero (codifica-palabra palabra))
 	(setf *palabras-totales* (1+ *palabras-totales*))
 	(setf (gethash numero *corpus*)
 		(add-palabra-aux (first palabras) (gethash numero *corpus*)))
@@ -144,7 +139,7 @@
 ;; Incluye en corpus key todas las posibles palabras que se pueden llegar a escribir a partir de la dada
 (defun set-key (palabra1 palabra2)
 (let ((numero (codifica-palabra palabra1)))
-;; (format t "~&DeBUG : '~a' (ind: ~a) (cod: ~a)" palabra1 indice (codifica-palabra palabra1))
+;; (format t "~&DeBUG setkey: '~a' (ind: ~a) (cod: ~a)" palabra1 indice (codifica-palabra palabra1))
 ;; (if (not (null palabra2)) ;;Si no es una palabra compuesta
 ;; 		(format t "-> '~a'  (cod: ~a)" (string-concat palabra1 " " palabra2) (codifica-palabra (string-concat palabra1 " " palabra2))))
 	(set-key-aux
@@ -186,7 +181,7 @@
  (with-open-file (s fichero)
     (do ((l (read-line s) (read-line s nil 'eof)))
         ((eq l 'eof) "Fin de Fichero.")
-            (format t "~&DEBUG leido: '~a' como '~a'"l (separa-en-bipalabras (parser l)))
+;;             (format t "~&DEBUG entrenamieto: '~a' como '~a'"l (separa-en-bipalabras (parser l)))
         (loop for x in (separa-en-bipalabras (parser l))
         do
 	(if (< 0 (length (first x)))
@@ -357,8 +352,8 @@ collect x))
 ;; Carga los datos necesarios para ejecutar las funciones
 (defun carga-datos (canal)
   (crea-teclado)
-  ; (format canal "~&Carga del diccionario")
-  ; (leer-diccionario) ;; TODO aligera los test
+  (format canal "~&Carga del diccionario")
+  (leer-diccionario)
   (format canal "~&Proceso de entrenamiento~%~%")
   (entrenamiento *corpus-location*))
 
