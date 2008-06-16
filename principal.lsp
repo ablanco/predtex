@@ -360,7 +360,7 @@ collect x))
 ;; Opciones del programa
 (defun configuracion (canal)
   (escoge-corpus canal)
-  (format canal "~&Número de palabras predichas (por ejemplo 15): ")
+  (format canal "~&Número de palabras predichas (por ejemplo 9): ")
   (setf *profundidad* (read)))
 
 ;; Permite escoger el corpus a utilizar
@@ -433,7 +433,7 @@ collect x))
 ;; Funcion auxiliar
 (defun print-prediccion (canal teclas palabra pred frase)
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
-  (format canal "~&Palabras posibles: ")
+  (format canal "~&Palabras posibles: ~%")
   (print-prediccion-aux canal pred)
   (format canal "~&Frase hasta ahora: ~a~%" frase) ;;TODO no la almacena :S
   (format canal "~&Teclas pulsadas: ~a~%~%" teclas))
@@ -441,10 +441,18 @@ collect x))
 ;; Funcion auxiliar
 (defun print-prediccion-aux (canal pred)
    (let ((prednorm (normaliza-lista pred)))
-	 (loop for x in prednorm
-               for i from 1 to (length prednorm) do
-	   (format canal "~a.-'~a'(~a) | " i (first x) (rest x)))))
+   	(loop for i from 0 to (length prednorm)
+   	when (= 0 (mod i 3))
+   	do
+   	(format canal "~&")
+   	(print-palabra canal i (nth i prednorm))
+   	(print-palabra canal (+ 1 i) (nth (+ 1 i) prednorm))
+   	(print-palabra canal (+ 2 i) (nth (+ 2 i) prednorm)))))
 
+(defun print-palabra (canal numero palabra)
+	(if (and (not (null palabra)) (listp palabra))
+   	(format canal "~a...'~a'(~a)~t~t~t" numero (first palabra)(rest palabra))))
+	
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
   (escribe-linea canal)

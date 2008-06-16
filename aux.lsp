@@ -1,5 +1,7 @@
 (defun l ()
-  (load "principal.lsp")
+  (compile-file "principal.lsp")
+  (load "principal")
+  (format t "~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%")
   (inicio))
 
 ;(defun linea-a-lista-palabras (l)
