@@ -418,7 +418,7 @@ collect x))
 	  (print-prediccion canal teclas palabra pred frase))
 	((and (eq tecla 'o) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
 	  (format canal "~&~%Introduzca el indice de la palabra deseada: ")
-	  (setf indice (1- (read)))
+	  (setf indice (read))
 	  (setf palabra (first (nth indice pred)))
 	  (print-prediccion canal teclas palabra pred frase))
 	((member tecla '(1 2 3 4 5 6 7 8 9)) ;; ------------------------------ Pulsar tecla
