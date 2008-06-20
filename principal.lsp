@@ -15,12 +15,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Rutas de los ficheros
-(defparameter *corpus-location* '"corpus_sin_tratar/reservoir_dogs-sintildes")
+(defparameter *corpus-location* nil)
 (defparameter *diccionario-location* '"diccionario.txt")
 
 ;; La key es el numero, value la lista de palabras
 (defparameter *corpus* (make-hash-table))
-(defparameter *corpus-compuesto* (make-hash-table))
+;; (defparameter *corpus-compuesto* (make-hash-table))
 (defparameter *corpus-key* (make-hash-table))
 
 
@@ -205,6 +205,7 @@ collect
   (add-palabra (string-downcase palabra))
 (with-open-file (s *diccionario-location* :direction :output :if-exists :append)
 (write-line palabra s)))
+;; TODO Pasar el meter palabras al diccionario a una nueva opcion del menu q sea nueva frase y que meta la frase entera en el dic en una unica linea
 
 ;; Normaliza una lista de (palabras . probabilidades)
 (defun normaliza-lista (lista)
