@@ -119,8 +119,6 @@
 		(t
 		(set-key (first palabras) nil))))) ;;Palabra simple
 
-
-
 ;; Inserta una palabra en una lista, si esta le suma 1 a sus apariciones si no esta le da valor 1
 (defun add-palabra-aux (palabra lista)
 (if (assoc palabra lista :test #'equal) ;; Se comprueba si esta en la lista
@@ -134,7 +132,6 @@
 		lista)))
 ;;> (add-palabra-aux "hola" '(("hola" . 1) ("uno" . 1) ("dos" . 2) ("tres". 3)))
 ;; (("hola" . 2) ("uno" . 1) ("dos" . 2) ("tres" . 3))
-
 
 ;; Incluye en corpus key todas las posibles palabras que se pueden llegar a escribir a partir de la dada
 (defun set-key (palabra1 palabra2)
@@ -158,8 +155,6 @@
       nil
       (setf (gethash indice *corpus-key*)
 	(cons numero (gethash indice *corpus-key*)))))
-
-
 
 ;; Ordena de mayor a menor una lista de (palabras . probabilidades)
 (defun ordena-por-probabilidad (lista)
@@ -198,14 +193,10 @@ collect
 ;; (separa-en-bipalabras '("hola" "amigo" "mio"))
 ;; (("hola" "amigo") ("amigo" "mio") ("mio" NIL))
 
-
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
 (defun aprendizaje (palabra)
-  (add-palabra (string-downcase palabra))
-(with-open-file (s *diccionario-location* :direction :output :if-exists :append)
-(write-line palabra s)))
-;; TODO Pasar el meter palabras al diccionario a una nueva opcion del menu q sea nueva frase y que meta la frase entera en el dic en una unica linea
+  (add-palabra (string-downcase palabra)))
 
 ;; Normaliza una lista de (palabras . probabilidades)
 (defun normaliza-lista (lista)
@@ -303,15 +294,12 @@ collect x))
 ;;> (codifica-palabra-ascii 'hola)
 ;; (104 111 108 97)
 
-
-
 ;; Codifica una palabra a un numero de teclado
 (defun codifica-palabra (palabra)
 (lista-a-numero-aux
 	(codifica-palabra-lista (string-downcase palabra))))
 ;;> (codifica-palabra 'hola)
 ;; 4652
-
 
 ;; Pasa una lista de numeros '(1 2 3 4 5) a un literal '54321
 (defun lista-a-numero-aux (lista)
@@ -323,8 +311,6 @@ collect x))
       (* (expt 10 i) (nth i l)))))
 ;;> (lista-a-numero-aux '(1 2 3 4 5))
 ;; 12345
-
-
 
 ;;Codifica una palabra a una lista de numeros del teclado
 (defun codifica-palabra-lista (palabra)
@@ -391,6 +377,7 @@ collect x))
       (format canal "~%-Pulse la letra b para borrar la ultima pulsacion")
       (format canal "~%-Pulse la letra o para escoger otra palabra predicha")
       (format canal "~%-Pulse la letra n para incluir una palabra nueva")
+      (format canal "~%-Pulse la letra f para terminar una frase")
       (format canal "~%-Pulse la letra q para salir")
       (format canal "~%~%Su eleccion: ")
       (setf tecla (read))
@@ -417,6 +404,11 @@ collect x))
           (setf teclas '())
 	  (setf frase (append frase (list palabra)))
 	  (print-prediccion canal teclas palabra pred frase))
+	((eq tecla 'f) ;; ---------------------------------------------------- Finalizar frase
+	  (with-open-file (fich *diccionario-location* :direction :output :if-exists :append)
+	    (loop for p in frase do
+	      (write-line palabra fich))) ;; TODO
+	  )
 	((and (eq tecla 'o) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
 	  (format canal "~&~%Introduzca el indice de la palabra deseada: ")
 	  (setf indice (read))
@@ -436,7 +428,7 @@ collect x))
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
   (format canal "~&Palabras posibles: ~%")
   (print-prediccion-aux canal pred)
-  (format canal "~&Frase hasta ahora: ~a~%" frase) ;;TODO no la almacena :S
+  (format canal "~&Frase hasta ahora: ~a~%" frase)
   (format canal "~&Teclas pulsadas: ~a~%~%" teclas))
 
 ;; Funcion auxiliar
