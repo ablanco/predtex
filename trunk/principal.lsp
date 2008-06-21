@@ -16,7 +16,7 @@
 
 ;; Rutas de los ficheros
 (defparameter *corpus-location* nil)
-(defparameter *diccionario-location* '"diccionario.txt")
+(defparameter *diccionario-location* '"aprendizaje.txt")
 
 ;; La key es el numero, value la lista de palabras
 (defparameter *corpus* (make-hash-table))
@@ -63,11 +63,10 @@
 (defun get-lista-palabras-relacionadas (numero)
 (let ((lista (get-lista-palabras-relacionadas-aux numero)))
 (subseq ;; Tomamos solo una lista de tam maximo *profundidad*
-(ordena-por-probabilidad
-   (calcula-probabilidad lista))
-0 (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
+   (ordena-por-probabilidad (calcula-probabilidad lista))
+   0 (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
 ;; (get-lista-palabras-relacionadas 771)
-;; (("sr." . 705) ("sr. blanco" . 229) ("sr. rosa" . 180) ("sr. rubio" . 118) ("sr. naranja" . 94) ("sr. marrón" . 14) ("sr. azul" . 13))
+;; ("sr. naranja," . 1/3668) ("sr. naranja." . 11/47684) ("sr. blanco." . 5/23842) ("sr. azul" . 2/11921) ("sr. blanco," . 2/11921) ("sr. rubio." . 1/6812))
 
 (defun get-lista-palabras-relacionadas-aux (numero)
  (append
@@ -165,10 +164,8 @@
 
 ;; Calcula la probabilidad total de cada elemento de la lista
 (defun calcula-probabilidad (lista)
-	(loop for x in lista
-	collect
-	(cons (first x)
-	(get-probabilidad (first x)))))
+  (loop for x in lista collect
+    (cons (first x) (get-probabilidad (first x)))))
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
@@ -406,9 +403,7 @@ collect x))
 	  (print-prediccion canal teclas palabra pred frase))
 	((eq tecla 'f) ;; ---------------------------------------------------- Finalizar frase
 	  (with-open-file (fich *diccionario-location* :direction :output :if-exists :append)
-	    (loop for p in frase do
-	      (write-line palabra fich))) ;; TODO
-	  )
+	      (write-line (parser-inversa frase) fich)))
 	((and (eq tecla 'o) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
 	  (format canal "~&~%Introduzca el indice de la palabra deseada: ")
 	  (setf indice (read))
