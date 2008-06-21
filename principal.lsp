@@ -174,7 +174,7 @@
   (with-open-file (s fichero)
 		  (do ((l (read-line s) (read-line s nil 'eof)))
 		      ((eq l 'eof) "Fin de Fichero.")
-		      ;;             (format t "~&DEBUG entrenamieto: '~a' como '~a'"l (separa-en-bipalabras (parser l)))
+		      ;; (format t "~&DEBUG entrenamieto: '~a' como '~a'"l (separa-en-bipalabras (parser l)))
 		      (loop for x in (separa-en-bipalabras (parser l))
 			    do
 			    (if (< 0 (length (first x)))
