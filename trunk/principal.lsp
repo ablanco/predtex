@@ -33,7 +33,7 @@
 (defun crea-teclado ()
   (setf teclado
 	(list
-	 (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0) ;;TODO limpiar el corpus de estos sibolos
+	 (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0) ;; TODO limpiar el corpus de estos sibolos
 	 (cons (codifica-palabra-ascii ". 1") 1)
 	 (cons (codifica-palabra-ascii 'aábc2) 2)
 	 (cons (codifica-palabra-ascii 'deéf3) 3)
@@ -64,7 +64,8 @@
   (let ((lista (get-lista-palabras-relacionadas-aux numero)))
     (subseq ;; Tomamos solo una lista de tam maximo *profundidad*
      (ordena-por-probabilidad (calcula-probabilidad lista))
-     0 (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
+     0
+     (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
 ;; (get-lista-palabras-relacionadas 771)
 ;; ("sr. naranja," . 1/3668) ("sr. naranja." . 11/47684) ("sr. blanco." . 5/23842) ("sr. azul" . 2/11921) ("sr. blanco," . 2/11921) ("sr. rubio." . 1/6812))
 
@@ -85,7 +86,7 @@
       (/
        (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
        *palabras-totales*))))
-;; TODO Poner ejemplo
+;; TODO Arreglar y poner ejemplo
 
 ;; Devuelve la probabilidad de una palabra compuesta en el modelo bigram
 (defun get-bi-probabilidad (palabra bipalabra)
@@ -95,7 +96,7 @@
       (rest (assoc bipalabra (gethash (codifica-palabra bipalabra) *corpus*) :test #' string-equal))
       (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*)
 		   :test #' string-equal)))))
-;; TODO Poner ejemplo
+;; TODO Arreglar y poner ejemplo
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun add-palabra (palabra)
@@ -330,7 +331,7 @@
 
 ;; Lanza el programa escribiendo los resultados en un fichero
 (defun inicio-fichero (fichero)
-  ;;   TODO Probablemente esta opcion no tenga sentido XD
+  ;; TODO Probablemente esta opcion no tenga sentido XD
   )
 
 ;; Carga los datos necesarios para ejecutar las funciones
@@ -438,7 +439,7 @@
 
 (defun print-palabra (canal numero palabra)
   (if (and (not (null palabra)) (listp palabra))
-      (format canal "~a...'~a'(~a)~t~t~t" numero (first palabra)(rest palabra))))
+      (format canal "~a...'~a'(~,3F)~t~t~t" numero (first palabra)(rest palabra))))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
