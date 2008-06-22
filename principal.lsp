@@ -20,9 +20,7 @@
 
 ;; La key es el numero, value la lista de palabras
 (defparameter *corpus* (make-hash-table))
-;; (defparameter *corpus-compuesto* (make-hash-table))
 (defparameter *corpus-key* (make-hash-table))
-
 
 (defparameter *teclado* nil)
 (defparameter *profundidad* 15)	
@@ -47,34 +45,34 @@
 ;; FUNCIONES DE MANEJO DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Devuelve la lista de palabras asociada a un numero, ordenadas por probabilidad
-(defun get-lista-palabras (numero)
-  (ordena-por-probabilidad
-   (calcula-probabilidad
-    (gethash numero *corpus*))))
-;; TODO Poner ejemplo
+;; SIN USO
+;; ;; Devuelve la lista de palabras asociada a un numero, ordenadas por probabilidad
+;; (defun get-lista-palabras (numero)
+;;   (ordena-por-probabilidad
+;;    (calcula-probabilidad
+;;     (gethash numero *corpus*))))
+;; ;; TODO Poner ejemplo
 
-;; Devuelve una lista de palabras y probabilidades, ordenadas por probalididad
-(defun get-lista-palabras-relacionadas (numero)
+;; Devuelve una lista de palabras que es llegar posible escribir, que empiezan por las
+;; pulsaciones dadas, ordenadas por probalididad
+(defun get-lista-palabras-relacionadas (numero &optional (palabra-anterior nil))
   (let ((lista (get-lista-palabras-relacionadas-aux numero)))
     (subseq ;; Tomamos solo una lista de tam maximo *profundidad*
-     (ordena-por-probabilidad (calcula-probabilidad lista))
+     (ordena-por-probabilidad (calcula-probabilidad lista palabra-anterior))
      0
      (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
 ;; (get-lista-palabras-relacionadas 771)
 ;; ("sr. naranja," . 1/3668) ("sr. naranja." . 11/47684) ("sr. blanco." . 5/23842) ("sr. azul" . 2/11921) ("sr. blanco," . 2/11921) ("sr. rubio." . 1/6812))
 
+;; Funcion auxiliar
 (defun get-lista-palabras-relacionadas-aux (numero)
   (append
-   (gethash numero *corpus*)
-   (loop for x in (gethash numero *corpus-key*)
-	 append
-	 (get-lista-palabras-relacionadas-aux x))))
-;; (get-lista-palabras-relacionadas 783)
-;; (("que" . 551/15738) ("puedo" . 2/2623) ("puede" . 11/15738) ("pues" . 3/5246) ("queda" . 1/2623) .....
+    (gethash numero *corpus*) ;; Las que se pueden escribir con esas pulsaciones
+    (loop for x in (gethash numero *corpus-key*) append ;; Las que se pueden llegar a escribir con esas pulsaciones
+      (gethash x *corpus*))))
 
 ;; Devuelve la probabilidad de una palabra
-(defun get-probabilidad (palabra)
+(defun get-probabilidad (palabra &optional (palabra-anterior nil))
   (let ((palabras (parser palabra)))
     (if (< 1 (length palabras))
 	(get-bi-probabilidad (first palabras) palabra)
@@ -159,9 +157,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Calcula la probabilidad total de cada elemento de la lista
-(defun calcula-probabilidad (lista)
+(defun calcula-probabilidad (lista &optional (palabra-anterior nil))
   (loop for x in lista collect
-	(cons (first x) (get-probabilidad (first x)))))
+	(cons (first x) (get-probabilidad (first x) palabra-anterior))))
 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
@@ -206,15 +204,10 @@
 	  collect
 	  (cons (first x) (* alfa (rest x))))))
 
-;; Consulta el corpus y devuelve la lista de palabras correspondientes
-;; a esas pulsaciones de teclas, ordenadas por probabilidad
-(defun prediccion (teclas)
-  (get-lista-palabras (lista-a-numero-aux teclas)))
-
 ;; Devuelve las palabras que se pueden llegar a escribir con esas
 ;; pulsaciones de teclas, ordenadas por probabilidad
-(defun prediccion-futura (teclas)
-  (get-lista-palabras-relacionadas (lista-a-numero-aux teclas)))
+(defun prediccion (teclas &optional (palabra-anterior nil))
+  (get-lista-palabras-relacionadas (lista-a-numero-aux teclas) palabra-anterior))
 
 ;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
@@ -391,7 +384,9 @@
 		(format canal "~&~%No hay nada que borrar")
 	      (setf teclas (reverse (rest (reverse teclas)))))
 	    (setf indice 0)
-	    (setf pred (prediccion-futura teclas))
+	    (if (< 0 (length frase))
+	      (setf pred (prediccion teclas (first (reverse frase))))
+	      (setf pred (prediccion teclas)))
 	    (setf palabra (first (nth indice pred)))
 	    (print-prediccion canal teclas palabra pred frase))
 	   ((eq tecla 'n) ;; ---------------------------------------------------- Nueva palabra
@@ -412,7 +407,9 @@
 	   ((member tecla '(1 2 3 4 5 6 7 8 9)) ;; ------------------------------ Pulsar tecla
 	    (setf teclas (append teclas (list tecla)))
 	    (setf indice 0)
-	    (setf pred (prediccion-futura teclas))
+	    (if (< 0 (length frase))
+	      (setf pred (prediccion teclas (first (reverse frase))))
+	      (setf pred (prediccion teclas)))
 	    (setf palabra (first (nth indice pred)))
 	    (print-prediccion canal teclas palabra pred frase))
 	   (t
