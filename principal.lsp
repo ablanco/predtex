@@ -47,10 +47,6 @@
 ;; FUNCIONES DE MANEJO DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Lee el diccionario y lo inserta en la tabla corpus
-(defun leer-diccionario()
-  (entrenamiento *diccionario-location*))
-
 ;; Devuelve la lista de palabras asociada a un numero, ordenadas por probabilidad
 (defun get-lista-palabras (numero)
   (ordena-por-probabilidad
@@ -59,7 +55,6 @@
 ;; TODO Poner ejemplo
 
 ;; Devuelve una lista de palabras y probabilidades, ordenadas por probalididad
-
 (defun get-lista-palabras-relacionadas (numero)
   (let ((lista (get-lista-palabras-relacionadas-aux numero)))
     (subseq ;; Tomamos solo una lista de tam maximo *profundidad*
@@ -175,12 +170,17 @@
 		  (do ((l (read-line s) (read-line s nil 'eof)))
 		      ((eq l 'eof) "Fin de Fichero.")
 		      ;; (format t "~&DEBUG entrenamieto: '~a' como '~a'"l (separa-en-bipalabras (parser l)))
-		      (loop for x in (separa-en-bipalabras (parser l))
-			    do
-			    (if (< 0 (length (first x)))
-				(if (null (second x))
-				    (add-palabra (first x))
-				  (add-palabra (string-concat (first x) " "(second x)))))))))
+		      (loop for x in (parser l) do
+			(if (< 0 (length x))
+			    (add-palabra x))))))
+
+;; PALABRAS DOBLES
+;; 			(loop for x in (separa-en-bipalabras (parser l))
+;; 			    do
+;; 			    (if (< 0 (length (first x)))
+;; 				(if (null (second x))
+;; 				    (add-palabra (first x))
+;; 				  (add-palabra (string-concat (first x) " "(second x)))))))))
 
 (defun separa-en-bipalabras (lista)
   (loop for i from 0 to (1- (length lista))
@@ -338,7 +338,7 @@
 (defun carga-datos (canal)
   (crea-teclado)
   (format canal "~&Carga del diccionario")
-  (leer-diccionario)
+  (entrenamiento *diccionario-location*)
   (format canal "~&Proceso de entrenamiento~%~%")
   (entrenamiento *corpus-location*))
 
