@@ -45,14 +45,6 @@
 ;; FUNCIONES DE MANEJO DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; SIN USO
-;; ;; Devuelve la lista de palabras asociada a un numero, ordenadas por probabilidad
-;; (defun get-lista-palabras (numero)
-;;   (ordena-por-probabilidad
-;;    (calcula-probabilidad
-;;     (gethash numero *corpus*))))
-;; ;; TODO Poner ejemplo
-
 ;; Devuelve una lista de palabras que es llegar posible escribir, que empiezan por las
 ;; pulsaciones dadas, ordenadas por probalididad
 (defun get-lista-palabras-relacionadas (numero &optional (palabra-anterior nil))
@@ -70,26 +62,6 @@
     (gethash numero *corpus*) ;; Las que se pueden escribir con esas pulsaciones
     (loop for x in (gethash numero *corpus-key*) append ;; Las que se pueden llegar a escribir con esas pulsaciones
       (gethash x *corpus*))))
-
-;; Devuelve la probabilidad de una palabra
-(defun get-probabilidad (palabra &optional (palabra-anterior nil))
-  (let ((palabras (parser palabra)))
-    (if (< 1 (length palabras))
-	(get-bi-probabilidad (first palabras) palabra)
-      (/
-       (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
-       *palabras-totales*))))
-;; TODO Arreglar y poner ejemplo
-
-;; Devuelve la probabilidad de una palabra compuesta en el modelo bigram
-(defun get-bi-probabilidad (palabra bipalabra)
-  (* (get-probabilidad palabra)
-     (/ 
-      ;;    (rest (assoc bipalabra (gethash (codifica-palabra bipalabra) *corpus-compuesto*) :test #' string-equal))
-      (rest (assoc bipalabra (gethash (codifica-palabra bipalabra) *corpus*) :test #' string-equal))
-      (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*)
-		   :test #' string-equal)))))
-;; TODO Arreglar y poner ejemplo
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun add-palabra (palabra)
@@ -149,9 +121,13 @@
     (setf (gethash indice *corpus-key*)
 	  (cons numero (gethash indice *corpus-key*)))))
 
-;; Ordena de mayor a menor una lista de (palabras . probabilidades)
-(defun ordena-por-probabilidad (lista)
-  (sort lista #'(lambda (x y) (> (rest x) (rest y)))))
+;; Devuelve la probabilidad de una palabra
+(defun get-probabilidad (palabra &optional (palabra-anterior nil))
+  (if (null palabra-anterior)
+    (/ ;; Unigram
+      (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
+      *palabras-totales*)
+    (get-probabilidad palabra))) ;; Bigram ;; TODO
 
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -161,6 +137,10 @@
   (loop for x in lista collect
 	(cons (first x) (get-probabilidad (first x) palabra-anterior))))
 
+;; Ordena de mayor a menor una lista de (palabras . probabilidades)
+(defun ordena-por-probabilidad (lista)
+  (sort lista #'(lambda (x y) (> (rest x) (rest y)))))
+ 
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
 (defun entrenamiento (fichero)

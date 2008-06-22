@@ -10,10 +10,37 @@
 
 (defun concatena (a b)
 (string-concat (string a) (string b)))
+ 
+ 
+;; MAL
+;;   (let ((palabras (parser palabra)))
+;;     (if (< 1 (length palabras))
+;; 	(get-bi-probabilidad (first palabras) palabra)
+;;       (/
+;;        (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
+;;        *palabras-totales*))))
+;; TODO Arreglar y poner ejemplo
 
+;;  MAL
+;; Devuelve la probabilidad de una palabra compuesta en el modelo bigram
+;; (defun get-bi-probabilidad (palabra bipalabra)
+;;   (* (get-probabilidad palabra)
+;;      (/ 
+;;       ;;    (rest (assoc bipalabra (gethash (codifica-palabra bipalabra) *corpus-compuesto*) :test #' string-equal))
+;;       (rest (assoc bipalabra (gethash (codifica-palabra bipalabra) *corpus*) :test #' string-equal))
+;;       (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*)
+;; 		   :test #' string-equal)))))
+;; TODO Arreglar y poner ejemplo
+
+;; SIN USO
+;; ;; Devuelve la lista de palabras asociada a un numero, ordenadas por probabilidad
+;; (defun get-lista-palabras (numero)
+;;   (ordena-por-probabilidad
+;;    (calcula-probabilidad
+;;     (gethash numero *corpus*))))
+;; ;; TODO Poner ejemplo
+ 
 ;; Nos da una lista de indices relacionados con nuestra palabra
-
-	
 ;; (defun lista-indices-relacionados (palabra)
 ;; 	(let ((lista (codifica-palabra-lista palabra))) ;obtenemos la lista de numeros
 ;;  	(loop for i from (- (length lista) 3 ) downto 1 ;;tamaño minimo 3
