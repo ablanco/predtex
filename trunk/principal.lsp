@@ -32,7 +32,7 @@
 (defun crea-teclado ()
   (setf teclado
 	(list
-	 (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0) ;; TODO limpiar el corpus de estos sibolos
+	 (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0) ;; TODO limpiar el corpus de estos simbolos
 	 (cons (codifica-palabra-ascii ". 1") 1)
 	 (cons (codifica-palabra-ascii 'aábc2) 2)
 	 (cons (codifica-palabra-ascii 'deéf3) 3)
@@ -148,7 +148,7 @@
 			(if (< 0 (length x))
 			    (add-palabra x anterior))
 			(setf anterior x))))))
-;; TODO que un pto signifique que (setf anterior nil)
+;; TODO que un punto '.' signifique que (setf anterior nil)
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
