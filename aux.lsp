@@ -8,8 +8,8 @@
 ;(loop for x across l collect x ))
 ;(char-code (char-downcase x))))
 
-(defun concatena (a b)
-(string-concat (string a) (string b)))
+;; (defun concatena (a b)
+;; (string-concat (string a) (string b)))
 
 ;; Sin uso
 ;; (defun separa-en-bipalabras (lista)
