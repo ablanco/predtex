@@ -20,6 +20,7 @@
 
 ;; La key es el numero, value la lista de palabras
 (defparameter *corpus* (make-hash-table))
+(defparameter *corpus-dobles* (make-hash-table :test 'equal))
 (defparameter *corpus-key* (make-hash-table))
 
 (defparameter *teclado* nil)
@@ -64,25 +65,16 @@
       (gethash x *corpus*))))
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
-(defun add-palabra (palabra)
-  ;; (format t "~& ~t~t~t~tDEBUG add-palabra '~a'" palabra)
-  (let*
-      ((palabras (parser palabra))
-       (numero (codifica-palabra (first palabras)))
-       (numero-compuesto nil))
-    ;; 	 (format t " numero '~a' numero-compuesto '~a'"numero (codifica-palabra palabra))
+(defun add-palabra (palabra &optional (palabra-anterior nil))
+  (let ((numero (codifica-palabra palabra)))
     (setf *palabras-totales* (1+ *palabras-totales*))
     (setf (gethash numero *corpus*)
-	  (add-palabra-aux (first palabras) (gethash numero *corpus*)))
+	  (add-palabra-aux palabra (gethash numero *corpus*)))
     (cond
-     ((< 1 (length palabras)) ;;Palabra compuesta
-      (set-key (first palabras) (second palabras))
-      ;; 			(setf palabra-compuesta (string-concat (first palabras) " " (second palabras)))
-      (setf numero-compuesto (codifica-palabra palabra))
-      (setf (gethash numero-compuesto *corpus*)
-	    (add-palabra-aux palabra (gethash numero-compuesto *corpus*))))
-     (t
-      (set-key (first palabras) nil))))) ;;Palabra simple
+      ((not (null palabra-anterior)) ;; Palabra doble
+	(setf (gethash palabra-anterior *corpus-dobles*)
+	      (add-palabra-aux palabra (gethash palabra-anterior *corpus-dobles*)))))
+    (set-key palabra nil)))
 
 ;; Inserta una palabra en una lista, si esta le suma 1 a sus apariciones si no esta le da valor 1
 (defun add-palabra-aux (palabra lista)
@@ -127,7 +119,11 @@
     (/ ;; Unigram
       (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
       *palabras-totales*)
-    (get-probabilidad palabra))) ;; Bigram ;; TODO
+    (if (null (rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal)))
+      (get-probabilidad palabra) ;; TODO caso en el q palabra no aparece nunca detras de palabra-anterior
+      (/ ;; Bigram
+	(rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal))
+	(rest (assoc palabra-anterior (gethash (codifica-palabra palabra-anterior) *corpus*) :test #' string-equal))))))
 
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -144,30 +140,15 @@
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
 (defun entrenamiento (fichero)
+  (let ((anterior nil))
   (with-open-file (s fichero)
 		  (do ((l (read-line s) (read-line s nil 'eof)))
 		      ((eq l 'eof) "Fin de Fichero.")
-		      ;; (format t "~&DEBUG entrenamieto: '~a' como '~a'"l (separa-en-bipalabras (parser l)))
 		      (loop for x in (parser l) do
 			(if (< 0 (length x))
-			    (add-palabra x))))))
-
-;; PALABRAS DOBLES
-;; 			(loop for x in (separa-en-bipalabras (parser l))
-;; 			    do
-;; 			    (if (< 0 (length (first x)))
-;; 				(if (null (second x))
-;; 				    (add-palabra (first x))
-;; 				  (add-palabra (string-concat (first x) " "(second x)))))))))
-
-(defun separa-en-bipalabras (lista)
-  (loop for i from 0 to (1- (length lista))
-	collect
-	(list
-	 (nth i lista)
-	 (nth (1+ i) lista ))))
-;; (separa-en-bipalabras '("hola" "amigo" "mio"))
-;; (("hola" "amigo") ("amigo" "mio") ("mio" NIL))
+			    (add-palabra x anterior))
+			(setf anterior x))))))
+;; TODO que un pto signifique que (setf anterior nil)
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
@@ -272,11 +253,10 @@
 ;;> (codifica-palabra 'hola)
 ;; 4652
 
-;; Pasa una lista de numeros '(1 2 3 4 5) a un literal '54321
+;; Pasa una lista de numeros '(1 2 3 4 5) a un literal '12345
 (defun lista-a-numero-aux (lista)
   (let ((tam (1- (length lista)))
 	(l (reverse lista)))
-					;(format t "~&lista ~a"lista)
     (loop for i from 0 to tam
 	  summing
 	  (* (expt 10 i) (nth i l)))))
