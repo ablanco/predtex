@@ -10,6 +10,44 @@
 
 (defun concatena (a b)
 (string-concat (string a) (string b)))
+
+;; Sin uso
+;; (defun separa-en-bipalabras (lista)
+;;   (loop for i from 0 to (1- (length lista))
+;; 	collect
+;; 	(list
+;; 	 (nth i lista)
+;; 	 (nth (1+ i) lista ))))
+;; (separa-en-bipalabras '("hola" "amigo" "mio"))
+;; (("hola" "amigo") ("amigo" "mio") ("mio" NIL))
+
+;; entrenamiento
+;; PALABRAS DOBLES
+;; 			(loop for x in (separa-en-bipalabras (parser l))
+;; 			    do
+;; 			    (if (< 0 (length (first x)))
+;; 				(if (null (second x))
+;; 				    (add-palabra (first x))
+;; 				  (add-palabra (string-concat (first x) " "(second x)))))))))
+
+;; add-palabra antiguo
+;;   (let*
+;;       ((palabras (parser palabra))
+;;        (numero (codifica-palabra (first palabras)))
+;;        (numero-compuesto nil))
+;;     ;; 	 (format t " numero '~a' numero-compuesto '~a'"numero (codifica-palabra palabra))
+;;     (setf *palabras-totales* (1+ *palabras-totales*))
+;;     (setf (gethash numero *corpus*)
+;; 	  (add-palabra-aux (first palabras) (gethash numero *corpus*)))
+;;     (cond
+;;      ((< 1 (length palabras)) ;;Palabra compuesta
+;;       (set-key (first palabras) (second palabras))
+;;       ;; 			(setf palabra-compuesta (string-concat (first palabras) " " (second palabras)))
+;;       (setf numero-compuesto (codifica-palabra palabra))
+;;       (setf (gethash numero-compuesto *corpus*)
+;; 	    (add-palabra-aux palabra (gethash numero-compuesto *corpus*))))
+;;      (t
+;;       (set-key (first palabras) nil))))) ;;Palabra simple
  
  
 ;; MAL
