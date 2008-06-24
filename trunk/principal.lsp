@@ -98,7 +98,7 @@
     (set-key-aux
      palabra1
      (lista-a-numero-aux (subseq (codifica-palabra-lista palabra1) 0 (1- (length palabra1))))
-     numero)))
+     numero))))
 
 (defun set-key-aux (palabra indice numero)
   (if (member numero (gethash indice *corpus-key*))
@@ -147,6 +147,12 @@
 				  (if (punto-al-final x)
 				    (setf anterior nil)
 				    (setf anterior x)))))))))
+
+(defun tiene-letras (palabra)
+  (let ((result nil))
+    (loop for x across palabra while (not result) do
+      (if (not (equal x '#\.))
+	(setf result t)))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
