@@ -2492,7 +2492,7 @@ Lo siento, soy policía. Lo siento, Larry.
 CÁMARA: cara de Larry. 
 Se oye cómo entran muchos policías. 
 PULP FICTION
-Folletín: 1 . Novela
+Folletín: 1 Novela
 que se acostumbraba publicar...
 por partes en un periódico,
 con sucesos y coincidencias...
@@ -2564,7 +2564,7 @@ Yo tampoco quiero.
 Pero un día va a ser matar
 o morir nosotros.
 O va a haber unos judíos que tienen
-la tienda desde hace  años.
+la tienda desde hace años.
 El abuelo Irving detrás
 del mostrador con una Magnum.
 Prueba con un teléfono,
@@ -2596,7 +2596,7 @@ sin matar a nadie.
 Camareras? Olvídalo.
 Sacrificar la vida por la caja?
 A los mozos,
-ilegales que ganan $1 . la hora...
+ilegales que ganan $1 la hora...
 les importa un carajo
 si asaltas al dueño.
 Los clientes no saben
@@ -2634,7 +2634,7 @@ TI EMPOS VIOLENTOS
 - Cuéntame de los bares de hachís.
 - ¿Qué quieres saber?
 - ¿El hachís es legal?
-- Es legal, pero no 1  por 1 .
+- Es legal, pero no 1 por 1
 No puedes llegar a un restaurante
 y fumar un cigarrillo de marihuana.
 Puedes fumar en tu casa
@@ -3082,7 +3082,7 @@ Pendejo.
  Vincent Vega está presente?
 Mi negro...
 ven acá, cabrón.
-Aquí están sus cigarrillos. $1 ,.
+Aquí están sus cigarrillos. $1 
 Y cerillos.
 Hace que cada parte de tu cuerpo
 sea como la punta de un pene.
@@ -3144,7 +3144,7 @@ La heroína está volviendo
 a tener éxito.
 Bueno, dame 3 gramos del V-8.
 Si es tan buena como dices,
-te compro otros $1 ..
+te compro otros $1.
 Espero que todavía me quede
 un poco para ti.
 Mira, te voy a dar un poco
@@ -4088,7 +4088,7 @@ Dios mío.
 Qué hora es?
 Son casi las 9 de la mañana.
 A qué hora llega nuestro tren?
-A las 1 1 .
+A las 1 1
 - ¿Sabes qué voy a desayunar?
 - ¿Qué, bomboncito?
 Voy a pedir un plato de panqueques
@@ -4486,7 +4486,7 @@ en el Valle!
 SiJimmie no está,
 no sé qué voy a hacer.
 No tengo otros socios
-en la zona del  8.
+en la zona del 8.
 Jimmie, ¿cómo estás?
 Yo y mi amigo estamos metidos
 en un lío del carajo.
@@ -4621,8 +4621,8 @@ Dime quiénes son los protagonistas.
 Jules (Negro)
 Vincent (Blanco)''
 Un Cadáver Sin Cabeza''
-Están a  minutos. Llego en 1 0.
- minutos,  segundos después''
+Están a minutos. Llego en 1 0.
+ minutos, segundos después''
 Tú eres Jimmie, ¿verdad?
 La casa es tuya?
 - Así es.
@@ -4723,11 +4723,11 @@ Así que por favorcito corazón,
 limpien el jodido auto.
 No me mires así, ¿quieres?
 Siento esa mirada.
-Es un Chevy Nova 1  4.
+Es un Chevy Nova 1 4.
 Verde.
 Nada, fuera del revoltijo
 del interior.
-Como  minutos.
+Como minutos.
 Un tipo a quien nadie
 va a extrañar.
 Eres un buen hombre,Joe.
@@ -5216,13 +5216,13 @@ Abrela...
 saca el dinero.
 Cuéntalo.
 Cuánto dinero hay?
-Como $1 ..
+Como $1.
 Bueno, métetelo
 al bolsillo, es tuyo.
 Contando el resto de las carteras
 y lo de la caja...
 fue un atraco bastante bueno.
-Le das a ese zoquete $1 .
+Le das a ese zoquete $1
 y lo mato por principio!
 El no les va a hacer un carajo.
 Vincent, cállate la maldita boca!
@@ -5408,7 +5408,7 @@ Quien hizo esto no fue un jodido amateur,
 es el trabajo de alguien que conoce...
 lo puedes saber por los casquillos en el piso.
 Fuero ráfagas cortas tal vez. Todas las balas dieron en el blanco.
-Si  fuera obra de una sola persona estaría loco.
+Si fuera obra de una sola persona estaría loco.
 ¿Quién es la novia?
 No sabemos...
 El nombre que había en el registro era Anne Mae Maquiavela y es falso.
@@ -5422,7 +5422,7 @@ Esos hijos de puta no la mataron.
 Elle Driver: miembro de la escuadra de asesinatos Víbora mortal.
 Nunca me agradaste... de hecho te desprecio.
 Pero nunca sugerí que nunca te he respetado.
-Morir durmiendo es un lujo que para  los de nuestra
+Morir durmiendo es un lujo que para los de nuestra
 especie es muy difícil de lograr.
 Mi regalo...
 Hola Bill.
@@ -5461,7 +5461,7 @@ Cuatro años después.
 Este momento soy yo el más sádico.
 Bill.
 Mi bebe.
-Tienes  horas para cogértela mi amigo,
+Tienes horas para cogértela mi amigo,
 ¿quieres que sea gratis o qué?
 Si muchacho.
 Unas reglas...
@@ -5522,7 +5522,7 @@ Tuvo su primer encuentro con la muerta a la edad de 9.
 Fue a esa edad que ella fue testigo de la muerte de sus padres a manos
 del más sanguinario jefe Jakuza. Jefe Matzumoto.
 Ella juró venganza, afortunadamente para ella,
-el jefe Matzumoto era un pedofila, a los  ella obtuvo su venganza.
+el jefe Matzumoto era un pedofila, a los ella obtuvo su venganza.
 Mírame Matzumoto...
 ...mírame bien la cara.
 Mírame a los ojos.
@@ -5532,11 +5532,11 @@ Mira mi boca.
 ...que asesinaste?
 A los veinte ella era una de las mejores asesinas en el mundo.
 FRIH FIRST
-A los  participó en el asesinato de 9 personas inocentes,
+A los participó en el asesinato de 9 personas inocentes,
 incluyendo mi hija aún por nacer.
 En una pequeña capilla en El Paso, Texas.
 Pero en aquel día, cuatro años antes, ella cometió un gran error...
-debió de haber matado a .
+debió de haber matado a
 Como sea antes que la satisfacción sea mía, primero lo primero.
 Despierta dedo gordo.
 Nuestra parte terminó... ahora hagamos que los otros pequeños se muevan.
@@ -5593,7 +5593,7 @@ Día, noche, tarde. ¿Quien le importa?
 Trae el sake!
 ¿Cómo es que siempre me toca traer el sake?
 Escucha bien...
-Por  años, has hecho el pescado y yo he traído el sake.
+Por años, has hecho el pescado y yo he traído el sake.
 Si esto fuera el ejército, sería general ahora!
 Sería general ahora!
 así que serías general, ¿eh?
@@ -5647,7 +5647,7 @@ Me tomará un mes...
 Sugiero que pase el tiempo practicando.
 Un mes después.
 He completado el trabajo...
-...que juré a dios,  años atrás,
+...que juré a dios, años atrás,
 ...nunca volver a hacer de nuevo.
 He creado, "algo que mata personas".
 Y con ese propósito, he tenido éxito.
@@ -5672,7 +5672,7 @@ estaba vestida como una villana, era guerrera y mejor amiga de O-Ren.
 Y segunda al mando. Mitad francesa mitad japonesa era Sofie Fatale.
 Y otra de las protegidas de Bill.
 La chica joven en uniforme de escuela, es la guardaespaldas de O-Ren.
-De  años, Go Go Yubari
+De años, Go Go Yubari
 ...Go Go tal vez es joven... pero lo que le falta de edad, lo empareja en maldad.
 ¿Te gustan los Ferraris?
 Ferrari... basura italiana.
@@ -5685,7 +5685,7 @@ Si.
 ¿Ven lo que digo?
 El calvo en el traje negro y con la mascara de Kato...
 es Johnny Mo 
-El general del ejército personal de O-Ren. Los locos .
+El general del ejército personal de O-Ren. Los locos
 Y por si preguntan... como una mitad japonesa, china y americana
 se convirtió en la jefa de todos los jefes en Tokyo,
 ¿Japan?... Les diré...
@@ -6056,7 +6056,7 @@ Gracias.
 Me dices que cortó a través de 
 guardaespaldas, antes de llegar a O-ren.
 No, en realidad no habían ,
-sólo que se llamaban los  locos.
+sólo que se llamaban los locos.
 - ¿Por qué?
 - No lo sé. Supongo que pensaron que parecía chic.
 De todas formas, todos
@@ -6110,7 +6110,7 @@ Budd, Larry te quiere ver.
 Date un toque, se alguien.
 ¿Me buscas a mi?
 No sé en que tu trabajabas, que te dejaban
-llegar  minutos tarde, pero no era yo el dueño.
+llegar minutos tarde, pero no era yo el dueño.
 - ¿Quieres que me vaya?
 - No. Quiero que esperes.
 Larry, no hay nadie allá afuera.
@@ -6223,7 +6223,7 @@ el corazón a mi hermano.
 Capítulo ocho: La
 tutela cruel de Pai Mei.
 Había una vez, en China,
-alrededor del año .
+alrededor del año
 El jefe sacerdote del los budas
 blancos, Pai Mei, caminaba por una calle,
 contemplando, lo que un hombre con poderes
@@ -6290,7 +6290,7 @@ nuevo, me hacen sentir dolor.
 Vas a divertirte mucho cargando
 cubos de agua para arriba y abajo.
 - ¿Cuando te vuelvo a ver? Ese es
-el título de una canción de los .
+el título de una canción de los
 - ¿Qué?
 - Nada.
 Cuando me diga que estás lista.
@@ -6502,7 +6502,7 @@ si la mordida es en
 el tobillo o el pulgar.
 Sin embargo, la mordida en la cara
 o el torso puede causar la muerte...
-en un lapso de  minutos.
+en un lapso de minutos.
 Deberías escuchar esto
 porque te interesa.
 La cantidad de veneno que se inyecta
@@ -6510,11 +6510,11 @@ en una sola mordida puede ser variable.
 Sabes siempre me gustó
 esa palabra: Variable.
 Te da una cierta oportunidad.
-De  a  miligramos
+De a miligramos
 pueden ser fatales...
 si la mordida no se trata a tiempo.
 Sin embargo, la Cobra Negra puede inocular
-de  a  mg en una sola mordida.
+de a mg en una sola mordida.
 Ahora...
 en estos últimos minutos
 agonizantes que te quedan de vida...
@@ -6603,12 +6603,12 @@ La primera era Esteban Vihaio.
 Esteban era un chulo, y
 amigo de la madre de Bill.
 Tenía un negocio en Acuna,
-México hacía  años.
+México hacía años.
 Su ejército, los chicos de Acuna...
 conformado por los retoños de
 sus putas, eran dueños de Acuna...
 l dirigía a estos chicos.
-Ahora, a sus  años, sería
+Ahora, a sus años, sería
 un caballero retirado...
 que podría apuntarme
 en dirección de Bill.
@@ -6844,7 +6844,7 @@ Cuando era pequeña...
 mi padre era famoso.
 Era el mejor samurai del imperio...
 y era el decapitador del Shogun.
-Le cortó la cabeza a  Señores.
+Le cortó la cabeza a Señores.
 Cuando mi papá volvía a
 casa con mamá y la veía...
 se olvidaba de todas las muertes.
@@ -7003,7 +7003,7 @@ Entonces, comencé a pensar.
 Quizás estaba embarazada.
 Fácil de usar, quite la tapa, y orine
 en la parte absolvente por 5 segundos.
-Espere el resultado en sólo  segundos,
+Espere el resultado en sólo segundos,
 hasta que la luz aparezca en la ventana.
 Mierda! Lo que no sabía
 era que en algún momento...
