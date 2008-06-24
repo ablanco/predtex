@@ -148,12 +148,6 @@
 				    (setf anterior nil)
 				    (setf anterior x)))))))))
 
-(defun tiene-letras (palabra)
-  (let ((result nil))
-    (loop for x across palabra while (not result) do
-      (if (not (equal x '#\.))
-	(setf result t)))))
-
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
 (defun aprendizaje (palabra)
