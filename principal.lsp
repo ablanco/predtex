@@ -30,7 +30,7 @@
 
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
-  (setf teclado
+  (setf *teclado*
 	(list
 	 (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0)
 	 (cons (codifica-palabra-ascii ". 1") 1)
@@ -48,14 +48,32 @@
 
 ;; Devuelve una lista de palabras que es llegar posible escribir, que empiezan por las
 ;; pulsaciones dadas, ordenadas por probalididad
-(defun get-lista-palabras-relacionadas (numero &optional (palabra-anterior nil))
+(defun get-lista-palabras-relacionadas (numero &optional (palabra-anterior nil) (lista-numeros nil))
   (let ((lista (get-lista-palabras-relacionadas-aux numero)))
     (subseq ;; Tomamos solo una lista de tam maximo *profundidad*
-     (ordena-por-probabilidad (calcula-probabilidad lista palabra-anterior))
+     (ordena-por-probabilidad 
+      (calcula-probabilidad 
+	(append 
+	 lista 
+	 (get-posibles-palabras ;;Palabras que puedes llegar a escribir teniendo..
+	  palabra-anterior ; palabra-anterior ...
+	  lista-numeros)) ;y habiendo pulsado los numeros
+      palabra-anterior)) ;; Probabilidad bipalabra
      0
      (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
 ;; (get-lista-palabras-relacionadas 771)
 ;; ("sr. naranja," . 1/3668) ("sr. naranja." . 11/47684) ("sr. blanco." . 5/23842) ("sr. azul" . 2/11921) ("sr. blanco," . 2/11921) ("sr. rubio." . 1/6812))
+
+;; Devuelve una lista de palabras relacionadas con la palabra anterior y que contengan la lista de numeros
+(defun get-posibles-palabras (palabra-anterior lista-numeros)
+(loop for palabra in (gethash palabra-anterior *corpus-dobles*)
+when (member 
+      lista-numeros 
+      (list (subseq (codifica-palabra-lista (first palabra)) 0 (min (length lista-numeros) (length (first palabra))))) :test #'equal)
+collect palabra))
+;; (get-posibles-palabras (gethash "una" *corpus-dobles*) '(7 2))
+;; (("palabra" . 1) ("rama" . 1) ("rata" . 1) ("pasada" . 1) ("sanitaria" . 1)
+;;  ("pancita" . 1) ("panza" . 4) ("pareja" . 1) ("pata" . 1) ("pasta" . 1))
 
 ;; Funcion auxiliar
 (defun get-lista-palabras-relacionadas-aux (numero)
@@ -166,7 +184,7 @@
 ;; Devuelve las palabras que se pueden llegar a escribir con esas
 ;; pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion (teclas &optional (palabra-anterior nil))
-  (get-lista-palabras-relacionadas (lista-a-numero-aux teclas) palabra-anterior))
+  (get-lista-palabras-relacionadas (lista-a-numero-aux teclas) palabra-anterior teclas))
 
 ;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
 (defun funcion-de-evaluacion (cadena)
@@ -254,10 +272,10 @@
 ;;Codifica una palabra a una lista de numeros del teclado
 (defun codifica-palabra-lista (palabra)
   (loop for x across (string-downcase palabra)
-	when (assoc (char-code x) teclado :test #'member)
+	when (assoc (char-code x) *teclado* :test #'member)
 	collect 
 	(rest
-	 (assoc (char-code x) teclado :test #'member))))
+	 (assoc (char-code x) *teclado* :test #'member))))
 ;;> (codifica-palabra-lista 'hola)
 ;; (4 6 5 2)
 
@@ -357,6 +375,7 @@
 	(pred nil)
 	(palabra nil)
 	(frase '())
+	(palabra-anterior nil)
 	(indice 0))
     (loop while (not terminado) do
 	  (escribe-teclado canal)
@@ -375,6 +394,7 @@
 	   ((eq tecla 'e) ;; ---------------------------------------------------- Espacio en blanco
 	    (aprendizaje palabra)
 	    (setf teclas '())
+	    (setf palabra-anterior palabra) ;;Palabra anterior
 	    (setf frase (append frase (list palabra)))
 	    (print-prediccion canal teclas palabra pred frase))
 	   ((eq tecla 'b) ;; ---------------------------------------------------- Borrar ultima pulsacion
@@ -382,9 +402,7 @@
 		(format canal "~&~%No hay nada que borrar")
 	      (setf teclas (reverse (rest (reverse teclas)))))
 	    (setf indice 0)
-	    (if (< 0 (length frase))
-		(setf pred (prediccion teclas (first (reverse frase))))
-	      (setf pred (prediccion teclas)))
+	    (setf pred (prediccion teclas palabra-anterior))
 	    (setf palabra (first (nth indice pred)))
 	    (print-prediccion canal teclas palabra pred frase))
 	   ((eq tecla 'n) ;; ---------------------------------------------------- Nueva palabra
@@ -396,7 +414,13 @@
 	    (print-prediccion canal teclas palabra pred frase))
 	   ((eq tecla 'f) ;; ---------------------------------------------------- Finalizar frase
 	    (with-open-file (fich *diccionario-location* :direction :output :if-exists :append)
-			    (write-line (parser-inversa frase) fich)))
+			    (write-line (parser-inversa frase) fich))
+	    (setf palabra-anterior nil) ;;TODO, hay que reiniciar los valores de las variables?
+	    (setf teclas '())
+	    (setf tecla nil)	    
+	    (setf palabra nil)
+	    (setf frase '())
+	    (setf indice 0))
 	   ((and (eq tecla 'o) (not (null pred)) (not (null palabra))) ;; ------- Siguiente palabra
 	    (format canal "~&~%Introduzca el indice de la palabra deseada: ")
 	    (setf indice (read))
@@ -404,10 +428,8 @@
 	    (print-prediccion canal teclas palabra pred frase))
 	   ((member tecla '(1 2 3 4 5 6 7 8 9)) ;; ------------------------------ Pulsar tecla
 	    (setf teclas (append teclas (list tecla)))
-	    (setf indice 0)
-	    (if (< 0 (length frase))
-		(setf pred (prediccion teclas (first (reverse frase))))
-	      (setf pred (prediccion teclas)))
+	    (setf indice 0)	    
+	    (setf pred (prediccion teclas palabra-anterior))
 	    (setf palabra (first (nth indice pred)))
 	    (print-prediccion canal teclas palabra pred frase))
 	   (t
