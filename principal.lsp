@@ -285,7 +285,7 @@
 ;; Lanza el programa mostrando los resultados por pantalla
 (defun inicio ()
   (configuracion t)
-  (carga-datos t)
+  (carga-dicc t)
   (main t))
 
 ;; Lanza el programa escribiendo los resultados en un fichero
@@ -294,28 +294,37 @@
   )
 
 ;; Carga los datos necesarios para ejecutar las funciones
-(defun carga-datos (canal)
+(defun carga-dicc (canal)
   (crea-teclado)
-  (format canal "~&Carga del diccionario")
-  (entrenamiento *diccionario-location*)
-  (format canal "~&Proceso de entrenamiento~%~%")
-  (entrenamiento *corpus-location*))
+  (format canal "~&~%Carga del diccionario~%~%")
+  (entrenamiento *diccionario-location*))
 
 ;; Opciones del programa
 (defun configuracion (canal)
   (escoge-corpus canal)
-  (format canal "~&Número de palabras predichas (por ejemplo 9): ")
+  (format canal "~&~%Número de palabras predichas (por ejemplo 9): ")
   (setf *profundidad* (read)))
 
 ;; Permite escoger el corpus a utilizar
 (defun escoge-corpus (canal)
-  (let ((lista (directory 'corpus/*)))
-    (format canal "~&Escoge el corpus que quieres usar: ")
-    (loop for x in lista
+  (let ((lista (directory 'corpus/*))
+	(opcion 1)
+	(terminado nil))
+    (loop while (not terminado) do
+      (format canal "~&Escoge el corpus que quieres usar: ")
+      (loop for x in lista
 	  for i from 1 to (length lista)
 	  do (format canal "~&~a.- ~a" i x))
-    (format canal "~&Corpus a utilizar: ")
-    (setf *corpus-location* (nth (1- (read)) lista))))
+      (format canal "~&~a.- Continuar" (1+ (length lista)))
+      (format canal "~&Corpus a utilizar: ")
+      (setf opcion (read))
+      (cond
+	((= opcion (1+ (length lista)))
+	 (setf terminado t))
+	(t
+	 (setf *corpus-location* (nth (1- opcion) lista))
+	 (format canal "~&Proceso de entrenamiento~%~%")
+	 (entrenamiento *corpus-location*))))))
 
 ;; Bucle principal del algoritmo
 (defun main (canal)
