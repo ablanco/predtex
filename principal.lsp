@@ -65,8 +65,10 @@
       (gethash x *corpus*))))
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
-(defun add-palabra (palabra &optional (palabra-anterior nil))
-  (let ((numero (codifica-palabra palabra)))
+(defun add-palabra (p1 &optional (p2 nil))
+  (let* ((palabra (sin-punto p1))
+	 (palabra-anterior (sin-punto p2))
+	 (numero (codifica-palabra palabra)))
     (setf *palabras-totales* (1+ *palabras-totales*))
     (setf (gethash numero *corpus*)
 	  (add-palabra-aux palabra (gethash numero *corpus*)))
@@ -111,7 +113,7 @@
       (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
       *palabras-totales*)
     (if (null (rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal)))
-      (get-probabilidad palabra) ;; TODO caso en el q palabra no aparece nunca detras de palabra-anterior
+      0 ;; Caso en el q palabra no aparece nunca detras de palabra-anterior
       (/ ;; Bigram
 	(rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal))
 	(rest (assoc palabra-anterior (gethash (codifica-palabra palabra-anterior) *corpus*) :test #' string-equal))))))
@@ -268,6 +270,14 @@
 ;; Devuelve cierto si el último caracter de la palabra es un '.'
 (defun punto-al-final (palabra)
   (equal (aref palabra (1- (length palabra))) '#\.))
+
+;; Le quita el punto del final a la palabra, si es que lo tenia
+(defun sin-punto (palabra)
+  (if (null palabra)
+    nil
+    (if (punto-al-final palabra)
+      (subseq palabra 0 (1- (length palabra)))
+      palabra)))
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
