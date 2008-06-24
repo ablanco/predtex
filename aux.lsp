@@ -4,6 +4,27 @@
   (format t "~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%")
   (inicio))
 
+
+
+;; ANTIGUO
+;; ;; Incluye en corpus key todas las posibles palabras que se pueden llegar a escribir a partir de la dada
+;; (defun set-key (palabra1 &optional (palabra2 nil))
+;;   (let ((numero (codifica-palabra palabra1)))
+;;     ;; (format t "~&DeBUG setkey: '~a' (ind: ~a) (cod: ~a)" palabra1 indice (codifica-palabra palabra1))
+;; ;; (if (not (null palabra2)) ;;Si no es una palabra compuesta
+;;     ;; 		(format t "-> '~a'  (cod: ~a)" (string-concat palabra1 " " palabra2) (codifica-palabra (string-concat palabra1 " " palabra2))))
+;;     (set-key-aux
+;;      palabra1
+;;      (lista-a-numero-aux (subseq (codifica-palabra-lista palabra1) 0 (1- (length palabra1))))
+;;      numero)
+;;     (if (null palabra2) ;;Si no es una palabra compuesta
+;; 	nil ;;No se hace nada
+;;       (set-key-aux ;;Para añadir una palabra compuesta
+;;        (string-concat palabra1 " " palabra2)
+;;        numero
+;;        (codifica-palabra (string-concat palabra1 " " palabra2))))))
+
+
 ;(defun linea-a-lista-palabras (l)
 ;(loop for x across l collect x ))
 ;(char-code (char-downcase x))))
