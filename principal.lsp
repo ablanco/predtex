@@ -311,7 +311,7 @@
 	(opcion 1)
 	(terminado nil))
     (loop while (not terminado) do
-      (format canal "~&Escoge el corpus que quieres usar: ")
+      (format canal "~&Escoge el corpus que quieres procesar: ")
       (loop for x in lista
 	  for i from 1 to (length lista)
 	  do (format canal "~&~a.- ~a" i x))
