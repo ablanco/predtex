@@ -60,9 +60,9 @@
 ;; Funcion auxiliar
 (defun get-lista-palabras-relacionadas-aux (numero)
   (append
-    (gethash numero *corpus*) ;; Las que se pueden escribir con esas pulsaciones
-    (loop for x in (gethash numero *corpus-key*) append ;; Las que se pueden llegar a escribir con esas pulsaciones
-      (gethash x *corpus*))))
+   (gethash numero *corpus*) ;; Las que se pueden escribir con esas pulsaciones
+   (loop for x in (gethash numero *corpus-key*) append ;; Las que se pueden llegar a escribir con esas pulsaciones
+	 (gethash x *corpus*))))
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun add-palabra (p1 &optional (p2 nil))
@@ -73,9 +73,9 @@
     (setf (gethash numero *corpus*)
 	  (add-palabra-aux palabra (gethash numero *corpus*)))
     (cond
-      ((not (null palabra-anterior)) ;; Palabra doble
-	(setf (gethash palabra-anterior *corpus-dobles*)
-	      (add-palabra-aux palabra (gethash palabra-anterior *corpus-dobles*)))))
+     ((not (null palabra-anterior)) ;; Palabra doble
+      (setf (gethash palabra-anterior *corpus-dobles*)
+	    (add-palabra-aux palabra (gethash palabra-anterior *corpus-dobles*)))))
     (set-key palabra)))
 
 ;; Inserta una palabra en una lista, si esta le suma 1 a sus apariciones si no esta le da valor 1
@@ -109,14 +109,14 @@
 ;; Devuelve la probabilidad de una palabra
 (defun get-probabilidad (palabra &optional (palabra-anterior nil))
   (if (null palabra-anterior)
-    (/ ;; Unigram
-      (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
-      *palabras-totales*)
+      (/ ;; Unigram
+       (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
+       *palabras-totales*)
     (if (null (rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal)))
-      0 ;; Caso en el q palabra no aparece nunca detras de palabra-anterior
+	0 ;; Caso en el q palabra no aparece nunca detras de palabra-anterior
       (/ ;; Bigram
-	(rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal))
-	(rest (assoc palabra-anterior (gethash (codifica-palabra palabra-anterior) *corpus*) :test #' string-equal))))))
+       (rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal))
+       (rest (assoc palabra-anterior (gethash (codifica-palabra palabra-anterior) *corpus*) :test #' string-equal))))))
 
 ;; FUNCIONES PROBABILISTICAS
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -134,15 +134,15 @@
 ;; de las palabras e inicia las probabilidades
 (defun entrenamiento (fichero)
   (let ((anterior nil))
-  (with-open-file (s fichero)
-		  (do ((l (read-line s) (read-line s nil 'eof)))
-		      ((eq l 'eof) "Fin de Fichero.")
-		      (loop for x in (parser l) do
-			(if (< 0 (length x))
-			    (add-palabra x anterior))
-			(if (punto-al-final x)
-			    (setf anterior nil)
-			    (setf anterior x)))))))
+    (with-open-file (s fichero)
+		    (do ((l (read-line s) (read-line s nil 'eof)))
+			((eq l 'eof) "Fin de Fichero.")
+			(loop for x in (parser l) do
+			      (if (< 0 (length x))
+				  (add-palabra x anterior))
+			      (if (punto-al-final x)
+				  (setf anterior nil)
+				(setf anterior x)))))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
@@ -175,7 +175,7 @@
   (loop for x in (parser cadena) do
 	(aprendizaje x)))
 
-;; FUNCIONES DE CODIFICACIÓN
+;; FUNCIONES DE CODIFICACION
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;Funcion que pasa de una cadena a una lista de cadenas (palabras)
@@ -274,12 +274,12 @@
 ;; Le quita el punto del final a la palabra, si es que lo tenia
 (defun sin-punto (palabra)
   (if (null palabra)
-    nil
+      nil
     (if (punto-al-final palabra)
-      (subseq palabra 0 (1- (length palabra)))
+	(subseq palabra 0 (1- (length palabra)))
       palabra)))
 
-;; FUNCIONES DE PRESENTACIÓN
+;; FUNCIONES DE PRESENTACION
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Lanza el programa mostrando los resultados por pantalla
@@ -311,20 +311,20 @@
 	(opcion 1)
 	(terminado nil))
     (loop while (not terminado) do
-      (format canal "~&Escoge el corpus que quieres procesar: ")
-      (loop for x in lista
-	  for i from 1 to (length lista)
-	  do (format canal "~&~a.- ~a" i x))
-      (format canal "~&~a.- Continuar" (1+ (length lista)))
-      (format canal "~&Corpus a utilizar: ")
-      (setf opcion (read))
-      (cond
-	((= opcion (1+ (length lista)))
-	 (setf terminado t))
-	(t
-	 (setf *corpus-location* (nth (1- opcion) lista))
-	 (format canal "~&Proceso de entrenamiento~%~%")
-	 (entrenamiento *corpus-location*))))))
+	  (format canal "~&Escoge el corpus que quieres procesar: ")
+	  (loop for x in lista
+		for i from 1 to (length lista)
+		do (format canal "~&~a.- ~a" i x))
+	  (format canal "~&~a.- Continuar" (1+ (length lista)))
+	  (format canal "~&Corpus a utilizar: ")
+	  (setf opcion (read))
+	  (cond
+	   ((= opcion (1+ (length lista)))
+	    (setf terminado t))
+	   (t
+	    (setf *corpus-location* (nth (1- opcion) lista))
+	    (format canal "~&Proceso de entrenamiento~%~%")
+	    (entrenamiento *corpus-location*))))))
 
 ;; Bucle principal del algoritmo
 (defun main (canal)
@@ -360,7 +360,7 @@
 	      (setf teclas (reverse (rest (reverse teclas)))))
 	    (setf indice 0)
 	    (if (< 0 (length frase))
-	      (setf pred (prediccion teclas (first (reverse frase))))
+		(setf pred (prediccion teclas (first (reverse frase))))
 	      (setf pred (prediccion teclas)))
 	    (setf palabra (first (nth indice pred)))
 	    (print-prediccion canal teclas palabra pred frase))
@@ -383,7 +383,7 @@
 	    (setf teclas (append teclas (list tecla)))
 	    (setf indice 0)
 	    (if (< 0 (length frase))
-	      (setf pred (prediccion teclas (first (reverse frase))))
+		(setf pred (prediccion teclas (first (reverse frase))))
 	      (setf pred (prediccion teclas)))
 	    (setf palabra (first (nth indice pred)))
 	    (print-prediccion canal teclas palabra pred frase))
