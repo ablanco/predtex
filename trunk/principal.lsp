@@ -74,7 +74,7 @@
       ((not (null palabra-anterior)) ;; Palabra doble
 	(setf (gethash palabra-anterior *corpus-dobles*)
 	      (add-palabra-aux palabra (gethash palabra-anterior *corpus-dobles*)))))
-    (set-key palabra nil)))
+    (set-key palabra)))
 
 ;; Inserta una palabra en una lista, si esta le suma 1 a sus apariciones si no esta le da valor 1
 (defun add-palabra-aux (palabra lista)
@@ -91,21 +91,12 @@
 ;; (("hola" . 2) ("uno" . 1) ("dos" . 2) ("tres" . 3))
 
 ;; Incluye en corpus key todas las posibles palabras que se pueden llegar a escribir a partir de la dada
-(defun set-key (palabra1 palabra2)
+(defun set-key (palabra1)
   (let ((numero (codifica-palabra palabra1)))
-    ;; (format t "~&DeBUG setkey: '~a' (ind: ~a) (cod: ~a)" palabra1 indice (codifica-palabra palabra1))
-;; (if (not (null palabra2)) ;;Si no es una palabra compuesta
-    ;; 		(format t "-> '~a'  (cod: ~a)" (string-concat palabra1 " " palabra2) (codifica-palabra (string-concat palabra1 " " palabra2))))
     (set-key-aux
      palabra1
      (lista-a-numero-aux (subseq (codifica-palabra-lista palabra1) 0 (1- (length palabra1))))
-     numero)
-    (if (null palabra2) ;;Si no es una palabra compuesta
-	nil ;;No se hace nada
-      (set-key-aux ;;Para añadir una palabra compuesta
-       (string-concat palabra1 " " palabra2)
-       numero
-       (codifica-palabra (string-concat palabra1 " " palabra2))))))
+     numero)))
 
 (defun set-key-aux (palabra indice numero)
   (if (member numero (gethash indice *corpus-key*))
@@ -147,8 +138,9 @@
 		      (loop for x in (parser l) do
 			(if (< 0 (length x))
 			    (add-palabra x anterior))
-			(setf anterior x))))))
-;; TODO que un punto '.' signifique que (setf anterior nil)
+			(if (punto-al-final x)
+			    (setf anterior nil)
+			    (setf anterior x)))))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
@@ -253,6 +245,16 @@
 ;;> (codifica-palabra 'hola)
 ;; 4652
 
+;;Codifica una palabra a una lista de numeros del teclado
+(defun codifica-palabra-lista (palabra)
+  (loop for x across (string-downcase palabra)
+	when (assoc (char-code x) teclado :test #'member)
+	collect 
+	(rest
+	 (assoc (char-code x) teclado :test #'member))))
+;;> (codifica-palabra-lista 'hola)
+;; (4 6 5 2)
+
 ;; Pasa una lista de numeros '(1 2 3 4 5) a un literal '12345
 (defun lista-a-numero-aux (lista)
   (let ((tam (1- (length lista)))
@@ -263,15 +265,9 @@
 ;;> (lista-a-numero-aux '(1 2 3 4 5))
 ;; 12345
 
-;;Codifica una palabra a una lista de numeros del teclado
-(defun codifica-palabra-lista (palabra)
-  (loop for x across (string-downcase palabra)
-	when (assoc (char-code x) teclado :test #'member)
-	collect 
-	(rest
-	 (assoc (char-code x) teclado :test #'member))))
-;;> (codifica-palabra-lista 'hola)
-;; (4 6 5 2)
+;; Devuelve cierto si el último caracter de la palabra es un '.'
+(defun punto-al-final (palabra)
+  (equal (aref palabra (1- (length palabra))) '#\.))
 
 ;; FUNCIONES DE PRESENTACIÓN
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
