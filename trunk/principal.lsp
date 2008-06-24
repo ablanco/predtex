@@ -98,7 +98,7 @@
     (set-key-aux
      palabra1
      (lista-a-numero-aux (subseq (codifica-palabra-lista palabra1) 0 (1- (length palabra1))))
-     numero))))
+     numero)))
 
 (defun set-key-aux (palabra indice numero)
   (if (member numero (gethash indice *corpus-key*))
