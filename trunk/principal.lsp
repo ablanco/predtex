@@ -32,7 +32,7 @@
 (defun crea-teclado ()
   (setf teclado
 	(list
-	 (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0) ;; TODO limpiar el corpus de estos simbolos
+	 (cons (codifica-palabra-ascii "'¿?¡()/!)#0,:;-") 0)
 	 (cons (codifica-palabra-ascii ". 1") 1)
 	 (cons (codifica-palabra-ascii 'aábc2) 2)
 	 (cons (codifica-palabra-ascii 'deéf3) 3)
@@ -133,16 +133,19 @@
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
 (defun entrenamiento (fichero)
-  (let ((anterior nil))
+  (let ((anterior nil)
+	(x nil))
     (with-open-file (s fichero)
 		    (do ((l (read-line s) (read-line s nil 'eof)))
 			((eq l 'eof) "Fin de Fichero.")
-			(loop for x in (parser l) do
-			      (if (< 0 (length x))
-				  (add-palabra x anterior))
-			      (if (punto-al-final x)
-				  (setf anterior nil)
-				(setf anterior x)))))))
+			(loop for elem in (parser l) do
+			      (setf x (limpieza elem))
+			      (cond
+				((< 0 (length x))
+				  (add-palabra x anterior)
+				  (if (punto-al-final x)
+				    (setf anterior nil)
+				    (setf anterior x)))))))))
 
 ;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
 ;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
@@ -279,6 +282,30 @@
 	(subseq palabra 0 (1- (length palabra)))
       palabra)))
 
+;; Limpia una cadena de los siguintes simbolos especiales "'¿?¡()/!#,:;-
+;; Los de cierre ? y ! se convierten a puntos .
+(defun limpieza (palabra)
+  (lista-char-a-string
+  (loop for x across (string-downcase palabra) collect
+    (cond
+      ((or (equal x '#\') (equal x '#\¿) (equal x '#\¡) (equal x '#\()
+	   (equal x '#\)) (equal x '#\/) (equal x '#\#) (equal x '#\,)
+	   (equal x '#\:) (equal x '#\;) (equal x '#\-) (equal x '#\"))
+	nil)
+      ((or (equal x '#\?) (equal x '#\!))
+       '#\.)
+      (t
+       x)))))
+
+;; Pasa una lista de char a un string, saltandose aquellos que sean nil
+(defun lista-char-a-string (l)
+  (let ((cadena '""))
+    (loop for x in l do
+      (if (null x)
+	nil
+	(setf cadena (string-concat cadena (string x)))))
+    cadena))
+
 ;; FUNCIONES DE PRESENTACION
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -287,11 +314,6 @@
   (configuracion t)
   (carga-dicc t)
   (main t))
-
-;; Lanza el programa escribiendo los resultados en un fichero
-(defun inicio-fichero (fichero)
-  ;; TODO Probablemente esta opcion no tenga sentido XD
-  )
 
 ;; Carga los datos necesarios para ejecutar las funciones
 (defun carga-dicc (canal)
