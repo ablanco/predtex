@@ -311,13 +311,13 @@
 
 ;; Lanza el programa mostrando los resultados por pantalla
 (defun inicio ()
+  (crea-teclado)
   (configuracion t)
   (carga-dicc t)
   (main t))
 
 ;; Carga los datos necesarios para ejecutar las funciones
 (defun carga-dicc (canal)
-  (crea-teclado)
   (format canal "~&~%Carga del diccionario~%~%")
   (entrenamiento *diccionario-location*))
 
