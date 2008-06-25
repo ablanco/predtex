@@ -394,7 +394,7 @@ collect palabra))
 	   ((eq tecla 'e) ;; ---------------------------------------------------- Espacio en blanco
 	    (aprendizaje palabra)
 	    (setf teclas '())
-	    (setf palabra-anterior palabra) ;;Palabra anterior
+	    (setf palabra-anterior palabra) ;; Palabra anterior
 	    (setf frase (append frase (list palabra)))
 	    (print-prediccion canal teclas palabra pred frase))
 	   ((eq tecla 'b) ;; ---------------------------------------------------- Borrar ultima pulsacion
@@ -415,9 +415,9 @@ collect palabra))
 	   ((eq tecla 'f) ;; ---------------------------------------------------- Finalizar frase
 	    (with-open-file (fich *diccionario-location* :direction :output :if-exists :append)
 			    (write-line (parser-inversa frase) fich))
-	    (setf palabra-anterior nil) ;;TODO, hay que reiniciar los valores de las variables?
+	    (setf palabra-anterior nil)
 	    (setf teclas '())
-	    (setf tecla nil)	    
+	    (setf tecla nil)
 	    (setf palabra nil)
 	    (setf frase '())
 	    (setf indice 0))
