@@ -16,15 +16,15 @@
 (defparameter *corpus-location* nil)
 (defparameter *diccionario-location* '"aprendizaje.txt")
 
-;; La key es el numero, value la lista de palabras
+;; Tablas hash con la informacion extraida de los corpus
 (defparameter *corpus* (make-hash-table))
 (defparameter *corpus-dobles* (make-hash-table :test 'equal))
 (defparameter *corpus-key* (make-hash-table))
 
 (defparameter *teclado* nil)
-(defparameter *profundidad* 15)	
+(defparameter *profundidad* 9) ;; Numero de palabras predichas
 
-(defvar *palabras-totales* 0);; Numero total de palabras reconocidas hasta el momento.
+(defvar *palabras-totales* 0) ;; Numero total de palabras reconocidas hasta el momento.
 
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
@@ -53,14 +53,14 @@
       (calcula-probabilidad 
 	(append 
 	 lista 
-	 (get-posibles-palabras ;;Palabras que puedes llegar a escribir teniendo..
-	  palabra-anterior ; palabra-anterior ...
-	  lista-numeros)) ;y habiendo pulsado los numeros
+	 (get-posibles-palabras ;; Palabras que puedes llegar a escribir teniendo..
+	  palabra-anterior ;; palabra-anterior ...
+	  lista-numeros)) ;; y habiendo pulsado los numeros
       palabra-anterior)) ;; Probabilidad bipalabra
      0
      (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
-;; (get-lista-palabras-relacionadas 771)
-;; ("sr. naranja," . 1/3668) ("sr. naranja." . 11/47684) ("sr. blanco." . 5/23842) ("sr. azul" . 2/11921) ("sr. blanco," . 2/11921) ("sr. rubio." . 1/6812))
+;; (get-lista-palabras-relacionadas 22)
+;; (("bar" . 13/36324) ("acá" . 5/36324) ("can" . 1/18162) ("22" . 1/36324) ("cae" . 1/36324))
 
 ;; Devuelve una lista de palabras relacionadas con la palabra anterior y que contengan la lista de numeros
 (defun get-posibles-palabras (palabra-anterior lista-numeros)
@@ -154,7 +154,6 @@ collect palabra))
     (with-open-file (s fichero)
 		    (do ((l (read-line s) (read-line s nil 'eof)))
 			((eq l 'eof) "Fin de Fichero.")
-			;(format t "~%DEBUG leido : '~a' " (parser l))
 			(loop for elem in (parser l) do
 			      (setf x (limpieza elem))
 			      (cond
@@ -184,13 +183,13 @@ collect palabra))
 (defun prediccion (teclas &optional (palabra-anterior nil))
   (get-lista-palabras-relacionadas (lista-a-numero-aux teclas) palabra-anterior teclas))
 
-;; (funcion-de-evaluacion "254674866 33 83986 77334284861")
+;; (funcion-de-evaluacion "254674866 33 83986 7733428486")
 (defun funcion-de-evaluacion (cadena)
   (parser-inversa
    (loop for x in (parser cadena) collect
 	 (first (first (get-lista-palabras-relacionadas (string-to-integer x)))))))
 
-;; (funcion-de-aprendizaje "algoritmo de texto predictivo.")
+;; (funcion-de-aprendizaje "algoritmo de texto predictivo")
 (defun funcion-de-aprendizaje (cadena)
   (loop for x in (parser cadena) do
 	(aprendizaje x)))
@@ -201,10 +200,10 @@ collect palabra))
 ;;Funcion que pasa de una cadena a una lista de cadenas (palabras)
 (defun parser (cadena)
   (loop for x in
-	(let ((lista (append (loop for x across cadena collect x) (list (character " ")))) ;;Insertamos espacio al final
-	      (ind -1)) ;;Indice
+	(let ((lista (append (loop for x across cadena collect x) (list (character " ")))) ;; Insertamos espacio al final
+	      (ind -1)) ;; Indice
 	  (loop for i from 0 to (length lista)
-		when (string= (nth i lista) '#\Space) ;;Si hay un espacio
+		when (string= (nth i lista) '#\Space) ;; Si hay un espacio
 		collect
 		(string-downcase (subseq cadena (1+ ind) (setf ind i)))))
 	when (< 0 (length x))
@@ -212,15 +211,15 @@ collect palabra))
 ;;> (parser "hola a   todos soy una   cadena ")
 ;; ("hola" "a" "todos" "soy" "una" "cadena" "")
 
-;; Funcion inversa a parser lista-cadena
+;; Funcion inversa a parser
 (defun parser-inversa (lista)
-  (apply #'string-concat ;;concateno todas las listas
+  (apply #'string-concat
 	 (reverse
-	  (rest ;;le quito el ultimo espacio
+	  (rest
 	   (reverse
 	    (loop for x in lista
 		  append
-		  (list (string x) " "))))))) ;;meto palabra y espacio
+		  (list (string x) " ")))))))
 ;;> (parser-inversa '("hola" "a" "" "" "todos" "soy" "una" "" "" "cadena" ""))
 ;; "hola a   todos soy una   cadena "
 
@@ -347,7 +346,7 @@ collect palabra))
   (format canal "~&~%Número de palabras predichas (por ejemplo 9): ")
   (setf *profundidad* (read)))
 
-;; Permite escoger el corpus a utilizar
+;; Permite escoger los corpus a utilizar
 (defun escoge-corpus (canal)
   (let ((lista (directory 'corpus/*))
 	(opcion 1)
@@ -457,7 +456,7 @@ collect palabra))
 
 (defun print-palabra (canal numero palabra)
   (if (and (not (null palabra)) (listp palabra))
-      (format canal "~a...'~a'(~,3F)~t~t~t" numero (first palabra)(rest palabra))))
+      (format canal "~a...'~a'(~,3F)~t~t~t" numero (first palabra) (rest palabra))))
 
 ;; Muestra un teclado por <<canal>>
 (defun escribe-teclado (canal)
