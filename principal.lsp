@@ -2,12 +2,12 @@
 ;; http://www.cs.us.es/cursos/ia2/trabajos/propuesta-2/propuesta-fjmm.html
 ;; Francisco Jesús Martín Mateos (fjesus@us.es)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ALUMNOS                   ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Alejandro Blanco Escudero ;;
-;; Manuel Gomar Acosta       ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ALUMNOS                                    ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Alejandro Blanco Escudero - DNI: 77807028Y ;;
+;; Manuel Gomar Acosta - DNI: 14317632V       ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; ESTRUCTURAS DE DATOS
 ;;;;;;;;;;;;;;;;;;;;;;;
