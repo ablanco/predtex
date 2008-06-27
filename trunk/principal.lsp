@@ -2,8 +2,6 @@
 ;; http://www.cs.us.es/cursos/ia2/trabajos/propuesta-2/propuesta-fjmm.html
 ;; Francisco Jesús Martín Mateos (fjesus@us.es)
 
-(load "aux.lsp")
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ALUMNOS                   ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -330,13 +328,16 @@ collect palabra))
 
 ;; Lanza el programa mostrando los resultados por pantalla
 (defun inicio ()
+  (compile-file "principal.lsp")
+  (load "principal")
+  (format t "~%~%~%")
   (crea-teclado)
-  (configuracion t)
-  (carga-dicc t)
+  (carga-datos t)
   (main t))
 
 ;; Carga los datos necesarios para ejecutar las funciones
-(defun carga-dicc (canal)
+(defun carga-datos (canal)
+  (configuracion canal)
   (format canal "~&~%Carga del diccionario~%~%")
   (entrenamiento *diccionario-location*))
 
