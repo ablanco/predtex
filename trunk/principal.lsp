@@ -65,20 +65,24 @@
 ;; Devuelve una lista de palabras relacionadas con la palabra anterior y que contengan la lista de numeros
 (defun get-posibles-palabras (palabra-anterior lista-numeros)
 (loop for palabra in (gethash palabra-anterior *corpus-dobles*)
-when (member 
+when (member ;;Solo las que contengan la secuencia de numeros
       lista-numeros 
-      (list (subseq (codifica-palabra-lista (first palabra)) 0 (min (length lista-numeros) (length (first palabra))))) :test #'equal)
-collect palabra))
+      (list ;;tiene que ser una lista para que pueda comparalo
+	(subseq (codifica-palabra-lista (first palabra)) 0 (min (length lista-numeros) (length (first palabra))))) :test #'equal)
+collect palabra)) 
 ;; (get-posibles-palabras (gethash "una" *corpus-dobles*) '(7 2))
 ;; (("palabra" . 1) ("rama" . 1) ("rata" . 1) ("pasada" . 1) ("sanitaria" . 1)
 ;;  ("pancita" . 1) ("panza" . 4) ("pareja" . 1) ("pata" . 1) ("pasta" . 1))
 
 ;; Funcion auxiliar
+;; Devuelve una lista de palabras relacionadas con un numero
 (defun get-lista-palabras-relacionadas-aux (numero)
   (append
    (gethash numero *corpus*) ;; Las que se pueden escribir con esas pulsaciones
    (loop for x in (gethash numero *corpus-key*) append ;; Las que se pueden llegar a escribir con esas pulsaciones
 	 (gethash x *corpus*))))
+;; (get-lista-palabras-relacionadas-aux 52)
+;; (("52" . 1) ("la" . 823) ("las" . 122))
 
 ;;Inserta una palabra en el corpus actualizando sus repeticiones
 (defun add-palabra (p1 &optional (p2 nil))
@@ -181,7 +185,9 @@ collect palabra))
 ;; Devuelve las palabras que se pueden llegar a escribir con esas
 ;; pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion (teclas &optional (palabra-anterior nil))
-  (get-lista-palabras-relacionadas (lista-a-numero-aux teclas) palabra-anterior teclas))
+ (remove-duplicates 
+  (get-lista-palabras-relacionadas (lista-a-numero-aux teclas) palabra-anterior teclas)
+  :test #'equal))
 
 ;; (funcion-de-evaluacion "254674866 33 83986 7733428486")
 (defun funcion-de-evaluacion (cadena)
