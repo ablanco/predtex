@@ -16,15 +16,15 @@
 (defparameter *corpus-location* nil)
 (defparameter *diccionario-location* '"aprendizaje.txt")
 
-;; Tablas hash con la informacion extraida de los corpus
+;; Tablas hash con la información extraída de los corpus
 (defparameter *corpus* (make-hash-table))
 (defparameter *corpus-dobles* (make-hash-table :test 'equal))
 (defparameter *corpus-key* (make-hash-table))
 
 (defparameter *teclado* nil)
-(defparameter *profundidad* 9) ;; Numero de palabras predichas
+(defparameter *profundidad* 9) ;; Número de palabras predichas
 
-(defvar *palabras-totales* 0) ;; Numero total de palabras reconocidas hasta el momento.
+(defvar *palabras-totales* 0) ;; Número total de palabras reconocidas hasta el momento
 
 ;;Inicializa la variable teclado con los valores correspondientes
 (defun crea-teclado ()
@@ -45,18 +45,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Devuelve una lista de palabras que es llegar posible escribir, que empiezan por las
-;; pulsaciones dadas, ordenadas por probalididad
+;; pulsaciones dadas, ordenadas por probabilidad
 (defun get-lista-palabras-relacionadas (numero &optional (palabra-anterior nil) (lista-numeros nil))
   (let ((lista (get-lista-palabras-relacionadas-aux numero)))
-    (subseq ;; Tomamos solo una lista de tam maximo *profundidad*
+    (subseq ;; Tomamos solo una lista de tam máximo *profundidad*
      (ordena-por-probabilidad 
       (calcula-probabilidad 
-	(append 
-	 lista 
-	 (get-posibles-palabras ;; Palabras que puedes llegar a escribir teniendo..
-	  palabra-anterior ;; palabra-anterior ...
-	  lista-numeros)) ;; y habiendo pulsado los numeros
-      palabra-anterior)) ;; Probabilidad bipalabra
+       (append 
+	lista 
+	(get-posibles-palabras ;; Palabras que puedes llegar a escribir teniendo..
+	 palabra-anterior ;; palabra-anterior ...
+	 lista-numeros)) ;; y habiendo pulsado los números
+       palabra-anterior)) ;; Probabilidad bipalabra
      0
      (min *profundidad* (length lista))))) ;; Palabras del corpus-compuesto
 ;; (get-lista-palabras-relacionadas 22)
@@ -64,18 +64,18 @@
 
 ;; Devuelve una lista de palabras relacionadas con la palabra anterior y que contengan la lista de numeros
 (defun get-posibles-palabras (palabra-anterior lista-numeros)
-(loop for palabra in (gethash palabra-anterior *corpus-dobles*)
-when (member ;;Solo las que contengan la secuencia de numeros
-      lista-numeros 
-      (list ;;tiene que ser una lista para que pueda comparalo
-	(subseq (codifica-palabra-lista (first palabra)) 0 (min (length lista-numeros) (length (first palabra))))) :test #'equal)
-collect palabra)) 
+  (loop for palabra in (gethash palabra-anterior *corpus-dobles*)
+	when (member ;; Sólo las que contengan la secuencia de números
+	      lista-numeros 
+	      (list ;; Tiene que ser una lista para que pueda compararlo
+	       (subseq (codifica-palabra-lista (first palabra)) 0 (min (length lista-numeros) (length (first palabra))))) :test #'equal)
+	collect palabra)) 
 ;; (get-posibles-palabras (gethash "una" *corpus-dobles*) '(7 2))
 ;; (("palabra" . 1) ("rama" . 1) ("rata" . 1) ("pasada" . 1) ("sanitaria" . 1)
 ;;  ("pancita" . 1) ("panza" . 4) ("pareja" . 1) ("pata" . 1) ("pasta" . 1))
 
 ;; Funcion auxiliar
-;; Devuelve una lista de palabras relacionadas con un numero
+;; Devuelve una lista de palabras relacionadas con un número
 (defun get-lista-palabras-relacionadas-aux (numero)
   (append
    (gethash numero *corpus*) ;; Las que se pueden escribir con esas pulsaciones
@@ -98,16 +98,16 @@ collect palabra))
 	    (add-palabra-aux palabra (gethash palabra-anterior *corpus-dobles*)))))
     (set-key palabra)))
 
-;; Inserta una palabra en una lista, si esta le suma 1 a sus apariciones si no esta le da valor 1
+;; Inserta una palabra en una lista, si está le suma 1 a sus apariciones, si no está le da valor 1
 (defun add-palabra-aux (palabra lista)
-  (if (assoc palabra lista :test #'equal) ;; Se comprueba si esta en la lista
+  (if (assoc palabra lista :test #'equal) ;; Se comprueba si está en la lista
       (loop for x in lista 
 	    collect
 	    (if (equal (first x) (string palabra)) ;; Si es la buscada
-		(cons palabra (1+ (rest x))) ;; Suma una aparicion
+		(cons palabra (1+ (rest x))) ;; Suma una aparición
 	      x)) ;; No lo es
     (cons 
-     (cons palabra 1) ;; No esta en la lista
+     (cons palabra 1) ;; No está en la lista
      lista)))
 ;;> (add-palabra-aux "hola" '(("hola" . 1) ("uno" . 1) ("dos" . 2) ("tres". 3)))
 ;; (("hola" . 2) ("uno" . 1) ("dos" . 2) ("tres" . 3))
@@ -133,7 +133,7 @@ collect palabra))
        (rest (assoc palabra (gethash (codifica-palabra palabra) *corpus*) :test #' string-equal))
        *palabras-totales*)
     (if (null (rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal)))
-	0 ;; Caso en el q palabra no aparece nunca detras de palabra-anterior
+	0 ;; Caso en el que la palabra no aparece nunca detrás de palabra-anterior
       (/ ;; Bigram
        (rest (assoc palabra (gethash palabra-anterior *corpus-dobles*) :test #' string-equal))
        (rest (assoc palabra-anterior (gethash (codifica-palabra palabra-anterior) *corpus*) :test #' string-equal))))))
@@ -149,7 +149,7 @@ collect palabra))
 ;; Ordena de mayor a menor una lista de (palabras . probabilidades)
 (defun ordena-por-probabilidad (lista)
   (sort lista #'(lambda (x y) (> (rest x) (rest y)))))
- 
+
 ;; Lee el fichero que le pasan por parametro y cuenta las apariciones
 ;; de las palabras e inicia las probabilidades
 (defun entrenamiento (fichero)
@@ -162,13 +162,13 @@ collect palabra))
 			      (setf x (limpieza elem))
 			      (cond
 				((< 0 (length x))
-				  (add-palabra x anterior)
-				  (if (punto-al-final x)
-				    (setf anterior nil)
-				    (setf anterior x)))))))))
+				 (add-palabra x anterior)
+				 (if (punto-al-final x)
+				     (setf anterior nil)
+				   (setf anterior x)))))))))
 
-;; Incrementa el numero de apariciones totales, y el de apariciones de la palabra
-;; Si la palabra no estaba en el *corpus* la incluye y la incluye en el diccionario
+;; Incrementa el número de apariciones totales, y el de apariciones de la palabra
+;; Si la palabra no estaba en el *corpus* la incluye
 (defun aprendizaje (palabra)
   (add-palabra (string-downcase palabra)))
 
@@ -185,9 +185,9 @@ collect palabra))
 ;; Devuelve las palabras que se pueden llegar a escribir con esas
 ;; pulsaciones de teclas, ordenadas por probabilidad
 (defun prediccion (teclas &optional (palabra-anterior nil))
- (remove-duplicates 
-  (get-lista-palabras-relacionadas (lista-a-numero-aux teclas) palabra-anterior teclas)
-  :test #'equal))
+  (remove-duplicates 
+   (get-lista-palabras-relacionadas (lista-a-numero-aux teclas) palabra-anterior teclas)
+   :test #'equal))
 
 ;; (funcion-de-evaluacion "254674866 33 83986 7733428486")
 (defun funcion-de-evaluacion (cadena)
@@ -203,7 +203,7 @@ collect palabra))
 ;; FUNCIONES DE CODIFICACION
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;Funcion que pasa de una cadena a una lista de cadenas (palabras)
+;;Función que pasa de una cadena a una lista de cadenas (palabras)
 (defun parser (cadena)
   (loop for x in
 	(let ((lista (append (loop for x across cadena collect x) (list (character " ")))) ;; Insertamos espacio al final
@@ -217,7 +217,7 @@ collect palabra))
 ;;> (parser "hola a   todos soy una   cadena ")
 ;; ("hola" "a" "todos" "soy" "una" "cadena" "")
 
-;; Funcion inversa a parser
+;; Función inversa a parser
 (defun parser-inversa (lista)
   (apply #'string-concat
 	 (reverse
@@ -229,7 +229,7 @@ collect palabra))
 ;;> (parser-inversa '("hola" "a" "" "" "todos" "soy" "una" "" "" "cadena" ""))
 ;; "hola a   todos soy una   cadena "
 
-;;Pasa de un string "2222" a un numero 2222
+;;Pasa de un string "2222" a un número 2222
 (defun string-to-integer (cadena)
   (lista-a-numero-aux
    (loop for x across cadena
@@ -265,14 +265,14 @@ collect palabra))
 ;;> (codifica-palabra-ascii 'hola)
 ;; (104 111 108 97)
 
-;; Codifica una palabra a un numero de teclado
+;; Codifica una palabra a un número de teclado
 (defun codifica-palabra (palabra)
   (lista-a-numero-aux
    (codifica-palabra-lista (string-downcase palabra))))
 ;;> (codifica-palabra 'hola)
 ;; 4652
 
-;;Codifica una palabra a una lista de numeros del teclado
+;;Codifica una palabra a una lista de números del teclado
 (defun codifica-palabra-lista (palabra)
   (loop for x across (string-downcase palabra)
 	when (assoc (char-code x) *teclado* :test #'member)
@@ -282,7 +282,7 @@ collect palabra))
 ;;> (codifica-palabra-lista 'hola)
 ;; (4 6 5 2)
 
-;; Pasa una lista de numeros '(1 2 3 4 5) a un literal '12345
+;; Pasa una lista de números '(1 2 3 4 5) a un literal '12345
 (defun lista-a-numero-aux (lista)
   (let ((tam (1- (length lista)))
 	(l (reverse lista)))
@@ -296,7 +296,7 @@ collect palabra))
 (defun punto-al-final (palabra)
   (equal (aref palabra (1- (length palabra))) '#\.))
 
-;; Le quita el punto del final a la palabra, si es que lo tenia
+;; Le quita el punto del final a la palabra, si es que lo tenía
 (defun sin-punto (palabra)
   (if (null palabra)
       nil
@@ -304,28 +304,28 @@ collect palabra))
 	(subseq palabra 0 (1- (length palabra)))
       palabra)))
 
-;; Limpia una cadena de los siguintes simbolos especiales "'¿?¡()/!#,:;-
+;; Limpia una cadena de los siguintes símbolos especiales "'¿?¡()/!#,:;-
 ;; Los de cierre ? y ! se convierten a puntos .
 (defun limpieza (palabra)
   (lista-char-a-string
-  (loop for x across (string-downcase palabra) collect
-    (cond
-      ((or (equal x '#\') (equal x '#\¿) (equal x '#\¡) (equal x '#\()
-	   (equal x '#\)) (equal x '#\/) (equal x '#\#) (equal x '#\,)
-	   (equal x '#\:) (equal x '#\;) (equal x '#\-) (equal x '#\"))
-	nil)
-      ((or (equal x '#\?) (equal x '#\!))
-       '#\.)
-      (t
-       x)))))
+   (loop for x across (string-downcase palabra) collect
+	 (cond
+	  ((or (equal x '#\') (equal x '#\¿) (equal x '#\¡) (equal x '#\()
+	       (equal x '#\)) (equal x '#\/) (equal x '#\#) (equal x '#\,)
+	       (equal x '#\:) (equal x '#\;) (equal x '#\-) (equal x '#\"))
+	   nil)
+	  ((or (equal x '#\?) (equal x '#\!))
+	   '#\.)
+	  (t
+	   x)))))
 
-;; Pasa una lista de char a un string, saltandose aquellos que sean nil
+;; Pasa una lista de char a un string, saltándose aquellos que sean nil
 (defun lista-char-a-string (l)
   (let ((cadena '""))
     (loop for x in l do
-      (if (null x)
-	nil
-	(setf cadena (string-concat cadena (string x)))))
+	  (if (null x)
+	      nil
+	    (setf cadena (string-concat cadena (string x)))))
     cadena))
 
 ;; FUNCIONES DE PRESENTACION
@@ -403,7 +403,7 @@ collect palabra))
 	    (setf palabra-anterior palabra) ;; Palabra anterior
 	    (setf frase (append frase (list palabra)))
 	    (print-prediccion canal teclas palabra pred frase))
-	   ((eq tecla 'b) ;; ---------------------------------------------------- Borrar ultima pulsacion
+	   ((eq tecla 'b) ;; ---------------------------------------------------- Borrar ultima pulsación
 	    (if (null teclas)
 		(format canal "~&~%No hay nada que borrar")
 	      (setf teclas (reverse (rest (reverse teclas)))))
@@ -441,7 +441,7 @@ collect palabra))
 	   (t
 	    (format canal "~&~%Opcion invalida. Escoja otra vez.~%"))))))
 
-;; Funcion auxiliar
+;; Función que muestra una predicción de manera amigable
 (defun print-prediccion (canal teclas palabra pred frase)
   (format canal "~&~%Palabra predicha: ~a~%" palabra)
   (format canal "~&Palabras posibles: ~%")
@@ -449,7 +449,7 @@ collect palabra))
   (format canal "~&Frase hasta ahora: ~a~%" frase)
   (format canal "~&Teclas pulsadas: ~a~%~%" teclas))
 
-;; Funcion auxiliar
+;; Función auxiliar
 (defun print-prediccion-aux (canal pred)
   (let ((prednorm (normaliza-lista pred)))
     (loop for i from 0 to (length prednorm)
@@ -480,6 +480,6 @@ collect palabra))
   (format canal "~&+     +     +     +")
   (escribe-linea canal))
 
-;; Funcion auxiliar
+;; Función auxiliar
 (defun escribe-linea (canal)
   (format canal "~&+-----+-----+-----+"))
