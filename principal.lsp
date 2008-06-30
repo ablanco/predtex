@@ -158,7 +158,7 @@
     (with-open-file (s fichero)
 		    (do ((l (read-line s) (read-line s nil 'eof)))
 			((eq l 'eof) "Fin de Fichero.")
-			(format t "~&DEBUG - ~a" l)
+;; 			(format t "~&DEBUG - ~a" l)
 			(loop for elem in (parser l) do
 			      (setf x (limpieza elem))
 			      (cond
