@@ -1,3 +1,20 @@
+;;     Text prediction using unigram and bigram techniques
+;;     Copyright (C) 2008  Alejandro Blanco and Manuel Gomar
+;; 
+;;     This program is free software: you can redistribute it and/or modify
+;;     it under the terms of the GNU General Public License as published by
+;;     the Free Software Foundation, either version 3 of the License, or
+;;     any later version.
+;; 
+;;     This program is distributed in the hope that it will be useful,
+;;     but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;     GNU General Public License for more details.
+;; 
+;;     You should have received a copy of the GNU General Public License
+;;     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
 ;; Algoritmos de texto predictivo
 ;; http://www.cs.us.es/cursos/ia2/trabajos/propuesta-2/propuesta-fjmm.html
 ;; Francisco Jesús Martín Mateos (fjesus@us.es)
@@ -333,13 +350,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Lanza el programa mostrando los resultados por pantalla
-(defun inicio ()
+(defun inicio (&optional (canal t))
   (compile-file "principal.lsp")
   (load "principal")
-  (format t "~%~%~%")
+  (format canal "~%~%~%")
   (crea-teclado)
-  (carga-datos t)
-  (main t))
+  (carga-datos canal)
+  (main canal))
 
 ;; Carga los datos necesarios para ejecutar las funciones
 (defun carga-datos (canal)
