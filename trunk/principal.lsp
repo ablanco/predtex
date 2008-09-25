@@ -86,18 +86,19 @@
 	      lista-numeros 
 	      (list ;; Tiene que ser una lista para que pueda compararlo
 	       (subseq (codifica-palabra-lista (first palabra)) 0 (min (length lista-numeros) (length (first palabra))))) :test #'equal)
-	collect palabra)) 
-;; (get-posibles-palabras (gethash "una" *corpus-dobles*) '(7 2))
+	collect palabra))
+;; (get-posibles-palabras "una" '(7 2))
 ;; (("palabra" . 1) ("rama" . 1) ("rata" . 1) ("pasada" . 1) ("sanitaria" . 1)
 ;;  ("pancita" . 1) ("panza" . 4) ("pareja" . 1) ("pata" . 1) ("pasta" . 1))
 
 ;; Funcion auxiliar
 ;; Devuelve una lista de palabras relacionadas con un número
 (defun get-lista-palabras-relacionadas-aux (numero)
-  (append
-   (gethash numero *corpus*) ;; Las que se pueden escribir con esas pulsaciones
-   (loop for x in (gethash numero *corpus-key*) append ;; Las que se pueden llegar a escribir con esas pulsaciones
-	 (gethash x *corpus*))))
+ (append
+	(gethash numero *corpus*) ;; Las que se pueden escribir con esas pulsaciones
+	(loop for x in (gethash numero *corpus-key*) ;; Las que se pueden llegar a escribir con esas pulsaciones
+		append
+		(get-lista-palabras-relacionadas-aux x))))
 ;; (get-lista-palabras-relacionadas-aux 52)
 ;; (("52" . 1) ("la" . 823) ("las" . 122))
 
